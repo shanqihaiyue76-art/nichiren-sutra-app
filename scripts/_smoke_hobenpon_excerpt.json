@@ -1,0 +1,14 @@
+{
+  "_note": "SMOKE TEST INPUT ONLY — readings copied from src/data/hobenpon.ts (AI-generated sample excerpt). NOT canonical. Used solely to validate the TTS-DTW engine plumbing before the authoritative 経本 text arrives.",
+  "lines": [
+    { "id": "h1", "reading": "にじせそん　じゅさんまい　あんじょうにき　ごうしゃりほつ" },
+    { "id": "h2", "reading": "しょぶつちえ　じんじんむりょう　ごちえもん　なんげなんにゅう" },
+    { "id": "h3", "reading": "いっさいしょうもん　びゃくしぶつ　しょふのうち" },
+    { "id": "h4", "reading": "しょいしゃが　ぶつぞうしんごん　ひゃくせんまんのく　むしゅしょぶつ" },
+    { "id": "h5", "reading": "じんぎょうしょぶつ　むりょうどうほう　ゆうみょうしょうじん　みょうしょうふもん" },
+    { "id": "h6", "reading": "じょうじゅじんじん　みぞうほう　ずいぎしょせつ　いしゅなんげ" },
+    { "id": "h7", "reading": "しょいしょほう　にょぜそう　にょぜしょう　にょぜたい" },
+    { "id": "h8", "reading": "にょぜりき　にょぜさ　にょぜいん　にょぜえん" },
+    { "id": "h9", "reading": "にょぜか　にょぜほう　にょぜほんまつくきょうとう" }
+  ]
+}
