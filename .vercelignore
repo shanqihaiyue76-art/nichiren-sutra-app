@@ -1,0 +1,6 @@
+models/
+.cache/
+.venv-aeneas/
+.next/
+node_modules/
+scripts/
