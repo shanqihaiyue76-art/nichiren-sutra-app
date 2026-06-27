@@ -37,7 +37,7 @@ export const sources: PlaybackSource[] = [
     subtitle: "【日蓮宗】開経偈・方便品・自我偈",
     kind: "youtube",
     youtubeId: "_oN7QCtk3lk",
-    sutraIds: ["kaikyoge", "hobenpon", "jigage"],
+    sutraIds: ["kaikyoge", "hobenpon", "jigage", "daimoku"],
     timings: [
       // ---- 開経偈（標準4行 + 延偈10行 = 計14行） ----
       // タイミング: Whisper large-v3 セグメント開始時刻
@@ -116,6 +116,11 @@ export const sources: PlaybackSource[] = [
       { lineId: "j24", start: 650.0 }, // W 諸女子心法逸弱暴力(放逸著五欲)
       { lineId: "j25", start: 656.0 }, // W ずいおしょうがど(随応所可度)
       { lineId: "j26", start: 672.4 }, // W とくにゅうむじょうど(得入無上道)
+      // ---- 題目（唱題） ----
+      // タイミング: Whisper large-v3 音声オンセット
+      // フレームOCR確認: 740s付近で【唱題】マーカー(P64) + 「南無妙法蓮華経を 心ゆくまで お唱えします」
+      // 動画は唱題区間全体で静的テキスト表示（行ごとの字幕切り替えなし）
+      { lineId: "d1",  start: 728.3 }, // W 唱題開始（南無妙法蓮華経）
     ],
   },
 
