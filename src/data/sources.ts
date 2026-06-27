@@ -166,6 +166,57 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 宝塔偈専用動画（YouTube） =====
+  // Ground Truth:
+  //   動画: ゆっくり読む日蓮宗のお経【15分バージョン】（長崎県日蓮宗青年会）
+  //   YouTube ID: XivPWmWJO2c  Views: 271,296  教化センター九州経本使用
+  //   宝塔偈セクション: 12:34〜13:32（動画内 754s〜812s）
+  //   採用理由: 公式組織制作、縦書き経本テキスト（ルビ付き・OCR高品質）、1920x1080
+  //
+  // 同期方法: OCRフレーム表示時刻（[D]）
+  //   Whisper large-v3 は高速読誦形式に非対応（"お祈りします"のみ出力）のため
+  //   全タイミングは 1fps フレーム抽出 + Vision OCR による表示時刻から算出。
+  //   clip_start = 12:30 = 750s。video_time = 750 + (frame_number - 1)。
+  //   各ペア（2行）の右列=奇数行（先行）、左列=偶数行（後続、+2〜2.5s）。
+  {
+    id: "kyushu-hotoge",
+    title: "ゆっくり読む日蓮宗のお経【15分バージョン】",
+    subtitle: "長崎県日蓮宗青年会 - 宝塔偈",
+    kind: "youtube",
+    youtubeId: "XivPWmWJO2c",
+    sutraIds: ["hotoge"],
+    timings: [
+      // ---- 宝塔偈 ht1-ht24 ----
+      // Page1: f0016=765s 〜 f0032 (ht1-ht8)
+      { lineId: "ht1",  start: 765.0 }, // D f0016 此経難持（右列）
+      { lineId: "ht2",  start: 767.0 }, // D f0016 若暫持者（左列）
+      { lineId: "ht3",  start: 768.0 }, // D f0019 我即歓喜（右列）
+      { lineId: "ht4",  start: 770.5 }, // D f0019 諸仏亦然（左列）
+      { lineId: "ht5",  start: 773.0 }, // D f0024 如是之人（右列）
+      { lineId: "ht6",  start: 775.5 }, // D f0024 諸仏所歎（左列）
+      { lineId: "ht7",  start: 778.0 }, // D f0029 是則勇猛（右列）
+      { lineId: "ht8",  start: 780.0 }, // D f0029 是則精進（左列）
+      // Page2: f0033=782s 〜 f0049 (ht9-ht16)
+      { lineId: "ht9",  start: 782.0 }, // D f0033 是名持戒（右列・ページリセット）
+      { lineId: "ht10", start: 784.0 }, // D f0033 行頭陀者（左列）
+      { lineId: "ht11", start: 786.0 }, // D f0037 即為疾得（右列）
+      { lineId: "ht12", start: 788.0 }, // D f0037 無上仏道（左列）
+      { lineId: "ht13", start: 790.0 }, // D f0041 能於来世（右列）
+      { lineId: "ht14", start: 792.5 }, // D f0041 読持此経（左列）
+      { lineId: "ht15", start: 795.0 }, // D f0046 是真仏子（右列）
+      { lineId: "ht16", start: 797.0 }, // D f0046 住淳善地（左列）
+      // Page3: f0050=799s 〜 f0070 (ht17-ht24)
+      { lineId: "ht17", start: 799.0 }, // D f0050 仏滅度後（右列・ページリセット）
+      { lineId: "ht18", start: 801.5 }, // D f0050 能解其義（左列）
+      { lineId: "ht19", start: 804.0 }, // D f0055 是諸天人（右列）
+      { lineId: "ht20", start: 806.5 }, // D f0055 世間之眼（左列）
+      { lineId: "ht21", start: 809.0 }, // D f0060 於恐畏世（右列）
+      { lineId: "ht22", start: 811.0 }, // D f0060 能須臾説（左列）
+      { lineId: "ht23", start: 813.0 }, // D f0064 一切天人（右列）
+      { lineId: "ht24", start: 816.0 }, // D f0064 皆応供養（左列）
+    ],
+  },
+
   // ===== ローカル音声（同期デモ用・無音プレースホルダー） =====
   // start 値は仮。同期UIの動作確認用。実音源に差し替えたら実測し直すこと。
   {
