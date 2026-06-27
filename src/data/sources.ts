@@ -37,7 +37,7 @@ export const sources: PlaybackSource[] = [
     subtitle: "【日蓮宗】開経偈・方便品・自我偈",
     kind: "youtube",
     youtubeId: "_oN7QCtk3lk",
-    sutraIds: ["kaikyoge", "hobenpon", "jigage", "daimoku", "ekomon-chogyo"],
+    sutraIds: ["kaikyoge", "hobenpon", "jigage", "daimoku", "ekomon-chogyo", "shishi"],
     timings: [
       // ---- 開経偈（標準4行 + 延偈10行 = 計14行） ----
       // タイミング: Whisper large-v3 セグメント開始時刻
@@ -163,6 +163,14 @@ export const sources: PlaybackSource[] = [
       { lineId: "ec37", start: 1037.5 }, // D 皆共に仏道を
       { lineId: "ec38", start: 1040.0 }, // D 成ぜんことを
       { lineId: "ec39", start: 1043.2 }, // W 南無妙法蓮華経
+      // ---- 四誓（四弘誓願 三唱）ss1-ss4 ----
+      // タイミング: OCRフレーム表示時刻（[D]）三唱の第2回唱表示開始時刻
+      // フレーム抽出: 1048s起点 1fps, f0015-f0030
+      // 動画表記: 煩悩無数誓願断（標準:無量）・法門無尽誓願知（標準:学）
+      { lineId: "ss1", start: 1062.0 }, // D f0015 衆生無辺誓願度
+      { lineId: "ss2", start: 1065.0 }, // D f0018 煩悩無数誓願断
+      { lineId: "ss3", start: 1070.0 }, // D f0023 法門無尽誓願知
+      { lineId: "ss4", start: 1073.0 }, // D f0026 仏道無上誓願成
     ],
   },
 
