@@ -34,11 +34,18 @@ export const sources: PlaybackSource[] = [
   {
     id: "kingyo19",
     title: "朝夕の勤行（19分）",
-    subtitle: "【日蓮宗】方便品・自我偈",
+    subtitle: "【日蓮宗】開経偈・方便品・自我偈",
     kind: "youtube",
     youtubeId: "_oN7QCtk3lk",
-    sutraIds: ["hobenpon", "jigage"],
+    sutraIds: ["kaikyoge", "hobenpon", "jigage"],
     timings: [
+      // ---- 開経偈 (k1-k4) ----
+      // Whisper large-v3 セグメント開始時刻を採用（全4行 W確認）
+      // 動画87-113秒区間: 方便品開始(185.3s)より前の偈文
+      { lineId: "k1", start:  87.1 }, // W 「無常人事微妙の法は」→ 無上甚深微妙法
+      { lineId: "k2", start: 100.8 }, // W 「約千万号にも…」→ 百千万劫難遭遇
+      { lineId: "k3", start: 106.8 }, // W 「我今見聞し受持…」→ 我今見聞得受持
+      { lineId: "k4", start: 112.6 }, // W 「ねがわくはにょらいの…」→ 願解如来真実義
       // ---- 方便品 長行 (h1-h6, h10-h19) ----
       { lineId: "h1",  start: 185.3 }, // W にじせそんじゅうさんまいあんじょうにち
       { lineId: "h2",  start: 191.2 }, // W 諸仏智慧
