@@ -37,7 +37,7 @@ export const sources: PlaybackSource[] = [
     subtitle: "【日蓮宗】開経偈・方便品・自我偈",
     kind: "youtube",
     youtubeId: "_oN7QCtk3lk",
-    sutraIds: ["kaikyoge", "hobenpon", "jigage", "daimoku"],
+    sutraIds: ["kaikyoge", "hobenpon", "jigage", "daimoku", "ekomon-chogyo"],
     timings: [
       // ---- 開経偈（標準4行 + 延偈10行 = 計14行） ----
       // タイミング: Whisper large-v3 セグメント開始時刻
@@ -121,6 +121,48 @@ export const sources: PlaybackSource[] = [
       // フレームOCR確認: 740s付近で【唱題】マーカー(P64) + 「南無妙法蓮華経を 心ゆくまで お唱えします」
       // 動画は唱題区間全体で静的テキスト表示（行ごとの字幕切り替えなし）
       { lineId: "d1",  start: 728.3 }, // W 唱題開始（南無妙法蓮華経）
+      // ---- 回向文（朝夕勤行）ec1-ec39 ----
+      // タイミング: Whisper large-v3 セグメント開始時刻（W）+ フレーム表示時刻推定（D）
+      // 動画フレームOCR確認済み（_oN7QCtk3lk 950-1044s, 1fps, P67-P70）
+      { lineId: "ec1",  start:  952.5 }, // W ご宝前に於いて
+      { lineId: "ec2",  start:  954.5 }, // D 心から妙法蓮華経と
+      { lineId: "ec3",  start:  956.5 }, // D 大聖人のお言葉を
+      { lineId: "ec4",  start:  960.0 }, // D 拝読し
+      { lineId: "ec5",  start:  963.9 }, // W お題目を
+      { lineId: "ec6",  start:  965.5 }, // D お唱えした功徳を
+      { lineId: "ec7",  start:  967.5 }, // D 大曼茶羅勧請の
+      { lineId: "ec8",  start:  969.5 }, // D 諸尊に捧げ
+      { lineId: "ec9",  start:  972.5 }, // W 末法の導師
+      { lineId: "ec10", start:  975.0 }, // D 日蓮大聖人始め
+      { lineId: "ec11", start:  976.5 }, // D 法華経の行者に
+      { lineId: "ec12", start:  978.5 }, // D 回向します
+      { lineId: "ec13", start:  981.8 }, // W 仰ぎ祈らくは
+      { lineId: "ec14", start:  983.5 }, // D 仏様の
+      { lineId: "ec15", start:  985.0 }, // D 大慈悲に依り
+      { lineId: "ec16", start:  989.0 }, // W 世界平和 国土安穏
+      { lineId: "ec17", start:  991.5 }, // D 万民の心が
+      { lineId: "ec18", start:  993.5 }, // D 安らかで
+      { lineId: "ec19", start:  995.5 }, // D あります様に
+      { lineId: "ec20", start:  997.3 }, // W さらには
+      { lineId: "ec21", start:  999.5 }, // D 全ての皆々が
+      { lineId: "ec22", start: 1001.9 }, // W はるか昔からの
+      { lineId: "ec23", start: 1003.5 }, // D 罪を懺悔し
+      { lineId: "ec24", start: 1005.7 }, // W 罪障を消滅し
+      { lineId: "ec25", start: 1009.1 }, // W 信心に励み
+      { lineId: "ec26", start: 1011.6 }, // W そして
+      { lineId: "ec27", start: 1013.0 }, // D 健康で過ごせます様に
+      { lineId: "ec28", start: 1015.3 }, // W また
+      { lineId: "ec29", start: 1017.0 }, // D 当家の先祖代々の諸霊位
+      { lineId: "ec30", start: 1021.1 }, // W そして
+      { lineId: "ec31", start: 1023.0 }, // D 有縁無縁の諸霊位を
+      { lineId: "ec32", start: 1025.5 }, // D 供養します
+      { lineId: "ec33", start: 1027.4 }, // W 願わくば
+      { lineId: "ec34", start: 1030.0 }, // D この功徳を以て
+      { lineId: "ec35", start: 1032.2 }, // W 普く一切に及ぼし
+      { lineId: "ec36", start: 1035.3 }, // W 我等と衆生と
+      { lineId: "ec37", start: 1037.5 }, // D 皆共に仏道を
+      { lineId: "ec38", start: 1040.0 }, // D 成ぜんことを
+      { lineId: "ec39", start: 1043.2 }, // W 南無妙法蓮華経
     ],
   },
 
