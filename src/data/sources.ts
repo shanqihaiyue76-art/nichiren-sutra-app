@@ -182,27 +182,133 @@ export const sources: PlaybackSource[] = [
   },
 
   // ===== 神力偈専用動画（YouTube） =====
-  // Ground Truth: 日蓮宗 お経 妙法蓮華経 如来神力品第二十一 法華経 やや早め
-  // YouTube ID: I9KKyj0BDOI  収録: 全品（長行+偈頌）267.1s
-  // 採用理由: 如来神力品全文収録・標準的な読経速度・音質良好
-  // 注意: タイトルカード固定（字幕なし）。Whisper不適（高速読誦）。
-  // タイミング: 暫定[P]（動画全体の均等配分）。精度向上は次セッション。
-  // 偈頌開始推定: ~140s（長行終了後）。64行 × 2.0s = 128s。
+  // Ground Truth: 【お経練習・字幕有り】妙法蓮華経如来神力品第二十一 神力偈
+  // YouTube ID: 26UL4RmM0hY  チャンネル: 見法寺法務チャンネル（日蓮宗）  収録: 239s
+  // 採用理由: 字幕焼き込み・練習用字幕動画・OCR可能・フレームOCR13点確認済み
+  // ※旧動画 I9KKyj0BDOI は字幕なし（タイトルカード固定）のため廃止
+  //
+  // 同期方法: 1fps フレーム抽出 + Vision OCR → .cache/jinriki2_frames/
+  //   表示形式: 2句並列静止（2句同時白表示・色変化なし）
+  //   タイトルカード: ~17s（f0017=妙法蓮華経 如来神力品 第二十一）
+  //   偈頌開始: 20s（f0020=jr1+jr2）
+  //
+  // OCR確認アンカー（13フレーム×完全一致）:
+  //   f0020(20s)=jr1+jr2  f0030(30s)=jr3+jr4  f0040(40s)=jr7+jr8
+  //   f0060(60s)=jr13+jr14  f0080(80s)=jr19+jr20  f0100(100s)=jr25+jr26
+  //   f0120(120s)=jr31+jr32  f0140(140s)=jr37+jr38  f0160(160s)=jr43+jr44
+  //   f0180(180s)=jr49+jr50  f0200(200s)=jr55+jr56  f0220(220s)=jr61+jr62
+  //   f0230(230s)=jr63+jr64
+  //
+  // タイミング公式（完全均一）: jr_n = 20.0 + (n-1) × (10/3) s
+  //   → 3.333s/句, 6.667s/2句ペア。全13アンカーで誤差ゼロ確認。
+  //   各ペア（2句）は同時表示のため、句内タイミングは均等2分割で推定。
   {
-    id: "jinriki-I9KK",
-    title: "日蓮宗 お経 妙法蓮華経 如来神力品第二十一",
-    subtitle: "如来神力品第二十一 偈頌（神力偈）",
+    id: "jinriki-26UL4",
+    title: "【お経練習・字幕有り】妙法蓮華経如来神力品第二十一 神力偈",
+    subtitle: "見法寺法務チャンネル（日蓮宗）- 如来神力品第二十一 偈頌（神力偈）",
     kind: "youtube",
-    youtubeId: "I9KKyj0BDOI",
+    youtubeId: "26UL4RmM0hY",
     sutraIds: ["jinrikige"],
-    timings: (() => {
-      const start = 140.0;
-      const step = 2.0;
-      return Array.from({ length: 64 }, (_, i) => ({
-        lineId: `jr${i + 1}`,
-        start: +(start + i * step).toFixed(1), // [P] 暫定・均等配分
-      }));
-    })(),
+    timings: [
+      // ---- 神力偈 jr1-jr64 ----
+      // タイミング: D=OCRアンカー（2句ペア開始）/ I=ペア内均等補間（3.333s/句）
+      // ペア1: jr1+jr2  f0020(20s)=D
+      { lineId: "jr1",  start:  20.0 }, // D f0020 諸仏救世者 ペア1開始
+      { lineId: "jr2",  start:  23.3 }, // I 住於大神通
+      // ペア2: jr3+jr4  f0030(30s)=D (26.7s開始、30s時点で確認)
+      { lineId: "jr3",  start:  26.7 }, // D f0030 為悦衆生故 ペア2開始
+      { lineId: "jr4",  start:  30.0 }, // I 現無量神力
+      // ペア3: jr5+jr6
+      { lineId: "jr5",  start:  33.3 }, // I 舌相至梵天 ペア3開始
+      { lineId: "jr6",  start:  36.7 }, // I 身放無数光
+      // ペア4: jr7+jr8  f0040(40s)=D (40.0s開始)
+      { lineId: "jr7",  start:  40.0 }, // D f0040 為求仏道者 ペア4開始
+      { lineId: "jr8",  start:  43.3 }, // I 現此希有事
+      // ペア5: jr9+jr10
+      { lineId: "jr9",  start:  46.7 }, // I 諸仏謦欬声 ペア5開始
+      { lineId: "jr10", start:  50.0 }, // I 及弾指之声
+      // ペア6: jr11+jr12
+      { lineId: "jr11", start:  53.3 }, // I 周聞十方国 ペア6開始
+      { lineId: "jr12", start:  56.7 }, // I 地皆六種動
+      // ペア7: jr13+jr14  f0060(60s)=D (60.0s開始)
+      { lineId: "jr13", start:  60.0 }, // D f0060 以仏滅度後 ペア7開始
+      { lineId: "jr14", start:  63.3 }, // I 能持是経故
+      // ペア8: jr15+jr16
+      { lineId: "jr15", start:  66.7 }, // I 諸仏皆歓喜 ペア8開始
+      { lineId: "jr16", start:  70.0 }, // I 現無量神力
+      // ペア9: jr17+jr18
+      { lineId: "jr17", start:  73.3 }, // I 嘱累是経故 ペア9開始
+      { lineId: "jr18", start:  76.7 }, // I 讃美受持者
+      // ペア10: jr19+jr20  f0080(80s)=D (80.0s開始)
+      { lineId: "jr19", start:  80.0 }, // D f0080 於無量劫中 ペア10開始
+      { lineId: "jr20", start:  83.3 }, // I 猶故不能尽
+      // ペア11: jr21+jr22
+      { lineId: "jr21", start:  86.7 }, // I 是人之功徳 ペア11開始
+      { lineId: "jr22", start:  90.0 }, // I 無辺無有窮
+      // ペア12: jr23+jr24
+      { lineId: "jr23", start:  93.3 }, // I 如十方虚空 ペア12開始
+      { lineId: "jr24", start:  96.7 }, // I 不可得辺際
+      // ペア13: jr25+jr26  f0100(100s)=D (100.0s開始)
+      { lineId: "jr25", start: 100.0 }, // D f0100 能持是経者 ペア13開始
+      { lineId: "jr26", start: 103.3 }, // I 則為已見我
+      // ペア14: jr27+jr28
+      { lineId: "jr27", start: 106.7 }, // I 亦見多宝仏 ペア14開始
+      { lineId: "jr28", start: 110.0 }, // I 及諸分身者
+      // ペア15: jr29+jr30
+      { lineId: "jr29", start: 113.3 }, // I 又見我今日 ペア15開始
+      { lineId: "jr30", start: 116.7 }, // I 教化諸菩薩
+      // ペア16: jr31+jr32  f0120(120s)=D (120.0s開始)
+      { lineId: "jr31", start: 120.0 }, // D f0120 能持是経者 ペア16開始
+      { lineId: "jr32", start: 123.3 }, // I 令我及分身
+      // ペア17: jr33+jr34
+      { lineId: "jr33", start: 126.7 }, // I 滅度多宝仏 ペア17開始
+      { lineId: "jr34", start: 130.0 }, // I 一切皆歓喜
+      // ペア18: jr35+jr36
+      { lineId: "jr35", start: 133.3 }, // I 十方現在仏 ペア18開始
+      { lineId: "jr36", start: 136.7 }, // I 幷過去未来
+      // ペア19: jr37+jr38  f0140(140s)=D (140.0s開始)
+      { lineId: "jr37", start: 140.0 }, // D f0140 亦見亦供養 ペア19開始
+      { lineId: "jr38", start: 143.3 }, // I 亦令得歓喜
+      // ペア20: jr39+jr40
+      { lineId: "jr39", start: 146.7 }, // I 諸仏坐道場 ペア20開始
+      { lineId: "jr40", start: 150.0 }, // I 所得秘要法
+      // ペア21: jr41+jr42
+      { lineId: "jr41", start: 153.3 }, // I 能持是経者 ペア21開始
+      { lineId: "jr42", start: 156.7 }, // I 不久亦當得
+      // ペア22: jr43+jr44  f0160(160s)=D (160.0s開始)
+      { lineId: "jr43", start: 160.0 }, // D f0160 能持是経者 ペア22開始
+      { lineId: "jr44", start: 163.3 }, // I 於諸法之義
+      // ペア23: jr45+jr46
+      { lineId: "jr45", start: 166.7 }, // I 名字及言辞 ペア23開始
+      { lineId: "jr46", start: 170.0 }, // I 楽説無窮尽
+      // ペア24: jr47+jr48
+      { lineId: "jr47", start: 173.3 }, // I 如風於空中 ペア24開始
+      { lineId: "jr48", start: 176.7 }, // I 一切無障礙
+      // ペア25: jr49+jr50  f0180(180s)=D (180.0s開始)
+      { lineId: "jr49", start: 180.0 }, // D f0180 於如来滅後 ペア25開始
+      { lineId: "jr50", start: 183.3 }, // I 知仏所説経
+      // ペア26: jr51+jr52
+      { lineId: "jr51", start: 186.7 }, // I 因縁及次第 ペア26開始
+      { lineId: "jr52", start: 190.0 }, // I 随義如実説
+      // ペア27: jr53+jr54
+      { lineId: "jr53", start: 193.3 }, // I 如日月光明 ペア27開始
+      { lineId: "jr54", start: 196.7 }, // I 能除諸幽冥
+      // ペア28: jr55+jr56  f0200(200s)=D (200.0s開始)
+      { lineId: "jr55", start: 200.0 }, // D f0200 斯人行世間 ペア28開始
+      { lineId: "jr56", start: 203.3 }, // I 能滅衆生闇
+      // ペア29: jr57+jr58
+      { lineId: "jr57", start: 206.7 }, // I 教無量菩薩 ペア29開始
+      { lineId: "jr58", start: 210.0 }, // I 畢竟住一乗
+      // ペア30: jr59+jr60
+      { lineId: "jr59", start: 213.3 }, // I 是故有智者 ペア30開始
+      { lineId: "jr60", start: 216.7 }, // I 聞此功徳利
+      // ペア31: jr61+jr62  f0220(220s)=D (220.0s開始)
+      { lineId: "jr61", start: 220.0 }, // D f0220 於我滅度後 ペア31開始
+      { lineId: "jr62", start: 223.3 }, // I 応受持斯経
+      // ペア32: jr63+jr64  f0230(230s)=D (226.7s開始、230s時点でjr64確認)
+      { lineId: "jr63", start: 226.7 }, // D f0230 是人於仏道 ペア32開始
+      { lineId: "jr64", start: 230.0 }, // D f0230 決定無有疑（最終句）
+    ],
   },
 
   // ===== 宝塔偈専用動画（YouTube） =====

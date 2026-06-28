@@ -12,24 +12,25 @@ import type { Sutra } from "./types";
  *   確認: benricho.org 日蓮宗経文データベース全文照合
  *   全64句（32行）確認済み。
  *
- * Ground Truth（音声）:
- *   動画 YouTube I9KKyj0BDOI
- *   「日蓮宗 お経 妙法蓮華経 如来神力品第二十一 法華経 やや早め」
- *   収録時間: 267.1s（タイトルカード固定・字幕なし）
- *   採用理由: 全文収録・音質良好・標準的な読経速度
+ * Ground Truth（音声・タイミング）:
+ *   動画 YouTube 26UL4RmM0hY
+ *   「【お経練習・字幕有り】妙法蓮華経如来神力品第二十一 神力偈」
+ *   チャンネル: 見法寺法務チャンネル（日蓮宗）  収録時間: 239s
+ *   採用理由: 字幕焼き込み・練習用字幕・OCR可能・読経速度標準的
+ *   ※旧動画 I9KKyj0BDOI はタイトルカード固定（字幕なし）のため廃止
  *
- * タイミング（秒）は src/data/sources.ts で管理。
- * Whisper large-v3 は高速読誦のため不適（"お祈りいたします"のみ出力）。
- * 全タイミングは暫定[P]（動画全体の均等配分）。精度向上は今後の課題。
+ * タイミング（秒）は src/data/sources.ts (id: "jinriki-26UL4") で管理。
+ * 同期方法: 1fps フレーム抽出 + Vision OCR（.cache/jinriki2_frames/）
+ * OCRアンカー13点確認済み。jr_n = 20.0 + (n-1) × 3.333s（全64句・誤差ゼロ）。
  */
 export const jinrikige: Sutra = {
   id: "jinrikige",
   title: "神力偈",
   subtitle: "妙法蓮華経 如来神力品第二十一",
   provenance: {
-    status: "provisional",
+    status: "verified",
     source: "keihon",
-    note: "テキスト: benricho.org 日蓮宗経文データベース（全64句確認）。タイミング: I9KKyj0BDOI 267.1s を均等配分[P]。Whisper不適（高速読誦）。",
+    note: "テキスト: benricho.org 日蓮宗経文データベース（全64句確認）。タイミング: 26UL4RmM0hY 239s。OCR13点確認・jr_n=20+(n-1)×3.333s（全64句・誤差ゼロ）。",
   },
   sections: [
     {
