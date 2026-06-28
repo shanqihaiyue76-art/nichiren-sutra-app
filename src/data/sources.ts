@@ -174,6 +174,30 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 神力偈専用動画（YouTube） =====
+  // Ground Truth: 日蓮宗 お経 妙法蓮華経 如来神力品第二十一 法華経 やや早め
+  // YouTube ID: I9KKyj0BDOI  収録: 全品（長行+偈頌）267.1s
+  // 採用理由: 如来神力品全文収録・標準的な読経速度・音質良好
+  // 注意: タイトルカード固定（字幕なし）。Whisper不適（高速読誦）。
+  // タイミング: 暫定[P]（動画全体の均等配分）。精度向上は次セッション。
+  // 偈頌開始推定: ~140s（長行終了後）。64行 × 2.0s = 128s。
+  {
+    id: "jinriki-I9KK",
+    title: "日蓮宗 お経 妙法蓮華経 如来神力品第二十一",
+    subtitle: "如来神力品第二十一 偈頌（神力偈）",
+    kind: "youtube",
+    youtubeId: "I9KKyj0BDOI",
+    sutraIds: ["jinrikige"],
+    timings: (() => {
+      const start = 140.0;
+      const step = 2.0;
+      return Array.from({ length: 64 }, (_, i) => ({
+        lineId: `jr${i + 1}`,
+        start: +(start + i * step).toFixed(1), // [P] 暫定・均等配分
+      }));
+    })(),
+  },
+
   // ===== 宝塔偈専用動画（YouTube） =====
   // Ground Truth:
   //   動画: ゆっくり読む日蓮宗のお経【15分バージョン】（長崎県日蓮宗青年会）
