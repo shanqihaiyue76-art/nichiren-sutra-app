@@ -122,47 +122,54 @@ export const sources: PlaybackSource[] = [
       // 動画は唱題区間全体で静的テキスト表示（行ごとの字幕切り替えなし）
       { lineId: "d1",  start: 728.3 }, // W 唱題開始（南無妙法蓮華経）
       // ---- 回向文（朝夕勤行）ec1-ec39 ----
-      // タイミング: Whisper large-v3 セグメント開始時刻（W）+ フレーム表示時刻推定（D）
-      // 動画フレームOCR確認済み（_oN7QCtk3lk 950-1044s, 1fps, P67-P70）
-      { lineId: "ec1",  start:  952.5 }, // W ご宝前に於いて
-      { lineId: "ec2",  start:  954.5 }, // D 心から妙法蓮華経と
-      { lineId: "ec3",  start:  956.5 }, // D 大聖人のお言葉を
-      { lineId: "ec4",  start:  960.0 }, // D 拝読し
-      { lineId: "ec5",  start:  963.9 }, // W お題目を
-      { lineId: "ec6",  start:  965.5 }, // D お唱えした功徳を
-      { lineId: "ec7",  start:  967.5 }, // D 大曼茶羅勧請の
-      { lineId: "ec8",  start:  969.5 }, // D 諸尊に捧げ
-      { lineId: "ec9",  start:  972.5 }, // W 末法の導師
-      { lineId: "ec10", start:  975.0 }, // D 日蓮大聖人始め
-      { lineId: "ec11", start:  976.5 }, // D 法華経の行者に
-      { lineId: "ec12", start:  978.5 }, // D 回向します
-      { lineId: "ec13", start:  981.8 }, // W 仰ぎ祈らくは
-      { lineId: "ec14", start:  983.5 }, // D 仏様の
-      { lineId: "ec15", start:  985.0 }, // D 大慈悲に依り
-      { lineId: "ec16", start:  989.0 }, // W 世界平和 国土安穏
-      { lineId: "ec17", start:  991.5 }, // D 万民の心が
-      { lineId: "ec18", start:  993.5 }, // D 安らかで
-      { lineId: "ec19", start:  995.5 }, // D あります様に
-      { lineId: "ec20", start:  997.3 }, // W さらには
-      { lineId: "ec21", start:  999.5 }, // D 全ての皆々が
-      { lineId: "ec22", start: 1001.9 }, // W はるか昔からの
-      { lineId: "ec23", start: 1003.5 }, // D 罪を懺悔し
-      { lineId: "ec24", start: 1005.7 }, // W 罪障を消滅し
-      { lineId: "ec25", start: 1009.1 }, // W 信心に励み
-      { lineId: "ec26", start: 1011.6 }, // W そして
-      { lineId: "ec27", start: 1013.0 }, // D 健康で過ごせます様に
-      { lineId: "ec28", start: 1015.3 }, // W また
-      { lineId: "ec29", start: 1017.0 }, // D 当家の先祖代々の諸霊位
-      { lineId: "ec30", start: 1021.1 }, // W そして
-      { lineId: "ec31", start: 1023.0 }, // D 有縁無縁の諸霊位を
-      { lineId: "ec32", start: 1025.5 }, // D 供養します
-      { lineId: "ec33", start: 1027.4 }, // W 願わくば
-      { lineId: "ec34", start: 1030.0 }, // D この功徳を以て
-      { lineId: "ec35", start: 1032.2 }, // W 普く一切に及ぼし
-      { lineId: "ec36", start: 1035.3 }, // W 我等と衆生と
-      { lineId: "ec37", start: 1037.5 }, // D 皆共に仏道を
-      { lineId: "ec38", start: 1040.0 }, // D 成ぜんことを
-      { lineId: "ec39", start: 1043.2 }, // W 南無妙法蓮華経
+      // タイミング: 動画字幕OCR表示時刻（D=OCRアンカー / I=アンカー間線形補間）
+      // 【注意】旧実装はWhisper音声オンセット（W）を使用していたが、
+      //   この動画では字幕が音声より1.5〜4.2s先行して表示されるため
+      //   「目視で一致」基準に反していた。OCR字幕表示時刻に全面改訂。
+      // OCRアンカー一覧（.cache/ekomon_frames/ 1fps, 基準時刻=950+N-1秒）:
+      //   ec4=958s(f0009) ec6=964s(f0015) ec7=966s(f0017) ec8=969s(f0020)
+      //   ec9=971s(f0022) ec10=974s(f0025) ec11=976s(f0027) ec13=982s(f0033)
+      //   ec17=989s(f0040) ec20=996s(f0047) ec24=1004s(f0055) ec27=1012s(f0063)
+      //   ec30=1019s(f0070) ec35=1029s(f0080) ec39=1039s(f0090)
+      { lineId: "ec1",  start:  954.0 }, // I (ec4=958の3行前、~2s/行)
+      { lineId: "ec2",  start:  955.0 }, // I
+      { lineId: "ec3",  start:  957.0 }, // I
+      { lineId: "ec4",  start:  958.0 }, // D f0009
+      { lineId: "ec5",  start:  963.5 }, // I (ec4=958〜ec6=964)
+      { lineId: "ec6",  start:  964.0 }, // D f0015
+      { lineId: "ec7",  start:  966.0 }, // D f0017
+      { lineId: "ec8",  start:  969.0 }, // D f0020
+      { lineId: "ec9",  start:  971.0 }, // D f0022
+      { lineId: "ec10", start:  974.0 }, // D f0025
+      { lineId: "ec11", start:  976.0 }, // D f0027
+      { lineId: "ec12", start:  979.0 }, // I (ec11=976〜ec13=982)
+      { lineId: "ec13", start:  982.0 }, // D f0033
+      { lineId: "ec14", start:  983.7 }, // I (ec13=982〜ec17=989)
+      { lineId: "ec15", start:  985.4 }, // I
+      { lineId: "ec16", start:  987.1 }, // I
+      { lineId: "ec17", start:  989.0 }, // D f0040
+      { lineId: "ec18", start:  991.3 }, // I (ec17=989〜ec20=996)
+      { lineId: "ec19", start:  993.7 }, // I
+      { lineId: "ec20", start:  996.0 }, // D f0047
+      { lineId: "ec21", start:  998.0 }, // I (ec20=996〜ec24=1004)
+      { lineId: "ec22", start: 1000.0 }, // I
+      { lineId: "ec23", start: 1002.0 }, // I
+      { lineId: "ec24", start: 1004.0 }, // D f0055
+      { lineId: "ec25", start: 1006.7 }, // I (ec24=1004〜ec27=1012)
+      { lineId: "ec26", start: 1009.3 }, // I
+      { lineId: "ec27", start: 1012.0 }, // D f0063
+      { lineId: "ec28", start: 1014.3 }, // I (ec27=1012〜ec30=1019)
+      { lineId: "ec29", start: 1016.7 }, // I
+      { lineId: "ec30", start: 1019.0 }, // D f0070
+      { lineId: "ec31", start: 1021.0 }, // I (ec30=1019〜ec35=1029)
+      { lineId: "ec32", start: 1023.0 }, // I
+      { lineId: "ec33", start: 1025.0 }, // I
+      { lineId: "ec34", start: 1027.0 }, // I
+      { lineId: "ec35", start: 1029.0 }, // D f0080
+      { lineId: "ec36", start: 1031.5 }, // I (ec35=1029〜ec39=1039)
+      { lineId: "ec37", start: 1034.0 }, // I
+      { lineId: "ec38", start: 1036.5 }, // I
+      { lineId: "ec39", start: 1039.0 }, // D f0090
       // ---- 四誓（四弘誓願 三唱）ss1-ss4 ----
       // タイミング: OCRフレーム表示時刻（[D]）三唱の第2回唱表示開始時刻
       // フレーム抽出: 1048s起点 1fps, f0015-f0030
