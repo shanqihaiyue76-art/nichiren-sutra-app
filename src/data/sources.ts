@@ -249,6 +249,160 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 観音偈専用動画（YouTube） =====
+  // Ground Truth:
+  //   動画: 観音経 慈悲と救いであらゆる願いが叶う偈文・7分 字幕（高野山真言宗 松島龍戒）
+  //   YouTube ID: _CyvlLqEWUs  Duration: 442.1s
+  //   テキスト表示開始: ~18s オフセット。フレーム: f0001=18s, f0002=19s,...
+  //   表示形式: カラオケ式。2句並列（LEFT=現在青, RIGHT=次白）。
+  //   テキスト: 妙法蓮華経 鳩摩羅什訳 観世音菩薩普門品第二十五。日蓮宗・真言宗共通。
+  //
+  // 同期方法: OCRフレーム表示時刻（[D]）
+  //   1fps フレーム抽出 + Vision OCR → .cache/kannon_frames_1fps/
+  //   アンカー: ko1=26s[D], ko3=33s[D], ko5=40s[D], ko7=48s[D], ko9=56s[D],
+  //            ko11=64s[D], ko21=96s[D], ko31=128s[D], ko41=160s[D], ko51=192s[D],
+  //            ko57=213s[D], ko87=311s[D], ko101=356s[D], ko111=397s[D],
+  //            ko116=410s[D], ko118=422s[D]
+  //   区間ごとの補間レート:
+  //     ko1-ko4:   3.5s/句（26.0〜33.0s）
+  //     ko5-ko10:  4.0s/句（40.0〜64.0s）
+  //     ko11-ko104: 3.25s/句（64.0〜356.0s）
+  //     ko105-ko118: 4〜5s/句（観察アンカーで補間）
+  {
+    id: "kannon-CyvlL",
+    title: "観音経 慈悲と救いであらゆる願いが叶う偈文・7分 字幕",
+    subtitle: "観世音菩薩普門品第二十五 偈頌（観音偈）",
+    kind: "youtube",
+    youtubeId: "_CyvlLqEWUs",
+    sutraIds: ["kannonge"],
+    timings: [
+      // ---- 観音偈 ko1-ko104（偈頌） ----
+      // ko1-ko4: 3.5s/句, 起点 26.0s [D]
+      { lineId: "ko1",   start:  26.0 }, // D f0009 世尊妙相具
+      { lineId: "ko2",   start:  29.5 }, // P
+      { lineId: "ko3",   start:  33.0 }, // D f0016 仏子何因縁
+      { lineId: "ko4",   start:  36.5 }, // P
+      // ko5-ko10: 4.0s/句, 起点 40.0s [D]
+      { lineId: "ko5",   start:  40.0 }, // D f0023 具足妙相尊
+      { lineId: "ko6",   start:  44.0 }, // P
+      { lineId: "ko7",   start:  48.0 }, // D f0031 汝聴観音行
+      { lineId: "ko8",   start:  52.0 }, // P
+      { lineId: "ko9",   start:  56.0 }, // D f0039 弘誓深如海
+      { lineId: "ko10",  start:  60.0 }, // P
+      // ko11-ko104: 3.25s/句, 起点 64.0s [D]
+      { lineId: "ko11",  start:  64.0 }, // D f0047 侍多千億仏
+      { lineId: "ko12",  start:  67.3 }, // P
+      { lineId: "ko13",  start:  70.5 }, // P
+      { lineId: "ko14",  start:  73.8 }, // P
+      { lineId: "ko15",  start:  77.0 }, // P
+      { lineId: "ko16",  start:  80.3 }, // P
+      { lineId: "ko17",  start:  83.5 }, // P ≈82s[D]
+      { lineId: "ko18",  start:  86.8 }, // P
+      { lineId: "ko19",  start:  90.0 }, // P
+      { lineId: "ko20",  start:  93.3 }, // P
+      { lineId: "ko21",  start:  96.5 }, // D f0079 或漂流巨海 ≈96s
+      { lineId: "ko22",  start:  99.8 }, // P
+      { lineId: "ko23",  start: 103.0 }, // P
+      { lineId: "ko24",  start: 106.3 }, // P
+      { lineId: "ko25",  start: 109.5 }, // P
+      { lineId: "ko26",  start: 112.8 }, // P
+      { lineId: "ko27",  start: 116.0 }, // P
+      { lineId: "ko28",  start: 119.3 }, // P
+      { lineId: "ko29",  start: 122.5 }, // P
+      { lineId: "ko30",  start: 125.8 }, // P
+      { lineId: "ko31",  start: 129.0 }, // D f0111 念彼観音力 ≈128s
+      { lineId: "ko32",  start: 132.3 }, // P
+      { lineId: "ko33",  start: 135.5 }, // P
+      { lineId: "ko34",  start: 138.8 }, // P
+      { lineId: "ko35",  start: 142.0 }, // P
+      { lineId: "ko36",  start: 145.3 }, // P
+      { lineId: "ko37",  start: 148.5 }, // P
+      { lineId: "ko38",  start: 151.8 }, // P
+      { lineId: "ko39",  start: 155.0 }, // P
+      { lineId: "ko40",  start: 158.3 }, // P
+      { lineId: "ko41",  start: 161.5 }, // D f0143 或囚禁枷鎖 ≈160s
+      { lineId: "ko42",  start: 164.8 }, // P
+      { lineId: "ko43",  start: 168.0 }, // P
+      { lineId: "ko44",  start: 171.3 }, // P
+      { lineId: "ko45",  start: 174.5 }, // P
+      { lineId: "ko46",  start: 177.8 }, // P
+      { lineId: "ko47",  start: 181.0 }, // P
+      { lineId: "ko48",  start: 184.3 }, // P
+      { lineId: "ko49",  start: 187.5 }, // P
+      { lineId: "ko50",  start: 190.8 }, // P
+      { lineId: "ko51",  start: 194.0 }, // D f0175 念彼観音力 ≈192s
+      { lineId: "ko52",  start: 197.3 }, // P
+      { lineId: "ko53",  start: 200.5 }, // P
+      { lineId: "ko54",  start: 203.8 }, // P
+      { lineId: "ko55",  start: 207.0 }, // P
+      { lineId: "ko56",  start: 210.3 }, // P
+      { lineId: "ko57",  start: 213.5 }, // D f0196 蚖蛇及蚖蟆 ≈213s
+      { lineId: "ko58",  start: 216.8 }, // P
+      { lineId: "ko59",  start: 220.0 }, // P
+      { lineId: "ko60",  start: 223.3 }, // P
+      { lineId: "ko61",  start: 226.5 }, // P
+      { lineId: "ko62",  start: 229.8 }, // P
+      { lineId: "ko63",  start: 233.0 }, // P
+      { lineId: "ko64",  start: 236.3 }, // P
+      { lineId: "ko65",  start: 239.5 }, // P
+      { lineId: "ko66",  start: 242.8 }, // P
+      { lineId: "ko67",  start: 246.0 }, // P
+      { lineId: "ko68",  start: 249.3 }, // P
+      { lineId: "ko69",  start: 252.5 }, // P
+      { lineId: "ko70",  start: 255.8 }, // P
+      { lineId: "ko71",  start: 259.0 }, // P
+      { lineId: "ko72",  start: 262.3 }, // P
+      { lineId: "ko73",  start: 265.5 }, // P
+      { lineId: "ko74",  start: 268.8 }, // P
+      { lineId: "ko75",  start: 272.0 }, // P
+      { lineId: "ko76",  start: 275.3 }, // P
+      { lineId: "ko77",  start: 278.5 }, // P
+      { lineId: "ko78",  start: 281.8 }, // P
+      { lineId: "ko79",  start: 285.0 }, // P
+      { lineId: "ko80",  start: 288.3 }, // P
+      { lineId: "ko81",  start: 291.5 }, // P
+      { lineId: "ko82",  start: 294.8 }, // P
+      { lineId: "ko83",  start: 298.0 }, // P
+      { lineId: "ko84",  start: 301.3 }, // P
+      { lineId: "ko85",  start: 304.5 }, // P
+      { lineId: "ko86",  start: 307.8 }, // P
+      { lineId: "ko87",  start: 311.0 }, // D f0294 澍甘露法雨 ≈311s
+      { lineId: "ko88",  start: 314.3 }, // P
+      { lineId: "ko89",  start: 317.5 }, // P
+      { lineId: "ko90",  start: 320.8 }, // P
+      { lineId: "ko91",  start: 324.0 }, // P
+      { lineId: "ko92",  start: 327.3 }, // P
+      { lineId: "ko93",  start: 330.5 }, // P
+      { lineId: "ko94",  start: 333.8 }, // P
+      { lineId: "ko95",  start: 337.0 }, // P
+      { lineId: "ko96",  start: 340.3 }, // P
+      { lineId: "ko97",  start: 343.5 }, // P
+      { lineId: "ko98",  start: 346.8 }, // P
+      { lineId: "ko99",  start: 350.0 }, // P
+      { lineId: "ko100", start: 353.3 }, // P
+      { lineId: "ko101", start: 356.5 }, // D f0339 具一切功徳 ≈356s
+      { lineId: "ko102", start: 359.8 }, // P
+      { lineId: "ko103", start: 363.0 }, // P
+      { lineId: "ko104", start: 366.3 }, // P
+      // ---- 観音偈 ko105-ko118（長行後段） ----
+      // 爾時持地菩薩 passage。アンカー: ko111=397s[D], ko116=410s[D], ko118=422s[D]
+      { lineId: "ko105", start: 370.0 }, // P
+      { lineId: "ko106", start: 374.0 }, // P
+      { lineId: "ko107", start: 378.0 }, // P
+      { lineId: "ko108", start: 382.0 }, // P
+      { lineId: "ko109", start: 386.0 }, // P
+      { lineId: "ko110", start: 390.0 }, // P
+      { lineId: "ko111", start: 397.0 }, // D 普門示現
+      { lineId: "ko112", start: 401.0 }, // P
+      { lineId: "ko113", start: 404.0 }, // P
+      { lineId: "ko114", start: 407.0 }, // P
+      { lineId: "ko115", start: 409.0 }, // P
+      { lineId: "ko116", start: 410.0 }, // D 衆中八万四千衆生
+      { lineId: "ko117", start: 416.0 }, // P
+      { lineId: "ko118", start: 422.0 }, // D 阿耨多羅三藐三菩提心 ≈422s
+    ],
+  },
+
   // ===== ローカル音声（同期デモ用・無音プレースホルダー） =====
   // start 値は仮。同期UIの動作確認用。実音源に差し替えたら実測し直すこと。
   {
