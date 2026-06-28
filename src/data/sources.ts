@@ -270,10 +270,13 @@ export const sources: PlaybackSource[] = [
   //            ko11=64s[D], ko21=96s[D], ko31=128s[D], ko41=160s[D], ko51=192s[D],
   //            ko57=213s[D], ko87=311s[D], ko101=356s[D], ko111=397s[D],
   //            ko116=410s[D], ko118=422s[D]
-  //   区間ごとの補間レート:
+  //   区間ごとの補間レート（QA第2次 OCR再測定後の確定値）:
   //     ko1-ko4:   3.5s/句（26.0〜33.0s）
   //     ko5-ko10:  4.0s/句（40.0〜64.0s）
-  //     ko11-ko104: 3.25s/句（64.0〜356.0s）
+  //     ko11-ko56: 3.25s/句（64.0〜210.3s）← 10句ごとDアンカー確認済み
+  //     ko57-ko62: 3.75s/句（213.5〜232.3s）← 七難末尾。ko63=236.0s[D]で確定
+  //     ko63-ko74: 3.0s/句（236.0〜269.0s） ← 新節。ko75=272.0s[D]で収束確認
+  //     ko75-ko104: 3.25s/句（272.0〜366.3s）← ko87=311s[D] ko101=356.5s[D] 確認済み
   //     ko105-ko118: 4〜5s/句（観察アンカーで補間）
   {
     id: "kannon-CyvlL",
@@ -343,25 +346,31 @@ export const sources: PlaybackSource[] = [
       { lineId: "ko54",  start: 203.8 }, // P
       { lineId: "ko55",  start: 207.0 }, // P
       { lineId: "ko56",  start: 210.3 }, // P
-      { lineId: "ko57",  start: 213.5 }, // D f0196 蚖蛇及蚖蟆 ≈213s
-      { lineId: "ko58",  start: 216.8 }, // P
-      { lineId: "ko59",  start: 220.0 }, // P
-      { lineId: "ko60",  start: 223.3 }, // P
-      { lineId: "ko61",  start: 226.5 }, // P
-      { lineId: "ko62",  start: 229.8 }, // P
-      { lineId: "ko63",  start: 233.0 }, // P
-      { lineId: "ko64",  start: 236.3 }, // P
-      { lineId: "ko65",  start: 239.5 }, // P
-      { lineId: "ko66",  start: 242.8 }, // P
-      { lineId: "ko67",  start: 246.0 }, // P
-      { lineId: "ko68",  start: 249.3 }, // P
-      { lineId: "ko69",  start: 252.5 }, // P
-      { lineId: "ko70",  start: 255.8 }, // P
-      { lineId: "ko71",  start: 259.0 }, // P
-      { lineId: "ko72",  start: 262.3 }, // P
-      { lineId: "ko73",  start: 265.5 }, // P
-      { lineId: "ko74",  start: 268.8 }, // P
-      { lineId: "ko75",  start: 272.0 }, // P
+      // ko57-ko62: 3.75s/句（七難末尾区間。OCR2点＋区間フィット確認）
+      // ko63=236.0s確定: f0219(236s)=ko63開始, f0222(239s)=ko63終端 → ko57→ko63=22.5s/6句=3.75s/句
+      { lineId: "ko57",  start: 213.5 }, // D f0196 蚖蛇及蚖蟆
+      { lineId: "ko58",  start: 217.3 }, // I 3.75s/句
+      { lineId: "ko59",  start: 221.0 }, // I ← f0206(223s)でko59確認(2s経過)✓
+      { lineId: "ko60",  start: 224.8 }, // I
+      { lineId: "ko61",  start: 228.5 }, // I
+      { lineId: "ko62",  start: 232.3 }, // I
+      // ko63-ko74: 3.0s/句（新節「衆生被困厄」〜「以漸悉令滅」区間）
+      // ko63=236.0s確定: f0219(236s)=ko63blue開始 / ko67=248s: f0233(250s)=ko67(2s経過)✓
+      // ko63→ko75=272.0s(Dアンカー): 12句36.0s → 3.0s/句
+      { lineId: "ko63",  start: 236.0 }, // D f0219 念彼観音力（section end）
+      { lineId: "ko64",  start: 239.0 }, // I 3.0s/句
+      { lineId: "ko65",  start: 242.0 }, // I
+      { lineId: "ko66",  start: 245.0 }, // I
+      { lineId: "ko67",  start: 248.0 }, // I ← f0233(250s)で2s経過確認✓
+      { lineId: "ko68",  start: 251.0 }, // I
+      { lineId: "ko69",  start: 254.0 }, // I ← f0239(256s)で2s経過確認✓
+      { lineId: "ko70",  start: 257.0 }, // I
+      { lineId: "ko71",  start: 260.0 }, // I
+      { lineId: "ko72",  start: 263.0 }, // I
+      { lineId: "ko73",  start: 266.0 }, // I
+      { lineId: "ko74",  start: 269.0 }, // I
+      // ko75-: 3.25s/句（Dアンカー ko75=272s, ko87=311s で確定）
+      { lineId: "ko75",  start: 272.0 }, // D f0255 生老病死苦（exact）
       { lineId: "ko76",  start: 275.3 }, // P
       { lineId: "ko77",  start: 278.5 }, // P
       { lineId: "ko78",  start: 281.8 }, // P
@@ -393,17 +402,22 @@ export const sources: PlaybackSource[] = [
       { lineId: "ko104", start: 366.3 }, // P
       // ---- 観音偈 ko105-ko118（長行後段） ----
       // 爾時持地菩薩 passage。アンカー: ko111=397s[D], ko116=410s[D], ko118=422s[D]
-      { lineId: "ko105", start: 370.0 }, // P
+      // ko105-ko110: 散文冒頭。ko109=386s[D f0370: 聞是観世音菩薩品, 2char進行確認]
+      // ko104=366.25 → ko109=386s: 4.75s/句（長行ゆっくり）
+      // ko109 → ko111=397: 2句11s = 5.5s/句
+      { lineId: "ko105", start: 370.0 }, // P (±1s, 許容範囲)
       { lineId: "ko106", start: 374.0 }, // P
       { lineId: "ko107", start: 378.0 }, // P
       { lineId: "ko108", start: 382.0 }, // P
-      { lineId: "ko109", start: 386.0 }, // P
-      { lineId: "ko110", start: 390.0 }, // P
+      { lineId: "ko109", start: 386.0 }, // D f0370 聞是観世音菩薩品
+      { lineId: "ko110", start: 391.5 }, // I ko109=386 → ko111=397 (5.5s/句)
       { lineId: "ko111", start: 397.0 }, // D 普門示現
-      { lineId: "ko112", start: 401.0 }, // P
-      { lineId: "ko113", start: 404.0 }, // P
-      { lineId: "ko114", start: 407.0 }, // P
-      { lineId: "ko115", start: 409.0 }, // P
+      // ko112-ko115: ko111=397 → ko116=410, 5句間13s = 2.6s/句
+      // ← 旧値(401/404/407/409)はすべて1.4-2.2s遅すぎ。f0390(407s)でko115確認。
+      { lineId: "ko112", start: 399.5 }, // I 2.6s/句
+      { lineId: "ko113", start: 402.0 }, // I
+      { lineId: "ko114", start: 404.8 }, // I
+      { lineId: "ko115", start: 407.5 }, // I ← f0390(407s)でko115開始付近確認✓
       { lineId: "ko116", start: 410.0 }, // D 衆中八万四千衆生
       { lineId: "ko117", start: 416.0 }, // P
       { lineId: "ko118", start: 422.0 }, // D 阿耨多羅三藐三菩提心 ≈422s
