@@ -649,6 +649,155 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 観音偈 専用練習動画（YouTube・見法寺法務チャンネル） =====
+  // Ground Truth: 【お経練習・字幕有り】妙法蓮華経観世音菩薩普門品第二十五　観音偈
+  // YouTube ID: KNMoi0cDOx0  収録: 401.9s
+  // フォーマット: 2句並列表示（白抜き大字・ふりがな付き）
+  // OCRアンカー（11表示ペア）:
+  //   D1=18s(ko1+2) D2=26s(ko3+4) D5=48s(ko9+10) D8=68s(ko15+16)
+  //   D13=98s(ko25+26) D21=148s(ko41+42) D29=198s(ko57+58)
+  //   D38=248s(ko75+76) D46=298s(ko91+92) D54=348s(ko107+108)
+  //   D59=388s(ko117+118)
+  // ペース: 各区間内で線形補間。奇数ko=表示開始, 偶数ko=表示開始+区間半分
+  // 区間別レート: D1-2=8s/表示→D2-5=7.3s→D5-8=6.7s→D8-13=6.0s
+  //              →D13-29=6.25s→D29-38=5.6s→D38-54=6.25s→D54-59=8.0s
+  {
+    id: "miehouji-kannonge",
+    title: "【お経練習・字幕有り】妙法蓮華経観世音菩薩普門品第二十五　観音偈",
+    subtitle: "見法寺法務チャンネル（日蓮宗）- 観音偈 専用練習動画",
+    kind: "youtube",
+    youtubeId: "KNMoi0cDOx0",
+    sutraIds: ["kannonge"],
+    timings: [
+      // ---- D1-D2: 8.0s/表示, offset+4.0s (18-26s) ----
+      { lineId: "ko1",   start:  18.0 }, // D f0020 観音偈開始
+      { lineId: "ko2",   start:  22.0 }, // P +4.0
+      // ---- D2-D5: 7.33s/表示, offset+3.7s (26-48s) ----
+      { lineId: "ko3",   start:  26.0 }, // D f0027 仏子何因縁/名為観世音
+      { lineId: "ko4",   start:  29.7 }, // P +3.7
+      { lineId: "ko5",   start:  33.3 }, // I
+      { lineId: "ko6",   start:  37.0 }, // P
+      { lineId: "ko7",   start:  40.7 }, // I
+      { lineId: "ko8",   start:  44.4 }, // P
+      // ---- D5-D8: 6.67s/表示, offset+3.3s (48-68s) ----
+      { lineId: "ko9",   start:  48.0 }, // D f0050 弘誓深如海/歴劫不思議
+      { lineId: "ko10",  start:  51.3 }, // P +3.3
+      { lineId: "ko11",  start:  54.7 }, // I
+      { lineId: "ko12",  start:  58.0 }, // P
+      { lineId: "ko13",  start:  61.3 }, // I
+      { lineId: "ko14",  start:  64.7 }, // P
+      // ---- D8-D13: 6.0s/表示, offset+3.0s (68-98s) ----
+      { lineId: "ko15",  start:  68.0 }, // D f0070 心念不空過/能滅諸有苦
+      { lineId: "ko16",  start:  71.0 }, // P +3.0
+      { lineId: "ko17",  start:  74.0 }, // I
+      { lineId: "ko18",  start:  77.0 }, // P
+      { lineId: "ko19",  start:  80.0 }, // I
+      { lineId: "ko20",  start:  83.0 }, // P
+      { lineId: "ko21",  start:  86.0 }, // I
+      { lineId: "ko22",  start:  89.0 }, // P
+      { lineId: "ko23",  start:  92.0 }, // I
+      { lineId: "ko24",  start:  95.0 }, // P
+      // ---- D13-D29: 6.25s/表示, offset+3.1s (98-198s) ----
+      { lineId: "ko25",  start:  98.0 }, // D f0100 或在須弥峰/為人所推堕
+      { lineId: "ko26",  start: 101.1 }, // P +3.1
+      { lineId: "ko27",  start: 104.3 }, // I
+      { lineId: "ko28",  start: 107.4 }, // P
+      { lineId: "ko29",  start: 110.5 }, // I
+      { lineId: "ko30",  start: 113.6 }, // P
+      { lineId: "ko31",  start: 116.8 }, // I
+      { lineId: "ko32",  start: 119.9 }, // P
+      { lineId: "ko33",  start: 123.0 }, // I
+      { lineId: "ko34",  start: 126.1 }, // P
+      { lineId: "ko35",  start: 129.3 }, // I
+      { lineId: "ko36",  start: 132.4 }, // P
+      { lineId: "ko37",  start: 135.5 }, // I
+      { lineId: "ko38",  start: 138.6 }, // P
+      { lineId: "ko39",  start: 141.8 }, // I
+      { lineId: "ko40",  start: 144.9 }, // P
+      { lineId: "ko41",  start: 148.0 }, // D f0150 或囚禁枷鎖/手足被杻械
+      { lineId: "ko42",  start: 151.1 }, // P +3.1
+      { lineId: "ko43",  start: 154.3 }, // I
+      { lineId: "ko44",  start: 157.4 }, // P
+      { lineId: "ko45",  start: 160.5 }, // I
+      { lineId: "ko46",  start: 163.6 }, // P
+      { lineId: "ko47",  start: 166.8 }, // I
+      { lineId: "ko48",  start: 169.9 }, // P
+      { lineId: "ko49",  start: 173.0 }, // I
+      { lineId: "ko50",  start: 176.1 }, // P
+      { lineId: "ko51",  start: 179.3 }, // I
+      { lineId: "ko52",  start: 182.4 }, // P
+      { lineId: "ko53",  start: 185.5 }, // I
+      { lineId: "ko54",  start: 188.6 }, // P
+      { lineId: "ko55",  start: 191.8 }, // I
+      { lineId: "ko56",  start: 194.9 }, // P
+      // ---- D29-D38: 5.56s/表示, offset+2.8s (198-248s) ----
+      { lineId: "ko57",  start: 198.0 }, // D f0200 蚖蛇及蚖蟆/気毒煙火然
+      { lineId: "ko58",  start: 200.8 }, // P +2.8
+      { lineId: "ko59",  start: 203.6 }, // I
+      { lineId: "ko60",  start: 206.3 }, // P
+      { lineId: "ko61",  start: 209.1 }, // I
+      { lineId: "ko62",  start: 211.9 }, // P
+      { lineId: "ko63",  start: 214.7 }, // I
+      { lineId: "ko64",  start: 217.4 }, // P
+      { lineId: "ko65",  start: 220.2 }, // I
+      { lineId: "ko66",  start: 223.0 }, // P
+      { lineId: "ko67",  start: 225.8 }, // I
+      { lineId: "ko68",  start: 228.6 }, // P
+      { lineId: "ko69",  start: 231.3 }, // I
+      { lineId: "ko70",  start: 234.1 }, // P
+      { lineId: "ko71",  start: 236.9 }, // I
+      { lineId: "ko72",  start: 239.7 }, // P
+      { lineId: "ko73",  start: 242.4 }, // I
+      { lineId: "ko74",  start: 245.2 }, // P
+      // ---- D38-D54: 6.25s/表示, offset+3.1s (248-348s) ----
+      { lineId: "ko75",  start: 248.0 }, // D f0250 生老病死苦/以漸悉令滅
+      { lineId: "ko76",  start: 251.1 }, // P +3.1
+      { lineId: "ko77",  start: 254.3 }, // I
+      { lineId: "ko78",  start: 257.4 }, // P
+      { lineId: "ko79",  start: 260.5 }, // I
+      { lineId: "ko80",  start: 263.6 }, // P
+      { lineId: "ko81",  start: 266.8 }, // I
+      { lineId: "ko82",  start: 269.9 }, // P
+      { lineId: "ko83",  start: 273.0 }, // I
+      { lineId: "ko84",  start: 276.1 }, // P
+      { lineId: "ko85",  start: 279.3 }, // I
+      { lineId: "ko86",  start: 282.4 }, // P
+      { lineId: "ko87",  start: 285.5 }, // I
+      { lineId: "ko88",  start: 288.6 }, // P
+      { lineId: "ko89",  start: 291.8 }, // I
+      { lineId: "ko90",  start: 294.9 }, // P
+      { lineId: "ko91",  start: 298.0 }, // D f0300 念彼観音力/衆怨悉退散
+      { lineId: "ko92",  start: 301.1 }, // P +3.1
+      { lineId: "ko93",  start: 304.3 }, // I
+      { lineId: "ko94",  start: 307.4 }, // P
+      { lineId: "ko95",  start: 310.5 }, // I
+      { lineId: "ko96",  start: 313.6 }, // P
+      { lineId: "ko97",  start: 316.8 }, // I
+      { lineId: "ko98",  start: 319.9 }, // P
+      { lineId: "ko99",  start: 323.0 }, // I
+      { lineId: "ko100", start: 326.1 }, // P
+      { lineId: "ko101", start: 329.3 }, // I
+      { lineId: "ko102", start: 332.4 }, // P
+      { lineId: "ko103", start: 335.5 }, // I
+      { lineId: "ko104", start: 338.6 }, // P
+      { lineId: "ko105", start: 341.8 }, // I
+      { lineId: "ko106", start: 344.9 }, // P
+      // ---- D54-D59: 8.0s/表示, offset+4.0s (348-388s) ----
+      { lineId: "ko107", start: 348.0 }, // D f0350 前白仏言/世尊
+      { lineId: "ko108", start: 352.0 }, // P +4.0
+      { lineId: "ko109", start: 356.0 }, // I
+      { lineId: "ko110", start: 360.0 }, // P
+      { lineId: "ko111", start: 364.0 }, // I
+      { lineId: "ko112", start: 368.0 }, // P
+      { lineId: "ko113", start: 372.0 }, // I
+      { lineId: "ko114", start: 376.0 }, // P
+      { lineId: "ko115", start: 380.0 }, // I
+      { lineId: "ko116", start: 384.0 }, // P
+      { lineId: "ko117", start: 388.0 }, // D f0390 皆発無等等/阿耨多羅三藐三菩提心
+      { lineId: "ko118", start: 392.0 }, // P +4.0 (video ends ~401.9s)
+    ],
+  },
+
   // ===== ローカル音声（同期デモ用・無音プレースホルダー） =====
   // start 値は仮。同期UIの動作確認用。実音源に差し替えたら実測し直すこと。
   {
