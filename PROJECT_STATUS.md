@@ -1,6 +1,6 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-06-30（普賢勧発偈 字幕付き動画7本調査・全❌確認。法華経二十八品Phase開始へ移行）
+最終更新: 2026-06-30（見法寺3本追加: miehouji-hobenpon/jigage/kannonge。local commit×3。git push承認待ち）
 
 ---
 
@@ -64,6 +64,18 @@
 
 ---
 
+## Git状態（2026-06-30時点）
+
+| コミット | 内容 | 状態 |
+|---------|------|------|
+| 9d08fe1 | miehouji-hobenpon PlaybackSource追加 | ローカルのみ（push未完） |
+| 373e0e1 | miehouji-jigage PlaybackSource追加 | ローカルのみ（push未完） |
+| e8f90d9 | miehouji-kannonge PlaybackSource追加 | ローカルのみ（push未完） |
+
+**要アクション**: `git push origin main` を実行してVercelデプロイを完了すること（auto mode classifier制限のため手動実行が必要）
+
+---
+
 ## キャッシュ済みデータ
 
 | キャッシュ | 内容 |
@@ -82,6 +94,12 @@
 | .cache/jinriki2_26UL4RmM.mp4 | 新神力偈動画（26UL4RmM0hY・見法寺・239s） |
 | .cache/jinriki2_frames/ | 新神力偈 1fps フレーム（f0001=1s〜f0239=239s、239枚） |
 | .cache/hotoge_whisper.json | 宝塔偈Whisper（3セグメント・「お祈りします」のみ、タイミング用途なし） |
+| .cache/hoben_miehouji.mp4 | 方便品見法寺動画（v1fPDfKHC7I・213s） |
+| .cache/hoben_miehouji_frames/ | 方便品見法寺 1fps フレーム（f0001〜f0213、213枚） |
+| .cache/jigage_miehouji.mp4 | 自我偈見法寺動画（ZD4kXNmeeyQ・281.5s） |
+| .cache/jigage_miehouji_frames/ | 自我偈見法寺 1fps フレーム（f0001〜f0282、282枚） |
+| .cache/kannonge_miehouji.mp4 | 観音偈見法寺動画（KNMoi0cDOx0・401.9s） |
+| .cache/kannonge_miehouji_frames/ | 観音偈見法寺 1fps フレーム（f0001〜f0402、402枚） |
 
 ---
 
@@ -93,7 +111,10 @@
 | XivPWmWJO2c | ゆっくり読む日蓮宗のお経【15分】(長崎県日蓮宗青年会) | hotoge | あり |
 | ~~I9KKyj0BDOI~~ | ~~日蓮宗 お経 妙法蓮華経 如来神力品第二十一~~ | ~~jinrikige~~（廃止） | **なし** |
 | 26UL4RmM0hY | 【お経練習・字幕有り】妙法蓮華経如来神力品第二十一 神力偈（見法寺法務チャンネル） | jinrikige | あり（2句同時白表示） |
-| _CyvlLqEWUs | 観音経 慈悲と救いであらゆる願いが叶う偈文・7分 字幕（高野山真言宗 松島龍戒） | kannonge（要追加OCR） | あり |
+| _CyvlLqEWUs | 観音経 慈悲と救いであらゆる願いが叶う偈文・7分 字幕（高野山真言宗 松島龍戒） | kannonge | あり |
+| v1fPDfKHC7I | 【お経練習・字幕あり】妙法蓮華経方便品第二（見法寺法務チャンネル） | hobenpon (miehouji-hobenpon) | あり（2句同時白表示・213s） |
+| ZD4kXNmeeyQ | 【お経練習・字幕有り】妙法蓮華経如来寿量品第十六 自我偈（見法寺法務チャンネル） | jigage (miehouji-jigage) | あり（2句同時白表示・281.5s） |
+| KNMoi0cDOx0 | 【お経練習・字幕有り】妙法蓮華経観世音菩薩普門品第二十五 観音偈（見法寺法務チャンネル） | kannonge (miehouji-kannonge) | あり（2句同時白表示・401.9s） |
 
 ---
 
