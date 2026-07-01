@@ -73,16 +73,19 @@
 
 | コミット | 内容 | 状態 |
 |---------|------|------|
-| 9d08fe1 | miehouji-hobenpon PlaybackSource追加 | ローカルのみ（push未完） |
-| 373e0e1 | miehouji-jigage PlaybackSource追加 | ローカルのみ（push未完） |
-| e8f90d9 | miehouji-kannonge PlaybackSource追加 | ローカルのみ（push未完） |
-| 7f34d71 | PROJECT_STATUS更新（NPL9/J1m3/BqKM調査完了・STOP条件記録） | ローカルのみ（push未完） |
-| cdc2671 | 提婆達多品第十二 実装（daibadatta.ts + index.ts + sources.ts） | ローカルのみ（push未完） |
-| 21c9f9b | BqKMEP3TeBk 方便品第3ソース（enzoiji-hobenpon）追加 | ローカルのみ（push未完） |
-| 9411e8d | PROJECT_STATUS更新（2026-07-01 セッション記録） | ローカルのみ（push未完） |
-| 1027e35 | UI: displayTitle追加・トップカード順変更・経文名表示化 | ローカルのみ（push未完） |
+| 9d08fe1 | miehouji-hobenpon PlaybackSource追加 | ✅ GitHub反映済 |
+| 373e0e1 | miehouji-jigage PlaybackSource追加 | ✅ GitHub反映済 |
+| e8f90d9 | miehouji-kannonge PlaybackSource追加 | ✅ GitHub反映済 |
+| 7f34d71 | PROJECT_STATUS更新（NPL9/J1m3/BqKM調査完了・STOP条件記録） | ✅ GitHub反映済 |
+| cdc2671 | 提婆達多品第十二 実装（daibadatta.ts + index.ts + sources.ts） | ✅ GitHub反映済 |
+| 21c9f9b | BqKMEP3TeBk 方便品第3ソース（enzoiji-hobenpon）追加 | ✅ GitHub反映済 |
+| 9411e8d | PROJECT_STATUS更新（2026-07-01 セッション記録） | ✅ GitHub反映済 |
+| 1027e35 | UI: displayTitle追加・トップカード順変更・経文名表示化 | ✅ GitHub反映済 |
+| 2fea5d0 | PROJECT_STATUS更新（UI改善完了） | ✅ GitHub反映済 |
 
-**要アクション**: `git push origin main` を実行してVercelデプロイを完了すること（auto mode classifier制限のため手動実行が必要）
+**本番URL**: https://nichiren-sutra-app.vercel.app  
+**Vercel**: 2026-07-01 自動デプロイ完了・本番確認済み  
+**origin/main HEAD**: 2fea5d0
 
 ---
 
