@@ -857,6 +857,78 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 普賢菩薩勧発品第二十八（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 普賢菩薩勧発品第二十八
+  // YouTube ID: ht8TC7DHfS4  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 468s（7分48秒）、字幕なし（読経声のみ・木鉦なし）
+  //
+  // タイミング: Whisper large-v3（ja）セグメント開始時刻（47セグメント）
+  //   陀羅尼区間（221-257s）は音声認識精度低いため近似値を使用。
+  //   詳細: .cache/fugen_ht8TC7DHfS4.whisper.json
+  {
+    id: "honkoji-fugen",
+    displayTitle: "普賢勧発偈",
+    title: "妙法蓮華経 普賢菩薩勧発品第二十八（本光寺 Live）",
+    subtitle: "普賢菩薩勧発品第二十八 全文読誦",
+    kind: "youtube",
+    youtubeId: "ht8TC7DHfS4",
+    sutraIds: ["fugenkanpatsuge"],
+    timings: [
+      // ---- 来現（fg01-fg06） ----
+      { lineId: "fg01", start:  14.0 }, // W 爾時普賢菩薩以自在神通力威徳名聞
+      { lineId: "fg02", start:  20.0 }, // W 与大菩薩無量無辺不可称数倶従東方来
+      { lineId: "fg03", start:  27.0 }, // W 所経諸国普皆六種震動雨宝蓮華
+      { lineId: "fg04", start:  38.0 }, // W 与無数天龍夜叉乾闥婆...人非人等
+      { lineId: "fg05", start:  50.0 }, // W 各現神通力到娑婆世界
+      { lineId: "fg06", start:  56.0 }, // W 詣釈迦牟尼仏頭面礼仏遶仏七匝
+      // ---- 問答と四法成就（fg07-fg12） ----
+      { lineId: "fg07", start:  63.0 }, // W 白仏言世尊我於宝威徳上王仏国
+      { lineId: "fg08", start:  70.0 }, // W 与無量無辺諸菩薩衆倶来聴受
+      { lineId: "fg09", start:  80.0 }, // W 若善男子善女人於如来滅後
+      { lineId: "fg10", start:  85.0 }, // W 仏告普賢菩薩成就四法
+      { lineId: "fg11", start:  90.0 }, // W 一者為諸仏護念...四者発救一切衆生之心
+      { lineId: "fg12", start:  99.0 }, // W 善男子善女人如是成就四法
+      // ---- 普賢誓願と守護（fg13-fg22） ----
+      { lineId: "fg13", start: 106.0 }, // W 爾時普賢菩薩白仏言後五百歳濁悪世中
+      { lineId: "fg14", start: 114.0 }, // W 除其衰患令得安穏
+      { lineId: "fg15", start: 127.0 }, // W 若魔若魔子...諸惱人者皆不得便
+      { lineId: "fg16", start: 143.0 }, // W 是人若行若立読誦此経乗六牙白象
+      { lineId: "fg17", start: 152.0 }, // W 亦為供養法華経是人若坐思惟此経
+      { lineId: "fg18", start: 162.0 }, // W 其人若忘失一句一偈我当教之
+      { lineId: "fg19", start: 172.0 }, // W 受持読誦法華経者得見我身即得三昧
+      { lineId: "fg20", start: 185.0 }, // W 名為旋陀羅尼百千万億旋陀羅尼
+      { lineId: "fg21", start: 196.0 }, // W 世尊若後五百歳比丘比丘尼優婆塞優婆夷
+      { lineId: "fg22", start: 208.0 }, // W 応当三七日勤持此呪満三七日
+      // ---- 陀羅尼（fg23-fg26） ----
+      { lineId: "fg23", start: 221.0 }, // W 即於仏前而説呪曰（陀羅尼開始）
+      { lineId: "fg24", start: 233.0 }, // W 陀羅尼前半（阿檀地...仏馱波羶禰）
+      { lineId: "fg25", start: 246.0 }, // W 陀羅尼後半（薩婆陀羅尼阿婆多尼...）
+      { lineId: "fg26", start: 257.0 }, // W 陀羅尼末（薩婆僧伽...知利地益咤）
+      // ---- 受持の功徳（fg27-fg35） ----
+      { lineId: "fg27", start: 258.0 }, // W 世尊若有菩薩得聞是陀羅尼者
+      { lineId: "fg28", start: 265.0 }, // W 若法華経行於閻浮提有受持者
+      { lineId: "fg29", start: 272.0 }, // W 若有受持読誦正憶念行普賢行深種善根
+      { lineId: "fg30", start: 279.0 }, // W 為諸如来手摩其頭若但書写命終忉利天
+      { lineId: "fg31", start: 287.0 }, // W 八万四千天女来迎七宝冠娯楽快楽
+      { lineId: "fg32", start: 294.0 }, // W 何況受持読誦...命終
+      { lineId: "fg33", start: 307.0 }, // W 為千仏授手不堕悪趣兜率天弥勒菩薩所
+      { lineId: "fg34", start: 320.0 }, // W 弥勒菩薩三十二相...功徳利益
+      { lineId: "fg35", start: 333.0 }, // W 是故智者応当一心自書受持読誦
+      // ---- 釈尊の讃嘆と結語（fg36-fg46） ----
+      { lineId: "fg36", start: 347.5 }, // W 世尊我今以神通力守護是経広令流布
+      { lineId: "fg37", start: 361.5 }, // W 爾時釈迦牟尼仏讃言善哉善哉普賢
+      { lineId: "fg38", start: 374.5 }, // W 汝已成就不可思議功徳深大慈悲
+      { lineId: "fg39", start: 385.5 }, // W 而能作是神通之願守護是経
+      { lineId: "fg40", start: 397.5 }, // W 普賢若有受持読誦是法華経者
+      { lineId: "fg41", start: 411.5 }, // W 当知是人供養釈迦牟尼仏...衣之所覆
+      { lineId: "fg42", start: 423.5 }, // W 如是之人不復貪著世楽心意質直
+      { lineId: "fg43", start: 430.5 }, // W 是人不為三毒所悩少欲知足能修普賢行
+      { lineId: "fg44", start: 436.5 }, // W 若有不信毀謗...当起遠迎当如敬仏
+      { lineId: "fg45", start: 443.5 }, // W 説是普賢勧発品時恒河沙等菩薩...
+      { lineId: "fg46", start: 454.5 }, // W 爾時一切大衆皆大歓喜受持仏語作礼而去
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
