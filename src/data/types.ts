@@ -96,7 +96,9 @@ export interface LineTiming {
 export interface PlaybackSource {
   /** 音源ID（URL用） 例: "kingyo19" */
   id: string;
-  /** 一覧・再生画面に出す名前 */
+  /** UIに表示する経文名 例: "方便品第二"。一覧・再生ヘッダーに使う。 */
+  displayTitle: string;
+  /** YouTubeまたは内部タイトル（UIには表示しない。メタデータとして保持） */
   title: string;
   /** 補足（任意） */
   subtitle?: string;

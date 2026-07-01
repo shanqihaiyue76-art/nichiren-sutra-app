@@ -33,6 +33,7 @@ export const sources: PlaybackSource[] = [
   //   D = TTS-DTW 結果（Whisper が認識できなかった行の補間）
   {
     id: "kingyo19",
+    displayTitle: "朝夕の勤行",
     title: "朝夕の勤行（19分）",
     subtitle: "【日蓮宗】開経偈・方便品・自我偈",
     kind: "youtube",
@@ -204,6 +205,7 @@ export const sources: PlaybackSource[] = [
   //   各ペア（2句）は同時表示のため、句内タイミングは均等2分割で推定。
   {
     id: "jinriki-26UL4",
+    displayTitle: "神力偈",
     title: "【お経練習・字幕有り】妙法蓮華経如来神力品第二十一 神力偈",
     subtitle: "見法寺法務チャンネル（日蓮宗）- 如来神力品第二十一 偈頌（神力偈）",
     kind: "youtube",
@@ -325,6 +327,7 @@ export const sources: PlaybackSource[] = [
   //   各ペア（2行）の右列=奇数行（先行）、左列=偶数行（後続、+2〜2.5s）。
   {
     id: "kyushu-hotoge",
+    displayTitle: "宝塔偈",
     title: "ゆっくり読む日蓮宗のお経【15分バージョン】",
     subtitle: "長崎県日蓮宗青年会 - 宝塔偈",
     kind: "youtube",
@@ -386,6 +389,7 @@ export const sources: PlaybackSource[] = [
   //     ko105-ko118: 4〜5s/句（観察アンカーで補間）
   {
     id: "kannon-CyvlL",
+    displayTitle: "観音偈",
     title: "観音経 慈悲と救いであらゆる願いが叶う偈文・7分 字幕",
     subtitle: "観世音菩薩普門品第二十五 偈頌（観音偈）",
     kind: "youtube",
@@ -550,6 +554,7 @@ export const sources: PlaybackSource[] = [
   // 反復間: 1→2回目 即連続(h20=163s), 2→3回目 5s休止(h23=186s)
   {
     id: "miehouji-hobenpon",
+    displayTitle: "方便品第二",
     title: "【お経練習・字幕あり】妙法蓮華経方便品第二",
     subtitle: "見法寺法務チャンネル（日蓮宗）- 方便品第二 専用練習動画",
     kind: "youtube",
@@ -614,6 +619,7 @@ export const sources: PlaybackSource[] = [
   // j26のみ2句構成（1表示=5s）。動画終了=281.5s（j26終了後クレジット約8s）
   {
     id: "miehouji-jigage",
+    displayTitle: "自我偈",
     title: "【お経練習・字幕有り】妙法蓮華経如来寿量品第十六　自我偈",
     subtitle: "見法寺法務チャンネル（日蓮宗）- 自我偈 専用練習動画",
     kind: "youtube",
@@ -663,6 +669,7 @@ export const sources: PlaybackSource[] = [
   //              →D13-29=6.25s→D29-38=5.6s→D38-54=6.25s→D54-59=8.0s
   {
     id: "miehouji-kannonge",
+    displayTitle: "観音偈",
     title: "【お経練習・字幕有り】妙法蓮華経観世音菩薩普門品第二十五　観音偈",
     subtitle: "見法寺法務チャンネル（日蓮宗）- 観音偈 専用練習動画",
     kind: "youtube",
@@ -812,6 +819,7 @@ export const sources: PlaybackSource[] = [
   //   全26表示を5s精度でOCR確認済み（スキャン完了 2026-06-30）
   {
     id: "v6tsdc-daibadatta",
+    displayTitle: "提婆達多品",
     title: "【お経練習・字幕付き】妙法蓮華経提婆達多品第十二",
     subtitle: "提婆達多品第十二 龍女成仏",
     kind: "youtube",
@@ -870,6 +878,7 @@ export const sources: PlaybackSource[] = [
   //   I f0220=220s(h24≈218s) I f0225=225s(h25≈223s)
   {
     id: "enzoiji-hobenpon",
+    displayTitle: "方便品第二",
     title: "妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】",
     subtitle: "浦和円蔵寺（日蓮宗）- 方便品第二 初級練習動画",
     kind: "youtube",
@@ -912,6 +921,7 @@ export const sources: PlaybackSource[] = [
   // start 値は仮。同期UIの動作確認用。実音源に差し替えたら実測し直すこと。
   {
     id: "hobenpon-local",
+    displayTitle: "方便品（デモ）",
     title: "方便品（デモ音声）",
     subtitle: "同期UIデモ用・無音",
     kind: "audio",
@@ -932,6 +942,7 @@ export const sources: PlaybackSource[] = [
   },
   {
     id: "jigage-local",
+    displayTitle: "自我偈（デモ）",
     title: "自我偈（デモ音声）",
     subtitle: "同期UIデモ用・無音",
     kind: "audio",

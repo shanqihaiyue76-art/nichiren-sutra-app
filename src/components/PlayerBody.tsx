@@ -47,7 +47,7 @@ export default function PlayerBody({ track, transport, media }: Props) {
           ‹
         </Link>
         <div className="player-header-title">
-          <span className="ph-title">{source.title}</span>
+          <span className="ph-title">{source.displayTitle}</span>
           {source.subtitle && <span className="ph-sub">{source.subtitle}</span>}
         </div>
       </header>

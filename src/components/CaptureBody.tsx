@@ -142,7 +142,7 @@ export default function CaptureBody({ track, transport, media }: Props) {
         <div className="player-header-title">
           <span className="ph-title">タイムスタンプ作成</span>
           <span className="ph-sub">
-            {source.title}（{markedCount}/{lines.length} 行）
+            {source.displayTitle}（{markedCount}/{lines.length} 行）
           </span>
         </div>
       </header>
