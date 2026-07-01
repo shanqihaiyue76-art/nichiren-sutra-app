@@ -798,6 +798,57 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 提婆達多品 専用動画（YouTube） =====
+  // Ground Truth: 妙法蓮華経 提婆達多品第十二（龍女成仏）
+  // YouTube ID: v6tSdCVw354  収録: ~340s（エンドカード込み）
+  // 字幕形式: 下部黒帯・大字漢字＋フリガナ同時表示（J1m3系チャンネルフォーマット）
+  // 収録範囲: 偈頌（db01-db04, 63-111s） + 長行（db05-db26, 112-332s）
+  //   ※ 章前半（提婆達多物語）は動画解説（0-62s）のため字幕なし・未収録
+  //
+  // OCRアンカー（sparse frames s62-s337, 5s間隔 × 56フレーム全確認）:
+  //   D f0062→f0063: 63s=db01開始  D f0077→f0078: 78s=db02開始
+  //   I s87=db02継続, s92=db03→db03=91s
+  //   I s102=db03継続, s107=db04→db04=105s
+  //   全26表示を5s精度でOCR確認済み（スキャン完了 2026-06-30）
+  {
+    id: "v6tsdc-daibadatta",
+    title: "【お経練習・字幕付き】妙法蓮華経提婆達多品第十二",
+    subtitle: "提婆達多品第十二 龍女成仏",
+    kind: "youtube",
+    youtubeId: "v6tSdCVw354",
+    sutraIds: ["daibadatta"],
+    timings: [
+      // ---- 偈頌（文殊菩薩の偈）db01-db04 ----
+      { lineId: "db01", start:  63.0 }, // D f0063 深達罪福相...
+      { lineId: "db02", start:  78.0 }, // D f0077→f0078 transition
+      { lineId: "db03", start:  91.0 }, // I s87=db02継続, s92=db03
+      { lineId: "db04", start: 105.0 }, // I s102=db03継続, s107=db04
+      // ---- 長行（龍女成仏）db05-db26 ----
+      { lineId: "db05", start: 110.0 }, // I s107=db04継続, s112=db05
+      { lineId: "db06", start: 125.0 }, // I s122=db05継続, s127=db06
+      { lineId: "db07", start: 135.0 }, // I s132=db06継続, s137=db07
+      { lineId: "db08", start: 147.0 }, // I s142=db07継続, s152=db08
+      { lineId: "db09", start: 155.0 }, // I s152=db08継続, s157=db09
+      { lineId: "db10", start: 163.0 }, // I s157=db09継続, s167=db10
+      { lineId: "db11", start: 175.0 }, // I s172=db10継続, s177=db11
+      { lineId: "db12", start: 180.0 }, // I s177=db11継続, s182=db12
+      { lineId: "db13", start: 195.0 }, // I s192=db12継続, s197=db13
+      { lineId: "db14", start: 207.0 }, // I s202=db13継続, s212=db14
+      { lineId: "db15", start: 215.0 }, // I s212=db14継続, s217=db15
+      { lineId: "db16", start: 225.0 }, // I s222=db15継続, s227=db16
+      { lineId: "db17", start: 235.0 }, // I s232=db16継続, s237=db17
+      { lineId: "db18", start: 242.0 }, // I s237=db17継続, s247=db18
+      { lineId: "db19", start: 255.0 }, // I s252=db18継続, s257=db19
+      { lineId: "db20", start: 260.0 }, // I s257=db19継続, s262=db20
+      { lineId: "db21", start: 270.0 }, // I s267=db20継続, s272=db21
+      { lineId: "db22", start: 280.0 }, // I s277=db21継続, s282=db22
+      { lineId: "db23", start: 295.0 }, // I s292=db22継続, s297=db23
+      { lineId: "db24", start: 305.0 }, // I s302=db23継続, s307=db24
+      { lineId: "db25", start: 315.0 }, // I s312=db24継続, s317=db25
+      { lineId: "db26", start: 325.0 }, // I s317=db25継続, s327=db26
+    ],
+  },
+
   // ===== ローカル音声（同期デモ用・無音プレースホルダー） =====
   // start 値は仮。同期UIの動作確認用。実音源に差し替えたら実測し直すこと。
   {
