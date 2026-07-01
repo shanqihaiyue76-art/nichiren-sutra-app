@@ -78,7 +78,7 @@
 | e8f90d9 | miehouji-kannonge PlaybackSource追加 | ローカルのみ（push未完） |
 | 7f34d71 | PROJECT_STATUS更新（NPL9/J1m3/BqKM調査完了・STOP条件記録） | ローカルのみ（push未完） |
 | cdc2671 | 提婆達多品第十二 実装（daibadatta.ts + index.ts + sources.ts） | ローカルのみ（push未完） |
-| （pending） | BqKMEP3TeBk 方便品第3ソース（enzoiji-hobenpon）追加 | コミット待ち |
+| 21c9f9b | BqKMEP3TeBk 方便品第3ソース（enzoiji-hobenpon）追加 | ローカルのみ（push未完） |
 
 **要アクション**: `git push origin main` を実行してVercelデプロイを完了すること（auto mode classifier制限のため手動実行が必要）
 
@@ -142,6 +142,13 @@
 
 ## 次回タスク優先順位
 
+### ✅ 今セッション完了タスク（2026-07-01）
+
+1. **提婆達多品第十二** (commit cdc2671): daibadatta.ts新規作成・sources.ts・index.ts登録。法華経 1/28。
+2. **BqKMEP3TeBk** (commit 21c9f9b): 方便品 第3PlaybackSource (enzoiji-hobenpon)。OCR25フレーム確認。
+
+---
+
 ### ⚠️ STOP条件到達（人の判断が必要）
 
 #### 普賢勧発偈 ❌ 字幕付き動画 調査完了・全滅
@@ -177,8 +184,8 @@
 2. YouTube で字幕付き法華経動画を調査・採用
 3. 全工程実行
 
-### 3. BqKMEP3TeBk（方便品 第3ソース）✅ 完了
+### 3. 題目 0/4 の内容確認（人の判断が必要）
 
-浦和・円蔵寺版 方便品（4:04・フリガナ付き1行下部表示）。
-PlaybackSource `enzoiji-hobenpon` として sources.ts に追加済み。
-OCRアンカー: 25フレーム確認（h1=20s〜h25=223s）。十如是三返 全確認。
+`daimoku.ts` の `d1`（南無妙法蓮華経）は基本勤行 7/7 に含まれて ✅完成済み。
+「題目 0/4」とは何を指しているかが不明（4種の唱題形式？4つの動画ソース？）。
+→ **内容を確認・定義して欲しい。**
