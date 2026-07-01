@@ -1,6 +1,6 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-07-01（提婆達多品第十二 ✅ + BqKMEP3TeBk 方便品第3ソース追加 ✅。）
+最終更新: 2026-07-01（UI改善: displayTitle追加・トップカード順変更・経文名表示化 ✅）
 
 ---
 
@@ -79,6 +79,8 @@
 | 7f34d71 | PROJECT_STATUS更新（NPL9/J1m3/BqKM調査完了・STOP条件記録） | ローカルのみ（push未完） |
 | cdc2671 | 提婆達多品第十二 実装（daibadatta.ts + index.ts + sources.ts） | ローカルのみ（push未完） |
 | 21c9f9b | BqKMEP3TeBk 方便品第3ソース（enzoiji-hobenpon）追加 | ローカルのみ（push未完） |
+| 9411e8d | PROJECT_STATUS更新（2026-07-01 セッション記録） | ローカルのみ（push未完） |
+| 1027e35 | UI: displayTitle追加・トップカード順変更・経文名表示化 | ローカルのみ（push未完） |
 
 **要アクション**: `git push origin main` を実行してVercelデプロイを完了すること（auto mode classifier制限のため手動実行が必要）
 
@@ -146,6 +148,7 @@
 
 1. **提婆達多品第十二** (commit cdc2671): daibadatta.ts新規作成・sources.ts・index.ts登録。法華経 1/28。
 2. **BqKMEP3TeBk** (commit 21c9f9b): 方便品 第3PlaybackSource (enzoiji-hobenpon)。OCR25フレーム確認。
+3. **UI改善** (commit 1027e35): `displayTitle`（経文名）フィールドを PlaybackSource に追加。全11音源に付与。トップ画面を「音源で同期再生」→「経文を覚える」順に変更。再生ヘッダー・タイムスタンプ画面でも YouTubeタイトルの代わりに経文名を表示。Build 0エラー確認済み。
 
 ---
 
