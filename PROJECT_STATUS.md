@@ -1,6 +1,6 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-07-01（提婆達多品第十二 実装完了 ✅。法華経 1/28。）
+最終更新: 2026-07-01（提婆達多品第十二 ✅ + BqKMEP3TeBk 方便品第3ソース追加 ✅。）
 
 ---
 
@@ -77,7 +77,8 @@
 | 373e0e1 | miehouji-jigage PlaybackSource追加 | ローカルのみ（push未完） |
 | e8f90d9 | miehouji-kannonge PlaybackSource追加 | ローカルのみ（push未完） |
 | 7f34d71 | PROJECT_STATUS更新（NPL9/J1m3/BqKM調査完了・STOP条件記録） | ローカルのみ（push未完） |
-| （pending） | 提婆達多品第十二 実装（daibadatta.ts + index.ts + sources.ts） | コミット待ち |
+| cdc2671 | 提婆達多品第十二 実装（daibadatta.ts + index.ts + sources.ts） | ローカルのみ（push未完） |
+| （pending） | BqKMEP3TeBk 方便品第3ソース（enzoiji-hobenpon）追加 | コミット待ち |
 
 **要アクション**: `git push origin main` を実行してVercelデプロイを完了すること（auto mode classifier制限のため手動実行が必要）
 
@@ -176,8 +177,8 @@
 2. YouTube で字幕付き法華経動画を調査・採用
 3. 全工程実行
 
-### 3. BqKMEP3TeBk（方便品 第3ソース・低優先）
+### 3. BqKMEP3TeBk（方便品 第3ソース）✅ 完了
 
-浦和・円蔵寺版 方便品（4:04・フリガナ付き1行下部表示）。hobenponへの3つ目のPlaybackSource追加が目的。既存2ソース完成のため優先度低。
-
-**→ 人の承認を待たず自動実装可能。但し既完成ソースの追加のため最低優先。**
+浦和・円蔵寺版 方便品（4:04・フリガナ付き1行下部表示）。
+PlaybackSource `enzoiji-hobenpon` として sources.ts に追加済み。
+OCRアンカー: 25フレーム確認（h1=20s〜h25=223s）。十如是三返 全確認。
