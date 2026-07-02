@@ -1,6 +1,10 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-07-01（普賢菩薩勧発品第二十八 実装・デプロイ完了 ✅ / Ground Truth方式 v2.0 へ移行）
+最終更新: 2026-07-02（ドキュメント体系整理: MASTER_SKILL.md / WORKFLOW.md / TODO.md 新設）
+
+このファイルは実装済み内容・QA状況・Git履歴の記録。
+運用ルール・STOP条件は [MASTER_SKILL.md](./MASTER_SKILL.md)、
+技術手順は [WORKFLOW.md](./WORKFLOW.md)、残タスクは [TODO.md](./TODO.md) を参照。
 
 ---
 
@@ -153,18 +157,8 @@
 ## Ground Truth方式 v2.0（2026-07-01 移行）
 
 従来方式（字幕付き動画必須・OCR中心）では、普賢勧発偈および法華経二十八品の残り大半に
-字幕付き練習動画が存在せず STOP していた。そこで以下の新方式に移行し、STOPを解除した。
-
-**動画選定優先順位**（字幕は最下位）:
-①日蓮宗正式読誦 ②全文収録 ③音質良好 ④ノイズ少 ⑤読み間違いなし ⑥テンポ安定 ⑦映像品質 ⑧字幕
-
-**Ground Truth採用順**: OCR（字幕があれば） → Whisper large-v3 → DTW/Forced Alignment → 人工補正
-
-**テキスト来歴**: 経文本文の原文取得元サイトが著作権懸念でWebFetch拒否するケースが頻発したため、
-大正新脩大蔵経（鳩摩羅什訳、public domain）の内容をAIの学習知識で再構成する方式を採用。
-`provenance: { status: "provisional", source: "ai_sample" }` を必ず付与し、
-「原典（経本・SAT大蔵経等）と要照合」である旨をnoteに明記する。学習モード側は
-`isLearnable()` が `verified` のみtrueを返すため、暫定データは「未検証」表示のまま運用される。
+字幕付き練習動画が存在せず STOP していた。そこで新方式（動画選定優先順位・Ground Truth採用順・
+テキスト来歴ポリシー）に移行し、STOPを解除した。詳細は [MASTER_SKILL.md](./MASTER_SKILL.md) 参照。
 
 **発見**: 本光寺 Live チャンネル（UCiw39reqgNCUzRi-mgrFA6g）が法華経全28品を字幕なしで所蔵。
 これにより残り26品すべてに動画ソースのめどが立った。
@@ -173,59 +167,11 @@
 
 ## 次回タスク優先順位
 
-### ✅ 今セッション完了タスク（2026-07-01）
+残タスク・法華経二十八品の確定動画IDリストは [TODO.md](./TODO.md) を参照。
 
-1. **提婆達多品第十二** (commit cdc2671): daibadatta.ts新規作成・sources.ts・index.ts登録。法華経 1/28。
-2. **BqKMEP3TeBk** (commit 21c9f9b): 方便品 第3PlaybackSource (enzoiji-hobenpon)。OCR25フレーム確認。
-3. **UI改善** (commit 1027e35): `displayTitle`（経文名）フィールドを PlaybackSource に追加。全11音源に付与。トップ画面を「音源で同期再生」→「経文を覚える」順に変更。再生ヘッダー・タイムスタンプ画面でも YouTubeタイトルの代わりに経文名を表示。Build 0エラー確認済み。
-4. **普賢菩薩勧発品第二十八** (commit 538982e): Ground Truth方式v2.0で実装。fugenkanpatsuge.ts（全46行・6セクション）+ sources.ts（honkoji-fugen, ht8TC7DHfS4）+ index.ts登録。Whisper large-v3 47セグメントでタイミング確定、テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み。偈文 4/4、法華経 2/28。
+### ✅ 完了タスク履歴
 
----
-
-### 1. 法華経二十八品 残26品（Ground Truth方式v2.0で着手可能）
-
-本光寺 Live チャンネル所蔵・動画ID確定済み（字幕なし、Whisperでタイミング取得予定）:
-
-```
-1.序品        Tnqm52v9xZQ  1115s
-2.方便品      S5caezkoUG0  1336s
-3.譬喩品      D965nIz_Ufg  1596s
-4.信解品      1YlVyFbN8mA  882s
-5.薬草喩品    LGsPXrUxDUE  509s
-6.授記品      Gu6YDp_FMT0  510s
-7.化城喩品    tXWQkYZkkgk  1471s
-8.五百弟子受記 Zv9gGKxP6Ro  667s
-9.授学無学人記 GRKznTuERkw  418s
-10.法師品     un3sFgKOgpU  625s
-11.見宝塔品   GFBo3otgdCg  689s
-12.提婆達多品  CNQvdEEsR0c  474s（既存daibadattaは別動画v6tSdCVw354使用。本光寺版は別ソース追加候補として保留）
-13.勧持品     RxrISsOBVng  376s
-14.安楽行品   16u7E86jzWs  889s
-15.従地涌出品  DL5yxRxAomA  738s
-16.如来寿量品  4SkckGoAqhw  506s
-17.分別功徳品  5bEGLQvkNms  679s
-18.随喜功徳品  wWxM4K2yvyI  389s
-19.法師功徳品  iQ8aCyCDfRc  748s
-20.常不軽菩薩品 x5BpHXnVxRs  416s
-21.如来神力品  pSWxiFG8xJY  335s
-22.嘱累品     Vkp9skpgJoI  151s
-23.薬王菩薩本事品 _wuTfF5wZKA 829s
-24.妙音菩薩品  ZGpcDRQOBwk  611s
-25.観世音菩薩普門品 zqGW3sZ25I4 575s
-26.陀羅尼品   jN_Y6HT-sHs  368s
-27.妙荘厳王本事品 aRS02OmLaCg  462s
-28.普賢菩薩勧発品 ht8TC7DHfS4  468s（実装済み ✅ commit 538982e）
-```
-
-**手順（品ごとに繰り返し）**: 音声抽出(yt-dlp+ffmpeg) → whisper-cli(large-v3) →
-テキスト再構成（大正蔵ベース、AI知識、要照合として明記）→ `src/data/<id>.ts` 作成 →
-`sources.ts` PlaybackSource追加 → `index.ts` 登録 → build → commit → push → 本番確認 → 次の品へ。
-
-**規模に関する注記**: 長編（譬喩品1596s・化城喩品1471s・方便品1336s 等）は長行が長大なため、
-1品あたりの行数が非常に多くなる可能性がある。品ごとに完了させて逐次コミットする。
-
-### 2. 題目 0/4 の内容確認（人の判断が必要・保留中）
-
-`daimoku.ts` の `d1`（南無妙法蓮華経）は基本勤行 7/7 に含まれて ✅完成済み。
-「題目 0/4」とは何を指しているかが不明（4種の唱題形式？4つの動画ソース？長唱題/略唱題/団扇太鼓唱題等）。
-→ **内容を確認・定義して欲しい。人の判断待ちにつき、他タスクを優先する。**
+1. **提婆達多品第十二** (commit cdc2671, 2026-07-01): daibadatta.ts新規作成・sources.ts・index.ts登録。法華経 1/28。
+2. **BqKMEP3TeBk** (commit 21c9f9b, 2026-07-01): 方便品 第3PlaybackSource (enzoiji-hobenpon)。OCR25フレーム確認。
+3. **UI改善** (commit 1027e35, 2026-07-01): `displayTitle`（経文名）フィールドを PlaybackSource に追加。全11音源に付与。トップ画面を「音源で同期再生」→「経文を覚える」順に変更。再生ヘッダー・タイムスタンプ画面でも YouTubeタイトルの代わりに経文名を表示。Build 0エラー確認済み。
+4. **普賢菩薩勧発品第二十八** (commit 538982e, 2026-07-01): Ground Truth方式v2.0で実装。fugenkanpatsuge.ts（全46行・6セクション）+ sources.ts（honkoji-fugen, ht8TC7DHfS4）+ index.ts登録。Whisper large-v3 47セグメントでタイミング確定、テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み。偈文 4/4、法華経 2/28。
