@@ -8,29 +8,31 @@
 
 ## 進行中
 
-- [ ] **授記品第六**（Gu6YDp_FMT0, 510s、本光寺Live）← 次のアクション
+- [ ] **化城喩品第七**（tXWQkYZkkgk, 1471s、本光寺Live）← 次のアクション
   - [ ] 動画取得・16kHz変換
   - [ ] Whisper large-v3 文字起こし（チャンク分割・フォアグラウンド実行、
-        510sのため3チャンク程度を想定）
-  - [ ] マージ済みトランスクリプト作成
+        1471sのため8チャンク程度を想定）
+  - [ ] マージ済みトランスクリプト作成（先にffmpeg silencedetectで
+        無音区間の有無を確認しておく）
   - [ ] 反復定型句が出た場合、動画末尾以外ではffmpeg volumedetectで
         無音か認識失敗かを必ず確認する（信解品・薬草喩品での修正事項、
         WORKFLOW.md参照）
-  - [ ] `src/data/jukihon.ts` 作成（テキスト再構成。四大声聞
-        〈迦葉・須菩提・迦旃延・目犍連〉への記別を含む）
+  - [ ] `src/data/kejohon.ts` 作成（テキスト再構成。三千塵点劫・
+        大通智勝仏・十六王子・化城の譬えを含む。長行が長大なため
+        行数多めの見込み）
   - [ ] `sources.ts` に PlaybackSource追加
   - [ ] `index.ts` 登録
   - [ ] ビルド確認
   - [ ] Git commit + push
-  - [ ] GitHub/Vercel/本番確認
+  - [ ] GitHub/Vercel/本番確認（/playページはVercelエッジ伝播遅延で
+        初回404の可能性あり。数秒後リトライすること）
   - [ ] PROJECT_STATUS.md更新
 
 ## 次に着手（法華経二十八品 残り・本光寺Liveチャンネル所蔵・字幕なし）
 
-動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。授記品完了後、上から順に進める。
+動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。化城喩品完了後、上から順に進める。
 
 ```
-7.化城喩品    tXWQkYZkkgk  1471s
 8.五百弟子受記品 Zv9gGKxP6Ro  667s
 9.授学無学人記品 GRKznTuERkw  418s
 10.法師品     un3sFgKOgpU  625s
@@ -56,7 +58,8 @@
 完了済み: 1.序品（✅ commit 09dc048） / 2.方便品第二・全文（✅ commit 906e988、
 `hobenponzenbun.ts`） / 3.譬喩品（✅ commit bb0562f、`hiyuhon.ts`） /
 4.信解品（✅ commit 1585d85、`shingehon.ts`） / 5.薬草喩品（✅ commit 3bf3a72、
-`yakusoyuhon.ts`） / 28.普賢菩薩勧発品（✅ commit 538982e）
+`yakusoyuhon.ts`） / 6.授記品（✅ commit 5986624、`jukihon.ts`） /
+28.普賢菩薩勧発品（✅ commit 538982e）
 
 **規模の注記**: 化城喩品(1471s)は長行が長大なため行数が多くなる見込み。
 1品ずつ完了させて逐次コミットする。
