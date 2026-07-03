@@ -13,6 +13,7 @@ import { fugenkanpatsuge } from "./fugenkanpatsuge";
 import { johon } from "./johon";
 import { hobenponzenbun } from "./hobenponzenbun";
 import { hiyuhon } from "./hiyuhon";
+import { shingehon } from "./shingehon";
 
 export { sources, getSource } from "./sources";
 
@@ -23,7 +24,7 @@ export { sources, getSource } from "./sources";
  * 登録順 = 基本勤行の読経順: 開経偈 → 方便品 → 自我偈 → 題目 → 回向文 → 宝塔偈 → （以降追加）
  * 法華経二十八品は基本勤行の後に章番号順で追加。
  */
-export const sutras: Sutra[] = [kaikyoge, hobenpon, jigage, daimoku, ekomonChogyo, hotoge, shishi, jinrikige, kannonge, daibadatta, fugenkanpatsuge, johon, hobenponzenbun, hiyuhon];
+export const sutras: Sutra[] = [kaikyoge, hobenpon, jigage, daimoku, ekomonChogyo, hotoge, shishi, jinrikige, kannonge, daibadatta, fugenkanpatsuge, johon, hobenponzenbun, hiyuhon, shingehon];
 
 export function getSutra(id: string): Sutra | undefined {
   return sutras.find((s) => s.id === id);

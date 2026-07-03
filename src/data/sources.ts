@@ -1296,6 +1296,108 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 信解品第四（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 信解品第四（長者窮子の譬え）
+  // YouTube ID: 1YlVyFbN8mA  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 882s（14分42秒）、字幕なし（読経声のみ）。実質読誦区間: 約8〜880s
+  //
+  // タイミング: Whisper large-v3（ja、5チャンク・フォアグラウンド実行）。
+  //   200-400s・800-881.8sは「ご視聴ありがとうございました」の反復誤認識
+  //   だったが、ffmpeg volumedetect/silencedetectで無音でないことを確認
+  //   （全編mean_volume約-22dB）。旋律的発声をWhisperが認識できず定型句へ
+  //   フォールバックしたと判断し、全編を実質読誦区間として扱った。
+  //   セクション境界は行数比例で配置し均等補間。要・DTW/OCR精密照合。
+  //   詳細: .cache/1YlVyFbN8mA_chunks/、WORKFLOW.md「既知の環境制約」参照。
+  {
+    id: "honkoji-shingehon",
+    displayTitle: "信解品",
+    title: "妙法蓮華経 信解品第四（本光寺 Live）",
+    subtitle: "信解品第四 全文読誦（長者窮子の譬え）",
+    kind: "youtube",
+    youtubeId: "1YlVyFbN8mA",
+    sutraIds: ["shingehon"],
+    timings: [
+      // ---- 四大声聞の歓喜・窮子の譬えの導入（sg01-sg08） 8.0-103.6s ----
+      { lineId: "sg01", start:  8.0 },
+      { lineId: "sg02", start: 20.0 },
+      { lineId: "sg03", start: 31.9 },
+      { lineId: "sg04", start: 43.9 },
+      { lineId: "sg05", start: 55.8 },
+      { lineId: "sg06", start: 67.8 },
+      { lineId: "sg07", start: 79.7 },
+      { lineId: "sg08", start: 91.7 },
+      // ---- 窮子の譬え・前半（sg09-sg26） 103.6-318.6s ----
+      { lineId: "sg09", start: 103.6 },
+      { lineId: "sg10", start: 115.5 },
+      { lineId: "sg11", start: 127.5 },
+      { lineId: "sg12", start: 139.4 },
+      { lineId: "sg13", start: 151.4 },
+      { lineId: "sg14", start: 163.3 },
+      { lineId: "sg15", start: 175.2 },
+      { lineId: "sg16", start: 187.2 },
+      { lineId: "sg17", start: 199.1 },
+      { lineId: "sg18", start: 211.1 },
+      { lineId: "sg19", start: 223.0 },
+      { lineId: "sg20", start: 234.9 },
+      { lineId: "sg21", start: 246.9 },
+      { lineId: "sg22", start: 258.8 },
+      { lineId: "sg23", start: 270.8 },
+      { lineId: "sg24", start: 282.7 },
+      { lineId: "sg25", start: 294.6 },
+      { lineId: "sg26", start: 306.6 },
+      // ---- 窮子の譬え・後半（sg27-sg39） 318.6-473.9s ----
+      { lineId: "sg27", start: 318.6 },
+      { lineId: "sg28", start: 330.6 },
+      { lineId: "sg29", start: 342.5 },
+      { lineId: "sg30", start: 354.5 },
+      { lineId: "sg31", start: 366.4 },
+      { lineId: "sg32", start: 378.4 },
+      { lineId: "sg33", start: 390.3 },
+      { lineId: "sg34", start: 402.3 },
+      { lineId: "sg35", start: 414.2 },
+      { lineId: "sg36", start: 426.2 },
+      { lineId: "sg37", start: 438.1 },
+      { lineId: "sg38", start: 450.1 },
+      { lineId: "sg39", start: 462.0 },
+      // ---- 合譬（sg40-sg49） 473.9-593.4s ----
+      { lineId: "sg40", start: 473.9 },
+      { lineId: "sg41", start: 485.9 },
+      { lineId: "sg42", start: 497.8 },
+      { lineId: "sg43", start: 509.8 },
+      { lineId: "sg44", start: 521.7 },
+      { lineId: "sg45", start: 533.7 },
+      { lineId: "sg46", start: 545.6 },
+      { lineId: "sg47", start: 557.6 },
+      { lineId: "sg48", start: 569.5 },
+      { lineId: "sg49", start: 581.5 },
+      // ---- 重頌（sg50-sg73） 593.4-880.0s ----
+      { lineId: "sg50", start: 593.4 },
+      { lineId: "sg51", start: 605.3 },
+      { lineId: "sg52", start: 617.3 },
+      { lineId: "sg53", start: 629.2 },
+      { lineId: "sg54", start: 641.2 },
+      { lineId: "sg55", start: 653.1 },
+      { lineId: "sg56", start: 665.0 },
+      { lineId: "sg57", start: 677.0 },
+      { lineId: "sg58", start: 688.9 },
+      { lineId: "sg59", start: 700.9 },
+      { lineId: "sg60", start: 712.8 },
+      { lineId: "sg61", start: 724.7 },
+      { lineId: "sg62", start: 736.7 },
+      { lineId: "sg63", start: 748.6 },
+      { lineId: "sg64", start: 760.6 },
+      { lineId: "sg65", start: 772.5 },
+      { lineId: "sg66", start: 784.4 },
+      { lineId: "sg67", start: 796.4 },
+      { lineId: "sg68", start: 808.3 },
+      { lineId: "sg69", start: 820.3 },
+      { lineId: "sg70", start: 832.2 },
+      { lineId: "sg71", start: 844.1 },
+      { lineId: "sg72", start: 856.1 },
+      { lineId: "sg73", start: 868.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
