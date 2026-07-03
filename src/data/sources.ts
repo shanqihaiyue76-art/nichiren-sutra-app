@@ -1078,6 +1078,106 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 方便品第二・全文（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 方便品第二（全文）
+  // YouTube ID: S5caezkoUG0  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 1336s（22分16秒）、字幕なし（読経声のみ）。実質読誦区間: 約11〜1328.4s
+  //
+  // タイミング: Whisper large-v3（ja、7チャンク・フォアグラウンド実行）。
+  //   長行部（11-400s）は語句レベルでも比較的明瞭（十如是が136-171s台に
+  //   直接出現を確認）。偈頌部（400-1328s）は音写崩れが著しいため、
+  //   セクション境界（構造的に確認済み）を基準に均等補間で暫定配置。
+  //   要・DTW/OCR精密照合。詳細: .cache/hobenponzenbun_merged.txt
+  {
+    id: "honkoji-hobenponzenbun",
+    displayTitle: "方便品（全文）",
+    title: "妙法蓮華経 方便品第二（本光寺 Live）",
+    subtitle: "方便品第二 全文読誦",
+    kind: "youtube",
+    youtubeId: "S5caezkoUG0",
+    sutraIds: ["hobenponzenbun"],
+    timings: [
+      // ---- 長行1・諸仏智慧甚深無量（hz01-hz09） 11.0-136.0s ----
+      { lineId: "hz01", start:  11.0 },
+      { lineId: "hz02", start:  24.9 },
+      { lineId: "hz03", start:  38.8 },
+      { lineId: "hz04", start:  52.7 },
+      { lineId: "hz05", start:  66.6 },
+      { lineId: "hz06", start:  80.4 },
+      { lineId: "hz07", start:  94.3 },
+      { lineId: "hz08", start: 108.2 },
+      { lineId: "hz09", start: 122.1 },
+      // ---- 十如是（hz10-hz12） 136.0-171.0s ----
+      { lineId: "hz10", start: 136.0 },
+      { lineId: "hz11", start: 147.7 },
+      { lineId: "hz12", start: 159.3 },
+      // ---- 長行2・三止三請〜一大事因縁〜一仏乗（hz13-hz33） 171.0-400.0s ----
+      { lineId: "hz13", start: 171.0 },
+      { lineId: "hz14", start: 181.9 },
+      { lineId: "hz15", start: 192.8 },
+      { lineId: "hz16", start: 203.7 },
+      { lineId: "hz17", start: 214.6 },
+      { lineId: "hz18", start: 225.5 },
+      { lineId: "hz19", start: 236.4 },
+      { lineId: "hz20", start: 247.3 },
+      { lineId: "hz21", start: 258.2 },
+      { lineId: "hz22", start: 269.1 },
+      { lineId: "hz23", start: 280.0 },
+      { lineId: "hz24", start: 290.9 },
+      { lineId: "hz25", start: 301.8 },
+      { lineId: "hz26", start: 312.7 },
+      { lineId: "hz27", start: 323.6 },
+      { lineId: "hz28", start: 334.5 },
+      { lineId: "hz29", start: 345.5 },
+      { lineId: "hz30", start: 356.4 },
+      { lineId: "hz31", start: 367.3 },
+      { lineId: "hz32", start: 378.2 },
+      { lineId: "hz33", start: 389.1 },
+      // ---- 偈1・世雄不可量（hz34-hz49） 400.0-800.0s ----
+      { lineId: "hz34", start: 400.0 },
+      { lineId: "hz35", start: 425.0 },
+      { lineId: "hz36", start: 450.0 },
+      { lineId: "hz37", start: 475.0 },
+      { lineId: "hz38", start: 500.0 },
+      { lineId: "hz39", start: 525.0 },
+      { lineId: "hz40", start: 550.0 },
+      { lineId: "hz41", start: 575.0 },
+      { lineId: "hz42", start: 600.0 },
+      { lineId: "hz43", start: 625.0 },
+      { lineId: "hz44", start: 650.0 },
+      { lineId: "hz45", start: 675.0 },
+      { lineId: "hz46", start: 700.0 },
+      { lineId: "hz47", start: 725.0 },
+      { lineId: "hz48", start: 750.0 },
+      { lineId: "hz49", start: 775.0 },
+      // ---- 偈2・我始坐道場（hz50-hz58） 800.0-1025.7s ----
+      { lineId: "hz50", start:  800.0 },
+      { lineId: "hz51", start:  825.1 },
+      { lineId: "hz52", start:  850.1 },
+      { lineId: "hz53", start:  875.2 },
+      { lineId: "hz54", start:  900.3 },
+      { lineId: "hz55", start:  925.4 },
+      { lineId: "hz56", start:  950.4 },
+      { lineId: "hz57", start:  975.5 },
+      { lineId: "hz58", start: 1000.6 },
+      // ---- 偈3・五千退席重頌（hz59-hz66） 1025.7-1200.0s ----
+      { lineId: "hz59", start: 1025.7 },
+      { lineId: "hz60", start: 1047.5 },
+      { lineId: "hz61", start: 1069.3 },
+      { lineId: "hz62", start: 1091.1 },
+      { lineId: "hz63", start: 1112.8 },
+      { lineId: "hz64", start: 1134.6 },
+      { lineId: "hz65", start: 1156.4 },
+      { lineId: "hz66", start: 1178.2 },
+      // ---- 偈4・結語（hz67-hz71） 1200.0-1328.4s ----
+      { lineId: "hz67", start: 1200.0 },
+      { lineId: "hz68", start: 1225.7 },
+      { lineId: "hz69", start: 1251.4 },
+      { lineId: "hz70", start: 1277.0 },
+      { lineId: "hz71", start: 1302.7 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
