@@ -1625,6 +1625,76 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 五百弟子受記品第八（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 五百弟子受記品第八（衣裏繋珠の譬え）
+  // YouTube ID: Zv9gGKxP6Ro  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 666.7s（11分7秒）、字幕なし（読経声のみ）。実質読誦区間: 約13〜662s
+  //
+  // タイミング: 事前にffmpeg silencedetect（全編スキャン）で無音区間なしを
+  //   確認済み。冒頭0-198s（品名・富楼那の描写・記別冒頭）が語句レベルで
+  //   極めて明瞭。冒頭9行は個別確認、残り34行は均等補間（約14.2s/行）。
+  //   詳細: .cache/gohyakuhon_merged.txt
+  {
+    id: "honkoji-gohyakuhon",
+    displayTitle: "五百弟子受記品",
+    title: "妙法蓮華経 五百弟子受記品第八（本光寺 Live）",
+    subtitle: "五百弟子受記品第八 全文読誦（衣裏繋珠の譬え）",
+    kind: "youtube",
+    youtubeId: "Zv9gGKxP6Ro",
+    sutraIds: ["gohyakuhon"],
+    timings: [
+      // ---- 富楼那への序（gh01-gh09） 13.0-177.4s（語句レベル確認） ----
+      { lineId: "gh01", start:  13.0 },
+      { lineId: "gh02", start:  33.6 },
+      { lineId: "gh03", start:  54.1 },
+      { lineId: "gh04", start:  74.7 },
+      { lineId: "gh05", start:  95.2 },
+      { lineId: "gh06", start: 115.8 },
+      { lineId: "gh07", start: 136.3 },
+      { lineId: "gh08", start: 156.9 },
+      { lineId: "gh09", start: 177.4 },
+      // ---- 富楼那への記別・長行（gh10-gh16） 179.4-264.5s ----
+      { lineId: "gh10", start: 179.4 },
+      { lineId: "gh11", start: 193.6 },
+      { lineId: "gh12", start: 207.8 },
+      { lineId: "gh13", start: 222.0 },
+      { lineId: "gh14", start: 236.2 },
+      { lineId: "gh15", start: 250.3 },
+      { lineId: "gh16", start: 264.5 },
+      // ---- 富楼那への記別・重頌（gh17-gh23） 278.7-363.8s ----
+      { lineId: "gh17", start: 278.7 },
+      { lineId: "gh18", start: 292.9 },
+      { lineId: "gh19", start: 307.1 },
+      { lineId: "gh20", start: 321.3 },
+      { lineId: "gh21", start: 335.5 },
+      { lineId: "gh22", start: 349.6 },
+      { lineId: "gh23", start: 363.8 },
+      // ---- 千二百羅漢の願い・五百羅漢への記別（gh24-gh27） 378.0-420.6s ----
+      { lineId: "gh24", start: 378.0 },
+      { lineId: "gh25", start: 392.2 },
+      { lineId: "gh26", start: 406.4 },
+      { lineId: "gh27", start: 420.6 },
+      // ---- 衣裏繋珠の譬え（gh28-gh35） 434.8-534.1s ----
+      { lineId: "gh28", start: 434.8 },
+      { lineId: "gh29", start: 449.0 },
+      { lineId: "gh30", start: 463.1 },
+      { lineId: "gh31", start: 477.3 },
+      { lineId: "gh32", start: 491.5 },
+      { lineId: "gh33", start: 505.7 },
+      { lineId: "gh34", start: 519.9 },
+      { lineId: "gh35", start: 534.1 },
+      // ---- 合譬・重頌（gh36-gh43） 548.3-647.6s ----
+      { lineId: "gh36", start: 548.3 },
+      { lineId: "gh37", start: 562.4 },
+      { lineId: "gh38", start: 576.6 },
+      { lineId: "gh39", start: 590.8 },
+      { lineId: "gh40", start: 605.0 },
+      { lineId: "gh41", start: 619.2 },
+      { lineId: "gh42", start: 633.4 },
+      { lineId: "gh43", start: 647.6 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
