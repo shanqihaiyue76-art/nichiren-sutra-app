@@ -1470,6 +1470,70 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 授記品第六（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 授記品第六（四大声聞への記別）
+  // YouTube ID: Gu6YDp_FMT0  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 509.7s（8分30秒）、字幕なし（読経声のみ）。実質読誦区間: 約0〜505s
+  //
+  // タイミング: Whisper large-v3（ja、3チャンク・フォアグラウンド実行）。
+  //   冒頭タイトル・迦葉への記別冒頭・須菩提への記別冒頭（約208.6s）が
+  //   語句レベルで明瞭に確認でき、強いアンカーとなった。事前に
+  //   ffmpeg silencedetectで無音区間なしを確認済み。セクション境界は
+  //   構造確認に基づき配置し均等補間。要・DTW/OCR精密照合。
+  {
+    id: "honkoji-jukihon",
+    displayTitle: "授記品",
+    title: "妙法蓮華経 授記品第六（本光寺 Live）",
+    subtitle: "授記品第六 全文読誦（四大声聞への記別）",
+    kind: "youtube",
+    youtubeId: "Gu6YDp_FMT0",
+    sutraIds: ["jukihon"],
+    timings: [
+      // ---- 迦葉への記別・長行（jk01-jk05） 10.0-100.0s ----
+      { lineId: "jk01", start: 10.0 },
+      { lineId: "jk02", start: 28.0 },
+      { lineId: "jk03", start: 46.0 },
+      { lineId: "jk04", start: 64.0 },
+      { lineId: "jk05", start: 82.0 },
+      // ---- 迦葉への記別・重頌（jk06-jk11） 100.0-208.6s ----
+      { lineId: "jk06", start: 100.0 },
+      { lineId: "jk07", start: 118.1 },
+      { lineId: "jk08", start: 136.2 },
+      { lineId: "jk09", start: 154.3 },
+      { lineId: "jk10", start: 172.4 },
+      { lineId: "jk11", start: 190.5 },
+      // ---- 須菩提への記別（jk12-jk20） 208.6-320.0s ----
+      { lineId: "jk12", start: 208.6 },
+      { lineId: "jk13", start: 221.0 },
+      { lineId: "jk14", start: 233.4 },
+      { lineId: "jk15", start: 245.8 },
+      { lineId: "jk16", start: 258.1 },
+      { lineId: "jk17", start: 270.5 },
+      { lineId: "jk18", start: 282.9 },
+      { lineId: "jk19", start: 295.3 },
+      { lineId: "jk20", start: 307.6 },
+      // ---- 大迦旃延への記別（jk21-jk27） 320.0-410.0s ----
+      { lineId: "jk21", start: 320.0 },
+      { lineId: "jk22", start: 332.9 },
+      { lineId: "jk23", start: 345.7 },
+      { lineId: "jk24", start: 358.6 },
+      { lineId: "jk25", start: 371.4 },
+      { lineId: "jk26", start: 384.3 },
+      { lineId: "jk27", start: 397.1 },
+      // ---- 大目犍連への記別（jk28-jk37） 410.0-505.0s ----
+      { lineId: "jk28", start: 410.0 },
+      { lineId: "jk29", start: 419.5 },
+      { lineId: "jk30", start: 429.0 },
+      { lineId: "jk31", start: 438.5 },
+      { lineId: "jk32", start: 448.0 },
+      { lineId: "jk33", start: 457.5 },
+      { lineId: "jk34", start: 467.0 },
+      { lineId: "jk35", start: 476.5 },
+      { lineId: "jk36", start: 486.0 },
+      { lineId: "jk37", start: 495.5 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
