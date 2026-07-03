@@ -4,21 +4,21 @@
 [WORKFLOW.md](./WORKFLOW.md)、実装済み内容・QA状況は
 [PROJECT_STATUS.md](./PROJECT_STATUS.md) を参照。
 
-最終更新: 2026-07-03
+最終更新: 2026-07-04
 
 ## 進行中
 
-- [ ] **授学無学人記品第九**（GRKznTuERkw, 418s、本光寺Live）← 次のアクション
+- [ ] **法師品第十**（un3sFgKOgpU, 625s、本光寺Live）← 次のアクション
   - [ ] 動画取得・16kHz変換
   - [ ] 先にffmpeg silencedetectで無音区間の有無を確認しておく
   - [ ] Whisper large-v3 文字起こし（チャンク分割・フォアグラウンド実行、
-        418sのため3チャンク程度を想定）
+        625sのため4チャンク程度を想定）
   - [ ] マージ済みトランスクリプト作成
   - [ ] 反復定型句が出た場合、動画末尾以外ではffmpeg volumedetectで
         無音か認識失敗かを必ず確認する（信解品以降の標準手順、
         WORKFLOW.md参照）
-  - [ ] `src/data/jugakuhon.ts` 作成（テキスト再構成。阿難・羅睺羅への
-        記別を含む）
+  - [ ] `src/data/hosshihon.ts` 作成（テキスト再構成。五種法師・
+        如来使の教えを含む）
   - [ ] `sources.ts` に PlaybackSource追加
   - [ ] `index.ts` 登録
   - [ ] ビルド確認
@@ -29,10 +29,9 @@
 
 ## 次に着手（法華経二十八品 残り・本光寺Liveチャンネル所蔵・字幕なし）
 
-動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。授学無学人記品完了後、上から順に進める。
+動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。法師品完了後、上から順に進める。
 
 ```
-10.法師品     un3sFgKOgpU  625s
 11.見宝塔品   GFBo3otgdCg  689s
 12.提婆達多品  CNQvdEEsR0c  474s（既存daibadattaは別動画v6tSdCVw354使用。本光寺版は別ソース追加候補として保留）
 13.勧持品     RxrISsOBVng  376s
@@ -57,7 +56,8 @@
 4.信解品（✅ commit 1585d85、`shingehon.ts`） / 5.薬草喩品（✅ commit 3bf3a72、
 `yakusoyuhon.ts`） / 6.授記品（✅ commit 5986624、`jukihon.ts`） /
 7.化城喩品（✅ commit f6e273f、`kejohon.ts`） / 8.五百弟子受記品（✅ commit 730811f、
-`gohyakuhon.ts`） / 28.普賢菩薩勧発品（✅ commit 538982e）
+`gohyakuhon.ts`） / 9.授学無学人記品（✅ commit 8daa3fb、`jugakuhon.ts`） /
+28.普賢菩薩勧発品（✅ commit 538982e）
 
 **規模の注記**: 残る品の中では従地涌出品(738s)・安楽行品(889s)・
 法師功徳品(748s)がやや長め。1品ずつ完了させて逐次コミットする。

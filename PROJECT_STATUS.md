@@ -1,6 +1,6 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-07-03（五百弟子受記品第八 実装完了・デプロイ確認済み）
+最終更新: 2026-07-04（授学無学人記品第九 実装完了・デプロイ確認済み）
 
 このファイルは実装済み内容・QA状況・Git履歴の記録。
 運用ルール・STOP条件は [MASTER_SKILL.md](./MASTER_SKILL.md)、
@@ -65,7 +65,8 @@
 | 授記品第六 | jukihon.ts | honkoji-jukihon (Gu6YDp_FMT0) | Whisper large-v3 3チャンク・冒頭/須菩提記別冒頭語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全37行・5セクション（迦葉への記別・長行/重頌/須菩提への記別/大迦旃延への記別/大目犍連への記別）。四大声聞への記別を全文収録。事前にffmpeg silencedetectで無音区間なしを確認（要DTW/OCR精密照合） |
 | 化城喩品第七 | kejohon.ts | honkoji-kejohon (tXWQkYZkkgk) | Whisper large-v3 8チャンク・十二因縁区間語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全61行・6セクション（大通智勝仏の物語導入/十六王子・請法/十六沙弥の教化/十二因縁/化城の譬え本体・合譬/重頌）。化城の譬えを全文収録。831-853s付近で十二因縁（無明縁行…）の音写と直接対応する語句レベルで明瞭な区間を確認。1042-1469.5sは反復定型句だったがvolumedetect/silencedetectで無音でないと確認し全編を実質読誦区間として扱った（要DTW/OCR精密照合） |
 | 五百弟子受記品第八 | gohyakuhon.ts | honkoji-gohyakuhon (Zv9gGKxP6Ro) | Whisper large-v3 4チャンク・冒頭0-198s語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全43行・6セクション（富楼那への序/記別・長行/記別・重頌/千二百羅漢の願い・五百羅漢への記別/衣裏繋珠の譬え/合譬・重頌）。衣裏繋珠の譬えを全文収録。事前にffmpeg silencedetectで無音区間なしを確認済み。冒頭0-198s（品名・富楼那の描写・記別冒頭）が語句レベルで極めて明瞭（要DTW/OCR精密照合） |
-| 残18品 | — | — | 未着手 | 🔵 着手可能 | Ground Truth方式v2.0（字幕不要）により実装可能と判明。本光寺Liveチャンネルに全28品所蔵。動画IDリストは[TODO.md](./TODO.md)参照 |
+| 授学無学人記品第九 | jugakuhon.ts | honkoji-jugakuhon (GRKznTuERkw) | Whisper large-v3 3チャンク・冒頭0-198s語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全22行・4セクション（阿難・羅睺羅の願い/阿難への記別/羅睺羅への記別/二千人への記別・重頌）。事前にffmpeg silencedetectで無音区間なしを確認済み。冒頭0-198s（品名・阿難羅睺羅の願い・阿難への記別冒頭）が語句レベルで極めて明瞭（要DTW/OCR精密照合） |
+| 残17品 | — | — | 未着手 | 🔵 着手可能 | Ground Truth方式v2.0（字幕不要）により実装可能と判明。本光寺Liveチャンネルに全28品所蔵。動画IDリストは[TODO.md](./TODO.md)参照 |
 
 ---
 
@@ -73,12 +74,12 @@
 
 基本勤行: 7/7 = **100%**（タイミングQA全完了）
 偈文: 4/4 = **100%**（普賢勧発偈 実装完了・暫定データ）
-法華経: 10/28 = **36%**（提婆達多品✅・普賢菩薩勧発品第二十八✅・序品第一✅・方便品第二✅・譬喩品第三✅・信解品第四✅・薬草喩品第五✅・授記品第六✅・化城喩品第七✅・五百弟子受記品第八✅）
+法華経: 11/28 = **39%**（提婆達多品✅・普賢菩薩勧発品第二十八✅・序品第一✅・方便品第二✅・譬喩品第三✅・信解品第四✅・薬草喩品第五✅・授記品第六✅・化城喩品第七✅・五百弟子受記品第八✅・授学無学人記品第九✅）
 題目: 0/4 = **0%**
 
-全体（カテゴリ計上ベース）: 21/43 ≈ **49%**
-※ fugenkanpatsugeは「偈文」「法華経」両方に計上されるため、実装物としては19件（重複1件）。
-※ 普賢勧発偈・提婆達多品(章前半欠)・序品第一・方便品第二・譬喩品第三・信解品第四・薬草喩品第五・授記品第六・化城喩品第七・五百弟子受記品第八は `provenance.status: provisional` の暫定データ。原典照合前は学習モードで「未検証」表示のまま。
+全体（カテゴリ計上ベース）: 22/43 ≈ **51%**
+※ fugenkanpatsugeは「偈文」「法華経」両方に計上されるため、実装物としては20件（重複1件）。
+※ 普賢勧発偈・提婆達多品(章前半欠)・序品第一・方便品第二・譬喩品第三・信解品第四・薬草喩品第五・授記品第六・化城喩品第七・五百弟子受記品第八・授学無学人記品第九は `provenance.status: provisional` の暫定データ。原典照合前は学習モードで「未検証」表示のまま。
 
 ---
 
@@ -113,10 +114,12 @@
 | f6e273f | feat: 化城喩品第七を追加（kejohon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
 | 2efe745 | docs: 化城喩品第七完了を反映（PROJECT_STATUS.md / TODO.md更新） | ✅ GitHub反映済 |
 | 730811f | feat: 五百弟子受記品第八を追加（gohyakuhon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
+| 2a7e392 | docs: 五百弟子受記品第八完了を反映（PROJECT_STATUS.md / TODO.md更新） | ✅ GitHub反映済 |
+| 8daa3fb | feat: 授学無学人記品第九を追加（jugakuhon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
 
 **本番URL**: https://nichiren-sutra-app.vercel.app  
-**Vercel**: 2026-07-03 自動デプロイ完了・本番確認済み（/sutra/gohyakuhon, /play/honkoji-gohyakuhon 動作確認OK。43行・6セクション表示・YouTube埋め込み正常）  
-**origin/main HEAD**: 730811f
+**Vercel**: 2026-07-04 自動デプロイ完了・本番確認済み（/sutra/jugakuhon, /play/honkoji-jugakuhon 動作確認OK。22行・4セクション表示・YouTube埋め込み正常）  
+**origin/main HEAD**: 8daa3fb
 
 ---
 
@@ -174,6 +177,7 @@
 | Gu6YDp_FMT0 | 妙法蓮華経 授記品第六（本光寺 Live） | jukihon (honkoji-jukihon) | **なし**（Ground Truth方式v2.0。509.7s、silencedetectで無音区間なしを確認の上、実質読誦約0〜505s） |
 | tXWQkYZkkgk | 妙法蓮華経 化城喩品第七（本光寺 Live） | kejohon (honkoji-kejohon) | **なし**（Ground Truth方式v2.0。1470.07s、volumedetect/silencedetectで無音区間なしを確認の上、実質読誦約11〜1469.5s） |
 | Zv9gGKxP6Ro | 妙法蓮華経 五百弟子受記品第八（本光寺 Live） | gohyakuhon (honkoji-gohyakuhon) | **なし**（Ground Truth方式v2.0。666.7s、事前silencedetectで無音区間なしを確認の上、実質読誦約13〜662s） |
+| GRKznTuERkw | 妙法蓮華経 授学無学人記品第九（本光寺 Live） | jugakuhon (honkoji-jugakuhon) | **なし**（Ground Truth方式v2.0。417.4s、事前silencedetectで無音区間なしを確認の上、実質読誦約13〜411s） |
 
 ### 調査済み・不採用動画（追加調査 2026-06-30）
 
@@ -215,3 +219,4 @@
 11. **授記品第六** (commit 5986624, 2026-07-03): Ground Truth方式v2.0で実装。jukihon.ts（全37行・5セクション: 迦葉への記別・長行/重頌/須菩提への記別/大迦旃延への記別/大目犍連への記別）+ sources.ts（honkoji-jukihon, Gu6YDp_FMT0）+ index.ts登録。四大声聞（迦葉・須菩提・迦旃延・目犍連）への記別を全文収録。Whisper large-v3（3チャンク）で冒頭タイトル・須菩提への記別冒頭（約208.6s）が語句レベルで明瞭に確認でき強いアンカーとなった。事前にffmpeg silencedetectで無音区間なしを確認済み。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/jukihon, /play/honkoji-jukihon。/playは初回404後リトライで200確認、Vercelエッジ伝播遅延と判断）。法華経 8/28。
 12. **化城喩品第七** (commit f6e273f, 2026-07-03): Ground Truth方式v2.0で実装。kejohon.ts（全61行・6セクション: 大通智勝仏の物語導入/十六王子・請法/十六沙弥の教化/十二因縁/化城の譬え本体・合譬/重頌）+ sources.ts（honkoji-kejohon, tXWQkYZkkgk）+ index.ts登録。化城の譬え（法華経の代表的譬喩の一つ）を全文収録。Whisper large-v3（8チャンク）で831-853s付近が十二因縁（無明縁行…／無明滅則行滅…）の音写と直接対応する語句レベルで明瞭に確認できた。1042-1469.5sは「お祈りします」の反復誤認識だったが、volumedetect（複数地点）・silencedetect（全編スキャン）で無音でないことを確認し全編を実質読誦区間として扱った。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/kejohon, /play/honkoji-kejohon）。法華経 9/28。
 13. **五百弟子受記品第八** (commit 730811f, 2026-07-03): Ground Truth方式v2.0で実装。gohyakuhon.ts（全43行・6セクション: 富楼那への序/記別・長行/記別・重頌/千二百羅漢の願い・五百羅漢への記別/衣裏繋珠の譬え/合譬・重頌）+ sources.ts（honkoji-gohyakuhon, Zv9gGKxP6Ro）+ index.ts登録。衣裏繋珠の譬えを全文収録。事前にffmpeg silencedetectで無音区間なしを確認してから着手（化城喩品での学習を活かし効率化）。冒頭0-198s（品名・富楼那の描写・記別冒頭）が語句レベルで極めて明瞭に確認でき、原典と一字一句近い精度で対応が取れた。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/gohyakuhon, /play/honkoji-gohyakuhon）。法華経 10/28。
+14. **授学無学人記品第九** (commit 8daa3fb, 2026-07-04): Ground Truth方式v2.0で実装。jugakuhon.ts（全22行・4セクション: 阿難・羅睺羅の願い/阿難への記別/羅睺羅への記別/二千人への記別・重頌）+ sources.ts（honkoji-jugakuhon, GRKznTuERkw）+ index.ts登録。事前にffmpeg silencedetectで無音区間なしを確認済み。冒頭0-198s（品名・阿難羅睺羅の願い・阿難への記別冒頭）が語句レベルで極めて明瞭に確認でき、原典と一字一句近い精度で対応が取れた。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/jugakuhon, /play/honkoji-jugakuhon）。法華経 11/28。
