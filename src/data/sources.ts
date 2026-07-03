@@ -1742,6 +1742,49 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 法師品第十（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 法師品第十（薬王菩薩への教え）
+  // YouTube ID: un3sFgKOgpU  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 624.4s（10分24秒）、字幕なし（読経声のみ）。実質読誦区間: 約11〜624.4s
+  //
+  // タイミング: 冒頭のみ語句レベルで明瞭（品名・薬王への呼びかけ・
+  //   「一偈一句乃至一念随喜者」）。508-620s付近は「説明」の反復誤認識
+  //   だったが、volumedetectで無音でないことを確認し全編を実質読誦
+  //   区間として扱った。冒頭アンカー起点に均等補間（約29.2s/行）。
+  //   詳細: .cache/hosshihon_merged.txt
+  {
+    id: "honkoji-hosshihon",
+    displayTitle: "法師品",
+    title: "妙法蓮華経 法師品第十（本光寺 Live）",
+    subtitle: "法師品第十 全文読誦",
+    kind: "youtube",
+    youtubeId: "un3sFgKOgpU",
+    sutraIds: ["hosshihon"],
+    timings: [
+      { lineId: "hs01", start:  11.0 },
+      { lineId: "hs02", start:  40.2 },
+      { lineId: "hs03", start:  69.4 },
+      { lineId: "hs04", start:  98.6 },
+      { lineId: "hs05", start: 127.9 },
+      { lineId: "hs06", start: 157.1 },
+      { lineId: "hs07", start: 186.3 },
+      { lineId: "hs08", start: 215.5 },
+      { lineId: "hs09", start: 244.7 },
+      { lineId: "hs10", start: 273.9 },
+      { lineId: "hs11", start: 303.1 },
+      { lineId: "hs12", start: 332.3 },
+      { lineId: "hs13", start: 361.5 },
+      { lineId: "hs14", start: 390.7 },
+      { lineId: "hs15", start: 419.9 },
+      { lineId: "hs16", start: 449.1 },
+      { lineId: "hs17", start: 478.3 },
+      { lineId: "hs18", start: 507.5 },
+      { lineId: "hs19", start: 536.7 },
+      { lineId: "hs20", start: 565.9 },
+      { lineId: "hs21", start: 595.1 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
