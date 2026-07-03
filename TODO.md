@@ -8,17 +8,17 @@
 
 ## 進行中
 
-- [ ] **勧持品第十三**（RxrISsOBVng, 376s、本光寺Live）← 次のアクション
+- [ ] **安楽行品第十四**（16u7E86jzWs, 889s、本光寺Live）← 次のアクション
   - [ ] 動画取得・16kHz変換
   - [ ] 先にffmpeg silencedetectで無音区間の有無を確認しておく
   - [ ] Whisper large-v3 文字起こし（チャンク分割・フォアグラウンド実行、
-        376sのため2チャンク程度を想定）
+        889sのため5チャンク程度を想定）
   - [ ] マージ済みトランスクリプト作成
   - [ ] 反復定型句が出た場合、動画末尾以外ではffmpeg volumedetectで
         無音か認識失敗かを必ず確認する（信解品以降の標準手順、
         WORKFLOW.md参照）
-  - [ ] `src/data/kanjihon.ts` 作成（テキスト再構成。二十行の偈
-        〈不自惜身命の誓い〉を含む）
+  - [ ] `src/data/anrakugyohon.ts` 作成（テキスト再構成。身・口・意・誓願の
+        四安楽行を含む）
   - [ ] `sources.ts` に PlaybackSource追加
   - [ ] `index.ts` 登録
   - [ ] ビルド確認
@@ -29,12 +29,11 @@
 
 ## 次に着手（法華経二十八品 残り・本光寺Liveチャンネル所蔵・字幕なし）
 
-動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。勧持品完了後、上から順に進める。
+動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。安楽行品完了後、上から順に進める。
 12.提婆達多品は既存`daibadatta.ts`（別動画v6tSdCVw354）で完成済みのためスキップ
 （本光寺版CNQvdEEsR0cは別ソース追加候補として保留）。
 
 ```
-14.安楽行品   16u7E86jzWs  889s
 15.従地涌出品  DL5yxRxAomA  738s
 16.如来寿量品  4SkckGoAqhw  506s
 17.分別功徳品  5bEGLQvkNms  679s
@@ -58,7 +57,7 @@
 `gohyakuhon.ts`） / 9.授学無学人記品（✅ commit 8daa3fb、`jugakuhon.ts`） /
 10.法師品（✅ commit 7687265、`hosshihon.ts`） / 11.見宝塔品（✅ commit c350f6f、
 `hotohon.ts`） / 12.提婆達多品（✅ commit cdc2671、`daibadatta.ts`・別動画） /
-28.普賢菩薩勧発品（✅ commit 538982e）
+13.勧持品（✅ commit a5c4e0f、`kanjihon.ts`） / 28.普賢菩薩勧発品（✅ commit 538982e）
 
 **規模の注記**: 残る品の中では従地涌出品(738s)・安楽行品(889s)・
 法師功徳品(748s)がやや長め。1品ずつ完了させて逐次コミットする。

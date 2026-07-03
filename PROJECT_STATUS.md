@@ -1,6 +1,6 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-07-04（見宝塔品第十一 実装完了・デプロイ確認済み）
+最終更新: 2026-07-04（勧持品第十三 実装完了・デプロイ確認済み）
 
 このファイルは実装済み内容・QA状況・Git履歴の記録。
 運用ルール・STOP条件は [MASTER_SKILL.md](./MASTER_SKILL.md)、
@@ -68,7 +68,8 @@
 | 授学無学人記品第九 | jugakuhon.ts | honkoji-jugakuhon (GRKznTuERkw) | Whisper large-v3 3チャンク・冒頭0-198s語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全22行・4セクション（阿難・羅睺羅の願い/阿難への記別/羅睺羅への記別/二千人への記別・重頌）。事前にffmpeg silencedetectで無音区間なしを確認済み。冒頭0-198s（品名・阿難羅睺羅の願い・阿難への記別冒頭）が語句レベルで極めて明瞭（要DTW/OCR精密照合） |
 | 法師品第十 | hosshihon.ts | honkoji-hosshihon (un3sFgKOgpU) | Whisper large-v3 4チャンク・冒頭語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全21行・6セクション（導入・一念随喜者への記別/五種法師の功徳/塔を建てての供養・誹謗の罪/道場としての功徳・重頌/如来の衣・座・室（三軌）/守護の約束・重頌）。冒頭は品名・薬王への呼びかけ・「一偈一句乃至一念随喜者」が明瞭だったが、508-620s付近は「説明」の反復誤認識。volumedetectで無音でないことを確認し全編を実質読誦区間として扱った（要DTW/OCR精密照合） |
 | 見宝塔品第十一 | hotohon.ts | honkoji-hotohon (GFBo3otgdCg) | Whisper large-v3 4チャンク・冒頭語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全27行・9セクション（宝塔の涌現・宝塔からの声/大楽説菩薩の質問/多宝仏の本願/分身諸仏の召集/娑婆世界の浄化・分身仏の来集/開塔の準備/開塔・多宝仏との対面/二仏並座/説法の勧め・付嘱の予告）。二仏並座を全文収録。既存`hotoge.ts`（宝塔偈）とは別物。冒頭は品名・宝塔の描写・「善哉善哉釈迦牟尼世尊」が明瞭だったが、260-400s付近は「説明」の反復誤認識。volumedetectで無音でないことを確認し全編を実質読誦区間として扱った（要DTW/OCR精密照合） |
-| 残15品 | — | — | 未着手 | 🔵 着手可能 | Ground Truth方式v2.0（字幕不要）により実装可能と判明。本光寺Liveチャンネルに全28品所蔵。動画IDリストは[TODO.md](./TODO.md)参照 |
+| 勧持品第十三 | kanjihon.ts | honkoji-kanjihon (RxrISsOBVng) | Whisper large-v3 2チャンク・冒頭語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全19行・6セクション（薬王・大楽説菩薩の誓い/五百阿羅漢・学無学八千人の誓い/摩訶波闍波提比丘尼への記別/耶輸陀羅比丘尼への記別・二千比丘尼の歓喜/諸菩薩の誓い/有二十行の偈）。三類の強敵に耐え忍び不自惜身命を誓う「二十行の偈」（日蓮宗で最重視される一節）を全文収録。冒頭は品名・薬王菩薩／大楽説菩薩への言及が明瞭だったが、以降は音写崩れが著しくsilencedetectで無音区間なしを確認の上均等補間（要DTW/OCR精密照合） |
+| 残14品 | — | — | 未着手 | 🔵 着手可能 | Ground Truth方式v2.0（字幕不要）により実装可能と判明。本光寺Liveチャンネルに全28品所蔵。動画IDリストは[TODO.md](./TODO.md)参照 |
 
 ---
 
@@ -76,12 +77,12 @@
 
 基本勤行: 7/7 = **100%**（タイミングQA全完了）
 偈文: 4/4 = **100%**（普賢勧発偈 実装完了・暫定データ）
-法華経: 13/28 = **46%**（提婆達多品✅・普賢菩薩勧発品第二十八✅・序品第一✅・方便品第二✅・譬喩品第三✅・信解品第四✅・薬草喩品第五✅・授記品第六✅・化城喩品第七✅・五百弟子受記品第八✅・授学無学人記品第九✅・法師品第十✅・見宝塔品第十一✅）
+法華経: 14/28 = **50%**（提婆達多品✅・普賢菩薩勧発品第二十八✅・序品第一✅・方便品第二✅・譬喩品第三✅・信解品第四✅・薬草喩品第五✅・授記品第六✅・化城喩品第七✅・五百弟子受記品第八✅・授学無学人記品第九✅・法師品第十✅・見宝塔品第十一✅・勧持品第十三✅）
 題目: 0/4 = **0%**
 
-全体（カテゴリ計上ベース）: 24/43 ≈ **56%**
-※ fugenkanpatsugeは「偈文」「法華経」両方に計上されるため、実装物としては22件（重複1件）。
-※ 普賢勧発偈・提婆達多品(章前半欠)・序品第一・方便品第二・譬喩品第三・信解品第四・薬草喩品第五・授記品第六・化城喩品第七・五百弟子受記品第八・授学無学人記品第九・法師品第十・見宝塔品第十一は `provenance.status: provisional` の暫定データ。原典照合前は学習モードで「未検証」表示のまま。
+全体（カテゴリ計上ベース）: 25/43 ≈ **58%**
+※ fugenkanpatsugeは「偈文」「法華経」両方に計上されるため、実装物としては23件（重複1件）。
+※ 普賢勧発偈・提婆達多品(章前半欠)・序品第一・方便品第二・譬喩品第三・信解品第四・薬草喩品第五・授記品第六・化城喩品第七・五百弟子受記品第八・授学無学人記品第九・法師品第十・見宝塔品第十一・勧持品第十三は `provenance.status: provisional` の暫定データ。原典照合前は学習モードで「未検証」表示のまま。
 
 ---
 
@@ -122,10 +123,11 @@
 | 7687265 | feat: 法師品第十を追加（hosshihon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
 | f1cb19f | docs: 法師品第十完了を反映（PROJECT_STATUS.md / TODO.md更新） | ✅ GitHub反映済 |
 | c350f6f | feat: 見宝塔品第十一を追加（hotohon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
+| a5c4e0f | feat: 勧持品第十三を追加（kanjihon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
 
 **本番URL**: https://nichiren-sutra-app.vercel.app  
-**Vercel**: 2026-07-04 自動デプロイ完了・本番確認済み（/sutra/hotohon, /play/honkoji-hotohon 動作確認OK。27行・9セクション表示・YouTube埋め込み正常）  
-**origin/main HEAD**: c350f6f
+**Vercel**: 2026-07-04 自動デプロイ完了・本番確認済み（/sutra/kanjihon, /play/honkoji-kanjihon 動作確認OK。19行・6セクション表示・YouTube埋め込み正常）  
+**origin/main HEAD**: a5c4e0f
 
 ---
 
@@ -186,6 +188,7 @@
 | GRKznTuERkw | 妙法蓮華経 授学無学人記品第九（本光寺 Live） | jugakuhon (honkoji-jugakuhon) | **なし**（Ground Truth方式v2.0。417.4s、事前silencedetectで無音区間なしを確認の上、実質読誦約13〜411s） |
 | un3sFgKOgpU | 妙法蓮華経 法師品第十（本光寺 Live） | hosshihon (honkoji-hosshihon) | **なし**（Ground Truth方式v2.0。624.4s、事前silencedetectで無音区間なしを確認の上、実質読誦約11〜624.4s） |
 | GFBo3otgdCg | 妙法蓮華経 見宝塔品第十一（本光寺 Live） | hotohon (honkoji-hotohon) | **なし**（Ground Truth方式v2.0。689s、事前silencedetectで無音区間なしを確認の上、実質読誦約11〜689s） |
+| RxrISsOBVng | 妙法蓮華経 勧持品第十三（本光寺 Live） | kanjihon (honkoji-kanjihon) | **なし**（Ground Truth方式v2.0。375.5s、事前silencedetectで無音区間なしを確認の上、実質読誦約11〜373s） |
 
 ### 調査済み・不採用動画（追加調査 2026-06-30）
 
@@ -230,3 +233,4 @@
 14. **授学無学人記品第九** (commit 8daa3fb, 2026-07-04): Ground Truth方式v2.0で実装。jugakuhon.ts（全22行・4セクション: 阿難・羅睺羅の願い/阿難への記別/羅睺羅への記別/二千人への記別・重頌）+ sources.ts（honkoji-jugakuhon, GRKznTuERkw）+ index.ts登録。事前にffmpeg silencedetectで無音区間なしを確認済み。冒頭0-198s（品名・阿難羅睺羅の願い・阿難への記別冒頭）が語句レベルで極めて明瞭に確認でき、原典と一字一句近い精度で対応が取れた。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/jugakuhon, /play/honkoji-jugakuhon）。法華経 11/28。
 15. **法師品第十** (commit 7687265, 2026-07-04): Ground Truth方式v2.0で実装。hosshihon.ts（全21行・6セクション: 導入・一念随喜者への記別/五種法師の功徳/塔を建てての供養・誹謗の罪/道場としての功徳・重頌/如来の衣・座・室（三軌）/守護の約束・重頌）+ sources.ts（honkoji-hosshihon, un3sFgKOgpU）+ index.ts登録。事前にffmpeg silencedetectで無音区間なしを確認済み。冒頭（品名・薬王への呼びかけ・「一偈一句乃至一念随喜者」）が語句レベルで明瞭に確認できたが、508-620s付近は「説明」の反復誤認識でありvolumedetectで無音でないことを確認し全編を実質読誦区間として扱った。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/hosshihon, /play/honkoji-hosshihon）。法華経 12/28。
 16. **見宝塔品第十一** (commit c350f6f, 2026-07-04): Ground Truth方式v2.0で実装。hotohon.ts（全27行・9セクション: 宝塔の涌現・宝塔からの声/大楽説菩薩の質問/多宝仏の本願/分身諸仏の召集/娑婆世界の浄化・分身仏の来集/開塔の準備/開塔・多宝仏との対面/二仏並座/説法の勧め・付嘱の予告）+ sources.ts（honkoji-hotohon, GFBo3otgdCg）+ index.ts登録。二仏並座（法華経曼荼羅の中核図像の由来）を全文収録。既存`hotoge.ts`（宝塔偈）とは別ファイル。事前にffmpeg silencedetectで無音区間なしを確認済み。冒頭（品名・宝塔の「住在空中」描写・「善哉善哉釈迦牟尼世尊」）が語句レベルで明瞭に確認できたが、260-400s付近は「説明」の反復誤認識でありvolumedetectで無音でないことを確認し全編を実質読誦区間として扱った。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/hotohon, /play/honkoji-hotohon）。法華経 13/28。
+17. **勧持品第十三** (commit a5c4e0f, 2026-07-04): Ground Truth方式v2.0で実装。kanjihon.ts（全19行・6セクション: 薬王・大楽説菩薩の誓い/五百阿羅漢・学無学八千人の誓い/摩訶波闍波提比丘尼への記別/耶輸陀羅比丘尼への記別・二千比丘尼の歓喜/諸菩薩の誓い/有二十行の偈）+ sources.ts（honkoji-kanjihon, RxrISsOBVng）+ index.ts登録。三類の強敵に耐え忍び不自惜身命を誓う「二十行の偈」（日蓮宗で最重視される一節の一つ）を全文収録。提婆達多品第十二は既存`daibadatta.ts`（別動画）で完成済みのためスキップ。事前にffmpeg silencedetectで無音区間なしを確認済み。冒頭（品名・薬王菩薩／大楽説菩薩への言及）は語句レベルで明瞭に確認できたが、以降は音写崩れが著しく構造アンカー+均等補間でタイミング暫定配置。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/kanjihon, /play/honkoji-kanjihon）。法華経 14/28。
