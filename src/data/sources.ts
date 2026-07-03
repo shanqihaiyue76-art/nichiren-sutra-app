@@ -1398,6 +1398,78 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 薬草喩品第五（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 薬草喩品第五（三草二木の譬え）
+  // YouTube ID: LGsPXrUxDUE  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 508.9s（8分29秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜505s
+  //
+  // タイミング: Whisper large-v3（ja、3チャンク・フォアグラウンド実行）。
+  //   200-508.9sが「お祈りします」の反復誤認識だったが、ffmpeg
+  //   volumedetect/silencedetectで無音でないことを確認（全編
+  //   mean_volume約-22〜-24dB）。旋律的発声の認識失敗と判断し、
+  //   全編を実質読誦区間として扱った。セクション境界は行数比例で
+  //   配置し均等補間。要・DTW/OCR精密照合。
+  {
+    id: "honkoji-yakusoyuhon",
+    displayTitle: "薬草喩品",
+    title: "妙法蓮華経 薬草喩品第五（本光寺 Live）",
+    subtitle: "薬草喩品第五 全文読誦（三草二木の譬え）",
+    kind: "youtube",
+    youtubeId: "LGsPXrUxDUE",
+    sutraIds: ["yakusoyuhon"],
+    timings: [
+      // ---- 仏の称賛・導入（ys01-ys05） 5.0-60.6s ----
+      { lineId: "ys01", start:  5.0 },
+      { lineId: "ys02", start: 16.1 },
+      { lineId: "ys03", start: 27.2 },
+      { lineId: "ys04", start: 38.4 },
+      { lineId: "ys05", start: 49.5 },
+      // ---- 三草二木の譬え本体（ys06-ys16） 60.6-182.8s ----
+      { lineId: "ys06", start:  60.6 },
+      { lineId: "ys07", start:  71.7 },
+      { lineId: "ys08", start:  82.8 },
+      { lineId: "ys09", start:  93.9 },
+      { lineId: "ys10", start: 105.0 },
+      { lineId: "ys11", start: 116.2 },
+      { lineId: "ys12", start: 127.3 },
+      { lineId: "ys13", start: 138.4 },
+      { lineId: "ys14", start: 149.5 },
+      { lineId: "ys15", start: 160.6 },
+      { lineId: "ys16", start: 171.7 },
+      // ---- 一相一味の法・如来の唯一知見（ys17-ys24） 182.8-271.7s ----
+      { lineId: "ys17", start: 182.8 },
+      { lineId: "ys18", start: 193.9 },
+      { lineId: "ys19", start: 205.0 },
+      { lineId: "ys20", start: 216.1 },
+      { lineId: "ys21", start: 227.2 },
+      { lineId: "ys22", start: 238.4 },
+      { lineId: "ys23", start: 249.5 },
+      { lineId: "ys24", start: 260.6 },
+      // ---- 重頌（ys25-ys45） 271.7-505.0s ----
+      { lineId: "ys25", start: 271.7 },
+      { lineId: "ys26", start: 282.8 },
+      { lineId: "ys27", start: 293.9 },
+      { lineId: "ys28", start: 305.0 },
+      { lineId: "ys29", start: 316.1 },
+      { lineId: "ys30", start: 327.3 },
+      { lineId: "ys31", start: 338.4 },
+      { lineId: "ys32", start: 349.5 },
+      { lineId: "ys33", start: 360.6 },
+      { lineId: "ys34", start: 371.7 },
+      { lineId: "ys35", start: 382.8 },
+      { lineId: "ys36", start: 393.9 },
+      { lineId: "ys37", start: 405.0 },
+      { lineId: "ys38", start: 416.1 },
+      { lineId: "ys39", start: 427.2 },
+      { lineId: "ys40", start: 438.4 },
+      { lineId: "ys41", start: 449.5 },
+      { lineId: "ys42", start: 460.6 },
+      { lineId: "ys43", start: 471.7 },
+      { lineId: "ys44", start: 482.8 },
+      { lineId: "ys45", start: 493.9 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
