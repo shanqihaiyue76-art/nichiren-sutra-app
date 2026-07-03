@@ -1834,6 +1834,47 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 勧持品第十三（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 勧持品第十三（二十行の偈）
+  // YouTube ID: RxrISsOBVng  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 375.5s（6分15秒）、字幕なし（読経声のみ）。実質読誦区間: 約11〜373s
+  //
+  // タイミング: 冒頭のみ語句レベルで明瞭（品名「勧持品第十三」・薬王菩薩／
+  //   大楽説菩薩への言及）。以降は音写崩れが著しく、silencedetectで無音
+  //   区間なしを確認の上、冒頭アンカー起点に均等補間（約20.1s/行）。
+  //   末尾373-375.5s付近のみ動画実終端と一致するアウトロと判断。
+  //   詳細: .cache/kanjihon_merged.txt
+  {
+    id: "honkoji-kanjihon",
+    displayTitle: "勧持品",
+    title: "妙法蓮華経 勧持品第十三（本光寺 Live）",
+    subtitle: "勧持品第十三 全文読誦（二十行の偈）",
+    kind: "youtube",
+    youtubeId: "RxrISsOBVng",
+    sutraIds: ["kanjihon"],
+    timings: [
+      { lineId: "kn01", start:  11.0 },
+      { lineId: "kn02", start:  31.1 },
+      { lineId: "kn03", start:  51.2 },
+      { lineId: "kn04", start:  71.3 },
+      { lineId: "kn05", start:  91.4 },
+      { lineId: "kn06", start: 111.6 },
+      { lineId: "kn07", start: 131.7 },
+      { lineId: "kn08", start: 151.8 },
+      { lineId: "kn09", start: 171.9 },
+      { lineId: "kn10", start: 192.0 },
+      { lineId: "kn11", start: 212.1 },
+      { lineId: "kn12", start: 232.2 },
+      { lineId: "kn13", start: 252.3 },
+      { lineId: "kn14", start: 272.4 },
+      { lineId: "kn15", start: 292.6 },
+      { lineId: "kn16", start: 312.7 },
+      { lineId: "kn17", start: 332.8 },
+      { lineId: "kn18", start: 352.9 },
+      { lineId: "kn19", start: 373.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
