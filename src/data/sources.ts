@@ -1534,6 +1534,97 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 化城喩品第七（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 化城喩品第七（化城の譬え）
+  // YouTube ID: tXWQkYZkkgk  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 1470s（24分30秒）、字幕なし（読経声のみ）。実質読誦区間: 約11〜1469.5s
+  //
+  // タイミング: Whisper large-v3（ja、8チャンク・フォアグラウンド実行）。
+  //   1042-1469.5sは「お祈りします」の反復誤認識だったが、volumedetect
+  //   （複数地点）・silencedetect（全編スキャン）で無音でないことを確認
+  //   （全編mean_volume約-23dB）。831-853s付近は十二因縁（無明縁行…）の
+  //   音写と直接対応する語句レベルで明瞭な区間として確認できた。
+  //   セクション境界は行数比例で配置し均等補間。要・DTW/OCR精密照合。
+  //   詳細: .cache/kejohon_merged.txt
+  {
+    id: "honkoji-kejohon",
+    displayTitle: "化城喩品",
+    title: "妙法蓮華経 化城喩品第七（本光寺 Live）",
+    subtitle: "化城喩品第七 全文読誦（化城の譬え）",
+    kind: "youtube",
+    youtubeId: "tXWQkYZkkgk",
+    sutraIds: ["kejohon"],
+    timings: [
+      // ---- 大通智勝仏の物語導入・成道の久遠性（kj01-kj10） 11.0-197.0s ----
+      { lineId: "kj01", start:  11.0 },
+      { lineId: "kj02", start:  29.6 },
+      { lineId: "kj03", start:  48.2 },
+      { lineId: "kj04", start:  66.8 },
+      { lineId: "kj05", start:  85.4 },
+      { lineId: "kj06", start: 104.0 },
+      { lineId: "kj07", start: 122.6 },
+      { lineId: "kj08", start: 141.2 },
+      { lineId: "kj09", start: 159.8 },
+      { lineId: "kj10", start: 178.4 },
+      // ---- 十六王子・大通智勝仏への請法（kj11-kj20） 200.0-400.0s ----
+      { lineId: "kj11", start: 200.0 },
+      { lineId: "kj12", start: 220.0 },
+      { lineId: "kj13", start: 240.0 },
+      { lineId: "kj14", start: 260.0 },
+      { lineId: "kj15", start: 280.0 },
+      { lineId: "kj16", start: 300.0 },
+      { lineId: "kj17", start: 320.0 },
+      { lineId: "kj18", start: 340.0 },
+      { lineId: "kj19", start: 360.0 },
+      { lineId: "kj20", start: 380.0 },
+      // ---- 十六沙弥の教化・現在にいたるまで（kj21-kj35） 400.0-830.0s ----
+      { lineId: "kj21", start: 400.0 },
+      { lineId: "kj22", start: 428.7 },
+      { lineId: "kj23", start: 457.3 },
+      { lineId: "kj24", start: 486.0 },
+      { lineId: "kj25", start: 514.7 },
+      { lineId: "kj26", start: 543.3 },
+      { lineId: "kj27", start: 572.0 },
+      { lineId: "kj28", start: 600.7 },
+      { lineId: "kj29", start: 629.3 },
+      { lineId: "kj30", start: 658.0 },
+      { lineId: "kj31", start: 686.7 },
+      { lineId: "kj32", start: 715.3 },
+      { lineId: "kj33", start: 744.0 },
+      { lineId: "kj34", start: 772.7 },
+      { lineId: "kj35", start: 801.3 },
+      // ---- 十二因縁（kj36-kj41） 830.0-1000.0s ----
+      { lineId: "kj36", start: 830.0 },
+      { lineId: "kj37", start: 858.3 },
+      { lineId: "kj38", start: 886.7 },
+      { lineId: "kj39", start: 915.0 },
+      { lineId: "kj40", start: 943.3 },
+      { lineId: "kj41", start: 971.7 },
+      // ---- 化城の譬え本体・合譬（kj42-kj52） 1000.0-1250.0s ----
+      { lineId: "kj42", start: 1000.0 },
+      { lineId: "kj43", start: 1022.7 },
+      { lineId: "kj44", start: 1045.5 },
+      { lineId: "kj45", start: 1068.2 },
+      { lineId: "kj46", start: 1090.9 },
+      { lineId: "kj47", start: 1113.6 },
+      { lineId: "kj48", start: 1136.4 },
+      { lineId: "kj49", start: 1159.1 },
+      { lineId: "kj50", start: 1181.8 },
+      { lineId: "kj51", start: 1204.5 },
+      { lineId: "kj52", start: 1227.3 },
+      // ---- 重頌（kj53-kj61） 1250.0-1469.5s ----
+      { lineId: "kj53", start: 1250.0 },
+      { lineId: "kj54", start: 1274.4 },
+      { lineId: "kj55", start: 1298.8 },
+      { lineId: "kj56", start: 1323.2 },
+      { lineId: "kj57", start: 1347.6 },
+      { lineId: "kj58", start: 1372.0 },
+      { lineId: "kj59", start: 1396.4 },
+      { lineId: "kj60", start: 1420.8 },
+      { lineId: "kj61", start: 1445.1 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
