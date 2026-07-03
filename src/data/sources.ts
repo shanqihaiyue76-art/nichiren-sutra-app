@@ -1695,6 +1695,53 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 授学無学人記品第九（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 授学無学人記品第九
+  // YouTube ID: GRKznTuERkw  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 417.4s（6分57秒）、字幕なし（読経声のみ）。実質読誦区間: 約13〜411s
+  //
+  // タイミング: 事前にffmpeg silencedetectで無音区間なしを確認済み。
+  //   冒頭0-198s（品名・阿難羅睺羅の願い・阿難への記別冒頭）が語句
+  //   レベルで極めて明瞭。構造アンカー+均等補間。
+  //   詳細: .cache/jugakuhon_merged.txt
+  {
+    id: "honkoji-jugakuhon",
+    displayTitle: "授学無学人記品",
+    title: "妙法蓮華経 授学無学人記品第九（本光寺 Live）",
+    subtitle: "授学無学人記品第九 全文読誦",
+    kind: "youtube",
+    youtubeId: "GRKznTuERkw",
+    sutraIds: ["jugakuhon"],
+    timings: [
+      // ---- 阿難・羅睺羅の願い（jg01-jg04） 13.0-79.0s（語句レベル確認） ----
+      { lineId: "jg01", start: 13.0 },
+      { lineId: "jg02", start: 39.0 },
+      { lineId: "jg03", start: 57.0 },
+      { lineId: "jg04", start: 79.0 },
+      // ---- 阿難への記別（jg05-jg11） 94.0-236.3s ----
+      { lineId: "jg05", start:  94.0 },
+      { lineId: "jg06", start: 117.7 },
+      { lineId: "jg07", start: 141.4 },
+      { lineId: "jg08", start: 165.1 },
+      { lineId: "jg09", start: 188.9 },
+      { lineId: "jg10", start: 212.6 },
+      { lineId: "jg11", start: 236.3 },
+      // ---- 羅睺羅への記別（jg12-jg15） 260.0-297.5s ----
+      { lineId: "jg12", start: 260.0 },
+      { lineId: "jg13", start: 272.5 },
+      { lineId: "jg14", start: 285.0 },
+      { lineId: "jg15", start: 297.5 },
+      // ---- 二千人への記別・重頌（jg16-jg22） 310.0-396.6s ----
+      { lineId: "jg16", start: 310.0 },
+      { lineId: "jg17", start: 324.4 },
+      { lineId: "jg18", start: 338.9 },
+      { lineId: "jg19", start: 353.3 },
+      { lineId: "jg20", start: 367.7 },
+      { lineId: "jg21", start: 382.1 },
+      { lineId: "jg22", start: 396.6 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
