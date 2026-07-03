@@ -1785,6 +1785,55 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 見宝塔品第十一（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 見宝塔品第十一（二仏並座）
+  // YouTube ID: GFBo3otgdCg  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 689s（11分29秒）、字幕なし（読経声のみ）。実質読誦区間: 約11〜689s
+  //
+  // タイミング: 冒頭のみ語句レベルで明瞭（品名・宝塔が「住在空中」する
+  //   描写・「善哉善哉釈迦牟尼世尊」の讃嘆句）。260-400s付近は「説明」の
+  //   反復誤認識だったが、volumedetectで無音でないことを確認し全編を
+  //   実質読誦区間として扱った。冒頭アンカー起点に均等補間（約25.1s/行）。
+  //   詳細: .cache/hotohon_merged.txt
+  {
+    id: "honkoji-hotohon",
+    displayTitle: "見宝塔品",
+    title: "妙法蓮華経 見宝塔品第十一（本光寺 Live）",
+    subtitle: "見宝塔品第十一 全文読誦（二仏並座）",
+    kind: "youtube",
+    youtubeId: "GFBo3otgdCg",
+    sutraIds: ["hotohon"],
+    timings: [
+      { lineId: "ht01", start:  11.0 },
+      { lineId: "ht02", start:  36.1 },
+      { lineId: "ht03", start:  61.2 },
+      { lineId: "ht04", start:  86.3 },
+      { lineId: "ht05", start: 111.4 },
+      { lineId: "ht06", start: 136.6 },
+      { lineId: "ht07", start: 161.7 },
+      { lineId: "ht08", start: 186.8 },
+      { lineId: "ht09", start: 211.9 },
+      { lineId: "ht10", start: 237.0 },
+      { lineId: "ht11", start: 262.1 },
+      { lineId: "ht12", start: 287.2 },
+      { lineId: "ht13", start: 312.3 },
+      { lineId: "ht14", start: 337.4 },
+      { lineId: "ht15", start: 362.6 },
+      { lineId: "ht16", start: 387.7 },
+      { lineId: "ht17", start: 412.8 },
+      { lineId: "ht18", start: 437.9 },
+      { lineId: "ht19", start: 463.0 },
+      { lineId: "ht20", start: 488.1 },
+      { lineId: "ht21", start: 513.2 },
+      { lineId: "ht22", start: 538.3 },
+      { lineId: "ht23", start: 563.4 },
+      { lineId: "ht24", start: 588.6 },
+      { lineId: "ht25", start: 613.7 },
+      { lineId: "ht26", start: 638.8 },
+      { lineId: "ht27", start: 663.9 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
