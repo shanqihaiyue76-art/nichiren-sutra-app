@@ -1,6 +1,6 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-07-03（信解品第四 実装完了・デプロイ確認済み）
+最終更新: 2026-07-03（薬草喩品第五 実装完了・デプロイ確認済み）
 
 このファイルは実装済み内容・QA状況・Git履歴の記録。
 運用ルール・STOP条件は [MASTER_SKILL.md](./MASTER_SKILL.md)、
@@ -61,7 +61,8 @@
 | 方便品第二（全文） | hobenponzenbun.ts | honkoji-hobenponzenbun (S5caezkoUG0) | Whisper large-v3 7チャンク・長行部語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全71行・7セクション（長行1〜十如是〜長行2〜偈1-4）。十如是・一大事因縁・一仏乗・三止三請・五千退席を含む全文収録。既存`hobenpon.ts`（十如是抜粋のみ）とは別物。長行部（11-400s）は十如是が136-171s台に直接出現するなど語句レベルでも比較的明瞭。偈頌部（400-1328s）は音写崩れが著しくセクション境界+均等補間（要DTW/OCR精密照合） |
 | 譬喩品第三 | hiyuhon.ts | honkoji-hiyuhon (D965nIz_Ufg) | Whisper large-v3 8チャンク・冒頭/火宅導入部語句レベル確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全90行・5セクション（舎利弗踊躍歓喜偈・記別/四衆供養・重請/火宅の譬え本体/合譬/重頌）。三車火宅の譬え（法華経で最も著名な譬喩）を全文収録。冒頭「にじしゃりほつゆやかんぎ」・火宅導入部「長者」が136-171s台等で語句レベルでも明瞭に確認できたが、長大な譬喩・偈頌の中盤は音写崩れが著しくセクション境界+均等補間（要DTW/OCR精密照合） |
 | 信解品第四 | shingehon.ts | honkoji-shingehon (1YlVyFbN8mA) | Whisper large-v3 5チャンク・volumedetectで全編有音確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全73行・5セクション（四大声聞の歓喜・窮子の譬え導入/窮子の譬え前半/後半/合譬/重頌）。長者窮子の譬えを全文収録。Whisper反復定型句（「ご視聴ありがとうございました」）が動画中盤にも出現したが、volumedetect/silencedetectで無音でないと確認し全編を実質読誦区間として扱った（要DTW/OCR精密照合。手法はWORKFLOW.md参照） |
-| 残22品 | — | — | 未着手 | 🔵 着手可能 | Ground Truth方式v2.0（字幕不要）により実装可能と判明。本光寺Liveチャンネルに全28品所蔵。動画IDリストは[TODO.md](./TODO.md)参照 |
+| 薬草喩品第五 | yakusoyuhon.ts | honkoji-yakusoyuhon (LGsPXrUxDUE) | Whisper large-v3 3チャンク・volumedetectで全編有音確認 | ✅ 完成（暫定） | Ground Truth方式v2.0。全45行・4セクション（仏の称賛・導入/三草二木の譬え本体/一相一味の法/重頌）。三草二木の譬え（大雲の譬え）を全文収録（要DTW/OCR精密照合） |
+| 残21品 | — | — | 未着手 | 🔵 着手可能 | Ground Truth方式v2.0（字幕不要）により実装可能と判明。本光寺Liveチャンネルに全28品所蔵。動画IDリストは[TODO.md](./TODO.md)参照 |
 
 ---
 
@@ -69,12 +70,12 @@
 
 基本勤行: 7/7 = **100%**（タイミングQA全完了）
 偈文: 4/4 = **100%**（普賢勧発偈 実装完了・暫定データ）
-法華経: 6/28 = **21%**（提婆達多品✅・普賢菩薩勧発品第二十八✅・序品第一✅・方便品第二✅・譬喩品第三✅・信解品第四✅）
+法華経: 7/28 = **25%**（提婆達多品✅・普賢菩薩勧発品第二十八✅・序品第一✅・方便品第二✅・譬喩品第三✅・信解品第四✅・薬草喩品第五✅）
 題目: 0/4 = **0%**
 
-全体（カテゴリ計上ベース）: 17/43 ≈ **40%**
-※ fugenkanpatsugeは「偈文」「法華経」両方に計上されるため、実装物としては15件（重複1件）。
-※ 普賢勧発偈・提婆達多品(章前半欠)・序品第一・方便品第二・譬喩品第三・信解品第四は `provenance.status: provisional` の暫定データ。原典照合前は学習モードで「未検証」表示のまま。
+全体（カテゴリ計上ベース）: 18/43 ≈ **42%**
+※ fugenkanpatsugeは「偈文」「法華経」両方に計上されるため、実装物としては16件（重複1件）。
+※ 普賢勧発偈・提婆達多品(章前半欠)・序品第一・方便品第二・譬喩品第三・信解品第四・薬草喩品第五は `provenance.status: provisional` の暫定データ。原典照合前は学習モードで「未検証」表示のまま。
 
 ---
 
@@ -101,10 +102,12 @@
 | bb0562f | feat: 譬喩品第三を追加（hiyuhon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
 | 835928d | docs: 譬喩品第三完了を反映（PROJECT_STATUS.md / TODO.md更新） | ✅ GitHub反映済 |
 | 1585d85 | feat: 信解品第四を追加（shingehon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
+| 3a47ed4 | docs: 信解品第四完了を反映・volumedetect手法をWORKFLOW.mdに追記 | ✅ GitHub反映済 |
+| 3bf3a72 | feat: 薬草喩品第五を追加（yakusoyuhon.ts + sources.ts + index.ts） | ✅ GitHub反映済・本番確認済み |
 
 **本番URL**: https://nichiren-sutra-app.vercel.app  
-**Vercel**: 2026-07-03 自動デプロイ完了・本番確認済み（/sutra/shingehon, /play/honkoji-shingehon 動作確認OK。73行・5セクション表示・YouTube埋め込み正常）  
-**origin/main HEAD**: 1585d85
+**Vercel**: 2026-07-03 自動デプロイ完了・本番確認済み（/sutra/yakusoyuhon, /play/honkoji-yakusoyuhon 動作確認OK。45行・4セクション表示・YouTube埋め込み正常）  
+**origin/main HEAD**: 3bf3a72
 
 ---
 
@@ -158,6 +161,7 @@
 | S5caezkoUG0 | 妙法蓮華経 方便品第二（本光寺 Live） | hobenponzenbun (honkoji-hobenponzenbun) | **なし**（Ground Truth方式v2.0。1336s、実質読誦約11〜1328.4s） |
 | D965nIz_Ufg | 妙法蓮華経 譬喩品第三（本光寺 Live） | hiyuhon (honkoji-hiyuhon) | **なし**（Ground Truth方式v2.0。1596s、実質読誦約9.4〜1588.8s） |
 | 1YlVyFbN8mA | 妙法蓮華経 信解品第四（本光寺 Live） | shingehon (honkoji-shingehon) | **なし**（Ground Truth方式v2.0。882s、volumedetectで全編有音確認の上、実質読誦約8〜880s） |
+| LGsPXrUxDUE | 妙法蓮華経 薬草喩品第五（本光寺 Live） | yakusoyuhon (honkoji-yakusoyuhon) | **なし**（Ground Truth方式v2.0。508.9s、volumedetectで全編有音確認の上、実質読誦約5〜505s） |
 
 ### 調査済み・不採用動画（追加調査 2026-06-30）
 
@@ -195,3 +199,4 @@
 7. **方便品第二（全文）** (commit 906e988, 2026-07-03): Ground Truth方式v2.0で実装。hobenponzenbun.ts（全71行・7セクション: 長行1/十如是/長行2/偈1-4）+ sources.ts（honkoji-hobenponzenbun, S5caezkoUG0）+ index.ts登録。既存`hobenpon.ts`（十如是抜粋のみ）とは別ファイル。Whisper large-v3（7チャンク）で長行部（11-400s）は十如是が136-171s台に直接出現するなど語句レベルでも比較的明瞭に確認できたが、長大な偈頌部（400-1328s）は音写崩れが著しくセクション境界+均等補間でタイミング暫定配置。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合、三止三請・五千退席・一大事因縁・一仏乗の全教理を収録）。Build 0エラー・本番デプロイ確認済み（/sutra/hobenponzenbun, /play/honkoji-hobenponzenbun）。法華経 4/28。
 8. **譬喩品第三** (commit bb0562f, 2026-07-03): Ground Truth方式v2.0で実装。hiyuhon.ts（全90行・5セクション: 舎利弗踊躍歓喜偈・記別/四衆供養・重請/火宅の譬え本体/合譬/重頌）+ sources.ts（honkoji-hiyuhon, D965nIz_Ufg）+ index.ts登録。三車火宅の譬え（法華経で最も著名な譬喩）を全文収録。Whisper large-v3（8チャンク）で冒頭（舎利弗踊躍歓喜）・火宅導入部（「長者」の直接出現）は語句レベルでも比較的明瞭に確認できたが、長大な譬喩・偈頌の中盤は音写崩れが著しくセクション境界+均等補間でタイミング暫定配置。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/hiyuhon, /play/honkoji-hiyuhon）。法華経 5/28。
 9. **信解品第四** (commit 1585d85, 2026-07-03): Ground Truth方式v2.0で実装。shingehon.ts（全73行・5セクション: 四大声聞の歓喜・窮子の譬え導入/窮子の譬え前半/後半/合譬/重頌）+ sources.ts（honkoji-shingehon, 1YlVyFbN8mA）+ index.ts登録。長者窮子の譬えを全文収録。**方法論の修正**: Whisper反復定型句（「ご視聴ありがとうございました」）が動画中盤（200-400s）にも出現したため、`ffmpeg volumedetect`/`silencedetect`で実際に音量を確認したところ無音ではなかった（全編mean_volume約-22dB）。従来の「反復定型句＝無音（アウトロ）」という判断基準を修正し、全編を実質読誦区間として扱った（WORKFLOW.mdに追記）。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/shingehon, /play/honkoji-shingehon）。法華経 6/28。
+10. **薬草喩品第五** (commit 3bf3a72, 2026-07-03): Ground Truth方式v2.0で実装。yakusoyuhon.ts（全45行・4セクション: 仏の称賛・導入/三草二木の譬え本体/一相一味の法/重頌）+ sources.ts（honkoji-yakusoyuhon, LGsPXrUxDUE）+ index.ts登録。三草二木の譬え（大雲の譬え）を全文収録。Whisper反復定型句（「お祈りします」）が全体の約60%（200-508.9s）に出現したが、信解品と同様volumedetect/silencedetectで無音でないことを確認し全編を実質読誦区間として扱った。テキストはAI再構成（`ai_sample`/`provisional`、要原典照合）。Build 0エラー・本番デプロイ確認済み（/sutra/yakusoyuhon, /play/honkoji-yakusoyuhon）。法華経 7/28。

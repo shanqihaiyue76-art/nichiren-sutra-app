@@ -8,14 +8,16 @@
 
 ## 進行中
 
-- [ ] **薬草喩品第五**（LGsPXrUxDUE, 509s、本光寺Live）← 次のアクション
+- [ ] **授記品第六**（Gu6YDp_FMT0, 510s、本光寺Live）← 次のアクション
   - [ ] 動画取得・16kHz変換
   - [ ] Whisper large-v3 文字起こし（チャンク分割・フォアグラウンド実行、
-        509sのため3チャンク程度を想定）
+        510sのため3チャンク程度を想定）
   - [ ] マージ済みトランスクリプト作成
   - [ ] 反復定型句が出た場合、動画末尾以外ではffmpeg volumedetectで
-        無音か認識失敗かを必ず確認する（信解品での修正事項、WORKFLOW.md参照）
-  - [ ] `src/data/yakusoyuhon.ts` 作成（テキスト再構成。三草二木の譬えを含む）
+        無音か認識失敗かを必ず確認する（信解品・薬草喩品での修正事項、
+        WORKFLOW.md参照）
+  - [ ] `src/data/jukihon.ts` 作成（テキスト再構成。四大声聞
+        〈迦葉・須菩提・迦旃延・目犍連〉への記別を含む）
   - [ ] `sources.ts` に PlaybackSource追加
   - [ ] `index.ts` 登録
   - [ ] ビルド確認
@@ -25,10 +27,9 @@
 
 ## 次に着手（法華経二十八品 残り・本光寺Liveチャンネル所蔵・字幕なし）
 
-動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。薬草喩品完了後、上から順に進める。
+動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。授記品完了後、上から順に進める。
 
 ```
-6.授記品      Gu6YDp_FMT0  510s
 7.化城喩品    tXWQkYZkkgk  1471s
 8.五百弟子受記品 Zv9gGKxP6Ro  667s
 9.授学無学人記品 GRKznTuERkw  418s
@@ -54,7 +55,8 @@
 
 完了済み: 1.序品（✅ commit 09dc048） / 2.方便品第二・全文（✅ commit 906e988、
 `hobenponzenbun.ts`） / 3.譬喩品（✅ commit bb0562f、`hiyuhon.ts`） /
-4.信解品（✅ commit 1585d85、`shingehon.ts`） / 28.普賢菩薩勧発品（✅ commit 538982e）
+4.信解品（✅ commit 1585d85、`shingehon.ts`） / 5.薬草喩品（✅ commit 3bf3a72、
+`yakusoyuhon.ts`） / 28.普賢菩薩勧発品（✅ commit 538982e）
 
 **規模の注記**: 化城喩品(1471s)は長行が長大なため行数が多くなる見込み。
 1品ずつ完了させて逐次コミットする。
