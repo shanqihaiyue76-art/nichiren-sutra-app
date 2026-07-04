@@ -1875,6 +1875,57 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 安楽行品第十四（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 安楽行品第十四（四安楽行と髻中明珠の譬え）
+  // YouTube ID: 16u7E86jzWs  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 888.14s（14分48秒）、字幕なし（読経声のみ）。実質読誦区間: 約8〜888s
+  //
+  // タイミング: 冒頭〜260s台（四安楽行総説・身安楽行の行処／親近処・
+  //   偈頌冒頭）はWhisperで語句レベル確認、原典と一字一句近い精度で
+  //   対応が取れた。400-888sは「♪〜」等の反復ハルシネーションだったが、
+  //   volumedetectで全区間有音（-22dB前後）を確認し均等補間で扱った。
+  //   詳細: .cache/anrakugyohon_merged.txt
+  {
+    id: "honkoji-anrakugyohon",
+    displayTitle: "安楽行品",
+    title: "妙法蓮華経 安楽行品第十四（本光寺 Live）",
+    subtitle: "安楽行品第十四 全文読誦（四安楽行・髻中明珠の譬え）",
+    kind: "youtube",
+    youtubeId: "16u7E86jzWs",
+    sutraIds: ["anrakugyohon"],
+    timings: [
+      { lineId: "an01", start:   8.0 },
+      { lineId: "an02", start:  51.0 },
+      { lineId: "an03", start:  73.0 },
+      { lineId: "an04", start: 107.0 },
+      { lineId: "an05", start: 132.0 },
+      { lineId: "an06", start: 155.0 },
+      { lineId: "an07", start: 175.0 },
+      { lineId: "an08", start: 191.0 },
+      { lineId: "an09", start: 208.0 },
+      { lineId: "an10", start: 218.0 },
+      { lineId: "an11", start: 248.7 },
+      { lineId: "an12", start: 260.0 },
+      { lineId: "an13", start: 273.0 },
+      { lineId: "an14", start: 286.0 },
+      { lineId: "an15", start: 300.0 },
+      { lineId: "an16", start: 313.0 },
+      { lineId: "an17", start: 375.0 },
+      { lineId: "an18", start: 400.0 },
+      { lineId: "an19", start: 440.7 },
+      { lineId: "an20", start: 481.4 },
+      { lineId: "an21", start: 522.1 },
+      { lineId: "an22", start: 562.8 },
+      { lineId: "an23", start: 603.5 },
+      { lineId: "an24", start: 644.2 },
+      { lineId: "an25", start: 684.9 },
+      { lineId: "an26", start: 725.6 },
+      { lineId: "an27", start: 766.3 },
+      { lineId: "an28", start: 807.0 },
+      { lineId: "an29", start: 847.7 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
