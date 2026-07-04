@@ -1968,6 +1968,48 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 如来寿量品第十六（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 如来寿量品第十六（久遠実成と良医治子の譬え）
+  // YouTube ID: 4SkckGoAqhw  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 505.01s（8分25秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜505s
+  //
+  // タイミング: 冒頭〜140s台（久遠実成の宣言・塵点劫の譬え）はWhisperで
+  //   語句レベル確認、原典と一字一句近い精度で対応が取れた。165-505sは
+  //   「聖書を読みます」「お祈りします」等の反復ハルシネーションだったが、
+  //   volumedetectで全区間有音を確認し均等補間で扱った。
+  //   詳細: .cache/juryohon_merged.txt
+  {
+    id: "honkoji-juryohon",
+    displayTitle: "如来寿量品",
+    title: "妙法蓮華経 如来寿量品第十六（本光寺 Live）",
+    subtitle: "如来寿量品第十六 全文読誦（久遠実成・良医治子の譬え）",
+    kind: "youtube",
+    youtubeId: "4SkckGoAqhw",
+    sutraIds: ["juryohon"],
+    timings: [
+      { lineId: "jr01", start:  15.0 },
+      { lineId: "jr02", start:  44.0 },
+      { lineId: "jr03", start:  60.0 },
+      { lineId: "jr04", start:  82.0 },
+      { lineId: "jr05", start:  90.0 },
+      { lineId: "jr06", start: 115.0 },
+      { lineId: "jr07", start: 140.0 },
+      { lineId: "jr08", start: 165.0 },
+      { lineId: "jr09", start: 191.2 },
+      { lineId: "jr10", start: 217.4 },
+      { lineId: "jr11", start: 243.6 },
+      { lineId: "jr12", start: 269.8 },
+      { lineId: "jr13", start: 296.0 },
+      { lineId: "jr14", start: 322.2 },
+      { lineId: "jr15", start: 348.4 },
+      { lineId: "jr16", start: 374.6 },
+      { lineId: "jr17", start: 400.8 },
+      { lineId: "jr18", start: 427.0 },
+      { lineId: "jr19", start: 453.2 },
+      { lineId: "jr20", start: 479.4 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
