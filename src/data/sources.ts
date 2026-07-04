@@ -1926,6 +1926,48 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 従地涌出品第十五（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 従地涌出品第十五（地涌の菩薩の出現と弥勒の疑問）
+  // YouTube ID: DL5yxRxAomA  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 737.83s（12分17秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜738s
+  //
+  // タイミング: 冒頭〜200s台（地涌の菩薩の眷属の数の列挙・二仏への礼拝）
+  //   はWhisperで語句レベル確認、原典と一字一句近い精度で対応が取れた。
+  //   200-738sは「お祈りします」「読手読手」等の反復ハルシネーションだったが、
+  //   volumedetectで全区間有音を確認し均等補間で扱った。
+  //   詳細: .cache/juchiyujutsuhon_merged.txt
+  {
+    id: "honkoji-juchiyujutsuhon",
+    displayTitle: "従地涌出品",
+    title: "妙法蓮華経 従地涌出品第十五（本光寺 Live）",
+    subtitle: "従地涌出品第十五 全文読誦（地涌の菩薩・弥勒の疑問）",
+    kind: "youtube",
+    youtubeId: "DL5yxRxAomA",
+    sutraIds: ["juchiyujutsuhon"],
+    timings: [
+      { lineId: "jy01", start:   8.0 },
+      { lineId: "jy02", start:  39.0 },
+      { lineId: "jy03", start:  70.0 },
+      { lineId: "jy04", start: 100.0 },
+      { lineId: "jy05", start: 123.0 },
+      { lineId: "jy06", start: 151.0 },
+      { lineId: "jy07", start: 174.0 },
+      { lineId: "jy08", start: 193.0 },
+      { lineId: "jy09", start: 205.0 },
+      { lineId: "jy10", start: 249.4 },
+      { lineId: "jy11", start: 293.8 },
+      { lineId: "jy12", start: 338.2 },
+      { lineId: "jy13", start: 382.6 },
+      { lineId: "jy14", start: 427.0 },
+      { lineId: "jy15", start: 471.4 },
+      { lineId: "jy16", start: 515.8 },
+      { lineId: "jy17", start: 560.2 },
+      { lineId: "jy18", start: 604.6 },
+      { lineId: "jy19", start: 649.0 },
+      { lineId: "jy20", start: 693.4 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
