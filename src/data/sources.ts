@@ -2058,6 +2058,44 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 随喜功徳品第十八（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 随喜功徳品第十八（五十展転の随喜の功徳）
+  // YouTube ID: wWxM4K2yvyI  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 388.27s（6分28秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜388s
+  //
+  // タイミング: 152-200s台（大施主の譬え中の四道・第五十人の随喜の
+  //   功徳の比較）はWhisperで語句レベル確認、原典と一字一句近い精度で
+  //   対応が取れた。200-388sは「お祭りをお祈りいたします」の反復
+  //   ハルシネーションだったがvolumedetectで無音でないことを確認し
+  //   均等補間で扱った。詳細: .cache/zuikikudokuhon_merged.txt
+  {
+    id: "honkoji-zuikikudokuhon",
+    displayTitle: "随喜功徳品",
+    title: "妙法蓮華経 随喜功徳品第十八（本光寺 Live）",
+    subtitle: "随喜功徳品第十八 全文読誦（五十展転の随喜の功徳）",
+    kind: "youtube",
+    youtubeId: "wWxM4K2yvyI",
+    sutraIds: ["zuikikudokuhon"],
+    timings: [
+      { lineId: "zk01", start:   5.0 },
+      { lineId: "zk02", start:  29.5 },
+      { lineId: "zk03", start:  54.0 },
+      { lineId: "zk04", start:  78.5 },
+      { lineId: "zk05", start: 103.0 },
+      { lineId: "zk06", start: 127.5 },
+      { lineId: "zk07", start: 152.0 },
+      { lineId: "zk08", start: 165.3 },
+      { lineId: "zk09", start: 177.7 },
+      { lineId: "zk10", start: 189.0 },
+      { lineId: "zk11", start: 220.8 },
+      { lineId: "zk12", start: 252.7 },
+      { lineId: "zk13", start: 284.5 },
+      { lineId: "zk14", start: 316.3 },
+      { lineId: "zk15", start: 348.2 },
+      { lineId: "zk16", start: 380.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
