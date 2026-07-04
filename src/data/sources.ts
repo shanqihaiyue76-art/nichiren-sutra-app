@@ -2010,6 +2010,54 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 分別功徳品第十七（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 分別功徳品第十七（久遠実成を聞いた大衆の功徳）
+  // YouTube ID: 5bEGLQvkNms  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 678.15s（11分18秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜678s
+  //
+  // タイミング: 5箇所の確認済みアンカー（総説冒頭12s・曼陀羅華の雨223s・
+  //   六波羅蜜の比較276s・生きた塔の教え560s）に基づく構造配置。以降は
+  //   反復ハルシネーションだったがvolumedetectで無音でないことを確認し
+  //   均等補間で扱った。詳細: .cache/funbetsukudokuhon_merged.txt
+  {
+    id: "honkoji-funbetsukudokuhon",
+    displayTitle: "分別功徳品",
+    title: "妙法蓮華経 分別功徳品第十七（本光寺 Live）",
+    subtitle: "分別功徳品第十七 全文読誦（久遠実成を聞いた大衆の功徳）",
+    kind: "youtube",
+    youtubeId: "5bEGLQvkNms",
+    sutraIds: ["funbetsukudokuhon"],
+    timings: [
+      { lineId: "fb01", start:  12.0 },
+      { lineId: "fb02", start:  42.0 },
+      { lineId: "fb03", start:  72.0 },
+      { lineId: "fb04", start: 102.0 },
+      { lineId: "fb05", start: 132.0 },
+      { lineId: "fb06", start: 162.0 },
+      { lineId: "fb07", start: 192.0 },
+      { lineId: "fb08", start: 222.0 },
+      { lineId: "fb09", start: 231.0 },
+      { lineId: "fb10", start: 240.0 },
+      { lineId: "fb11", start: 249.0 },
+      { lineId: "fb12", start: 258.0 },
+      { lineId: "fb13", start: 267.0 },
+      { lineId: "fb14", start: 276.0 },
+      { lineId: "fb15", start: 299.7 },
+      { lineId: "fb16", start: 323.3 },
+      { lineId: "fb17", start: 347.0 },
+      { lineId: "fb18", start: 370.7 },
+      { lineId: "fb19", start: 394.3 },
+      { lineId: "fb20", start: 418.0 },
+      { lineId: "fb21", start: 441.7 },
+      { lineId: "fb22", start: 465.3 },
+      { lineId: "fb23", start: 489.0 },
+      { lineId: "fb24", start: 512.7 },
+      { lineId: "fb25", start: 536.3 },
+      { lineId: "fb26", start: 560.0 },
+      { lineId: "fb27", start: 619.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
