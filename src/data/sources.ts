@@ -2204,6 +2204,34 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 嘱累品第二十二（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 嘱累品第二十二（総付嘱と分身諸仏の本土帰還）
+  // YouTube ID: Vkp9skpgJoI  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 150.52s（2分31秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜150.5s
+  //
+  // タイミング: 法華経二十八品の中でも最も短い章の一つ。本セッション中
+  //   でも屈指の明瞭さで、ほぼ全編にわたり原典と極めて近い精度の語句
+  //   レベル確認ができた（品名・三度の摩頂付嘱・大施主の宣言・弘教の
+  //   勧め・三度の誓い・本土帰還・大会の歓喜）。
+  //   詳細: .cache/zokuruihon_merged.txt
+  {
+    id: "honkoji-zokuruihon",
+    displayTitle: "嘱累品",
+    title: "妙法蓮華経 嘱累品第二十二（本光寺 Live）",
+    subtitle: "嘱累品第二十二 全文読誦（総付嘱と分身諸仏の本土帰還）",
+    kind: "youtube",
+    youtubeId: "Vkp9skpgJoI",
+    sutraIds: ["zokuruihon"],
+    timings: [
+      { lineId: "zr01", start:  11.0 },
+      { lineId: "zr02", start:  62.0 },
+      { lineId: "zr03", start:  79.0 },
+      { lineId: "zr04", start:  99.0 },
+      { lineId: "zr05", start: 117.0 },
+      { lineId: "zr06", start: 128.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
