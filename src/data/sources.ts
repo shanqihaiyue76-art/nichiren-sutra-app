@@ -2133,6 +2133,45 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 常不軽菩薩品第二十（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 常不軽菩薩品第二十（常不軽菩薩の物語）
+  // YouTube ID: x5BpHXnVxRs  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 415.9s（6分56秒）、字幕なし（読経声のみ）。実質読誦区間: 約6〜416s
+  //
+  // タイミング: この章は特に語句レベルの確認精度が高く、品名（8s）・
+  //   得大勢菩薩への呼びかけ（13s）・威音王如来とその十号（50-68s）・
+  //   仏寿四十万億那由他（93s）・最後威音王如来の滅度（126s）・
+  //   六根清浄と寿命延長（200s台）・雲自在灯王との出会い（238s台）・
+  //   功徳成就（256s台）が原典と極めて近い精度でWhisper確認できた。
+  //   詳細: .cache/jofukyohon_merged.txt
+  {
+    id: "honkoji-jofukyohon",
+    displayTitle: "常不軽菩薩品",
+    title: "妙法蓮華経 常不軽菩薩品第二十（本光寺 Live）",
+    subtitle: "常不軽菩薩品第二十 全文読誦（常不軽菩薩の物語）",
+    kind: "youtube",
+    youtubeId: "x5BpHXnVxRs",
+    sutraIds: ["jofukyohon"],
+    timings: [
+      { lineId: "jf01", start:   8.0 },
+      { lineId: "jf02", start:  42.0 },
+      { lineId: "jf03", start:  70.0 },
+      { lineId: "jf04", start:  93.0 },
+      { lineId: "jf05", start: 126.0 },
+      { lineId: "jf06", start: 140.8 },
+      { lineId: "jf07", start: 155.6 },
+      { lineId: "jf08", start: 170.4 },
+      { lineId: "jf09", start: 185.2 },
+      { lineId: "jf10", start: 200.0 },
+      { lineId: "jf11", start: 218.0 },
+      { lineId: "jf12", start: 238.0 },
+      { lineId: "jf13", start: 256.0 },
+      { lineId: "jf14", start: 304.0 },
+      { lineId: "jf15", start: 352.0 },
+      { lineId: "jf16", start: 400.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
