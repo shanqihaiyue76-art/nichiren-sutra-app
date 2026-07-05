@@ -2172,6 +2172,38 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 如来神力品第二十一（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 如来神力品第二十一（十神力の顕現と付嘱）
+  // YouTube ID: pSWxiFG8xJY  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 334.8s（5分35秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜330s
+  //
+  // タイミング: 本セッション中でも屈指の高精度確認区間。天龍八部衆
+  //   （76-84s）・十神力の舌相光明（84-99s）・謦欬弾指六種震動
+  //   （99-112s）・付嘱の核心句「以要言之」（200-217s）・受持読誦の
+  //   勧め（217-232s）・道場の宣言（237-251s）が原典と極めて近い精度
+  //   でWhisper確認できた。詳細: .cache/jinrikihon_merged.txt
+  {
+    id: "honkoji-jinrikihon",
+    displayTitle: "如来神力品",
+    title: "妙法蓮華経 如来神力品第二十一（本光寺 Live）",
+    subtitle: "如来神力品第二十一 全文読誦（十神力の顕現と付嘱）",
+    kind: "youtube",
+    youtubeId: "pSWxiFG8xJY",
+    sutraIds: ["jinrikihon"],
+    timings: [
+      { lineId: "jr01", start:  10.0 },
+      { lineId: "jr02", start:  67.0 },
+      { lineId: "jr03", start:  84.0 },
+      { lineId: "jr04", start:  99.0 },
+      { lineId: "jr05", start: 130.0 },
+      { lineId: "jr06", start: 165.0 },
+      { lineId: "jr07", start: 185.0 },
+      { lineId: "jr08", start: 200.0 },
+      { lineId: "jr09", start: 217.0 },
+      { lineId: "jr10", start: 237.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
