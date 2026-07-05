@@ -2314,6 +2314,48 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 観世音菩薩普門品第二十五（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 観世音菩薩普門品第二十五（普門示現・長行部分）
+  // YouTube ID: zqGW3sZ25I4  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 574.26s（9分34秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜574s
+  //   ただし本ソースは長行（散文）部分のみを収録（約5〜400s相当）。
+  //   後半の重頌（偈頌）部分は既存honkoji-kannongeが別途収録。
+  //
+  // タイミング: 品名・一心称名による解脱の宣言（53-63s）・七難のうち
+  //   複数（火水羅刹刀杖夜叉羅刹枷鎖、63-142s）・有名な「三十四身」の
+  //   顕現（259-354s）・「施無畏者」の由来（354-378s）・瓔珞供養の
+  //   場面（378-400s）が原典と極めて近い精度でWhisper確認できた。
+  //   詳細: .cache/kannonhon_merged.txt
+  {
+    id: "honkoji-kannonhon",
+    displayTitle: "観世音菩薩普門品",
+    title: "妙法蓮華経 観世音菩薩普門品第二十五（本光寺 Live）",
+    subtitle: "観世音菩薩普門品第二十五 全文読誦（普門示現・長行部分）",
+    kind: "youtube",
+    youtubeId: "zqGW3sZ25I4",
+    sutraIds: ["kannonhon"],
+    timings: [
+      { lineId: "fm01", start:  16.0 },
+      { lineId: "fm02", start:  28.0 },
+      { lineId: "fm03", start:  63.0 },
+      { lineId: "fm04", start:  77.0 },
+      { lineId: "fm05", start:  88.0 },
+      { lineId: "fm06", start: 104.0 },
+      { lineId: "fm07", start: 120.0 },
+      { lineId: "fm08", start: 135.0 },
+      { lineId: "fm09", start: 150.0 },
+      { lineId: "fm10", start: 165.0 },
+      { lineId: "fm11", start: 178.0 },
+      { lineId: "fm12", start: 190.0 },
+      { lineId: "fm13", start: 200.0 },
+      { lineId: "fm14", start: 259.0 },
+      { lineId: "fm15", start: 320.0 },
+      { lineId: "fm16", start: 350.0 },
+      { lineId: "fm17", start: 378.0 },
+      { lineId: "fm18", start: 390.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
