@@ -2232,6 +2232,47 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 薬王菩薩本事品第二十三（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 薬王菩薩本事品第二十三（薬王菩薩の前世物語）
+  // YouTube ID: _wuTfF5wZKA  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 828.68s（13分49秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜828s
+  //
+  // タイミング: 品名・宿王華菩薩の問い（0-24s）・日月浄明徳如来の十号
+  //   （66-95s）・一切衆生喜見菩薩と現一切色身三昧（149-183s）・曼陀羅華
+  //   の雨（183-196s）・八万四千塔（308s台・420s台）・法華経の功徳の
+  //   譬え「一切苦、一切病痛、一切生死」（630s台）・章題への自己言及
+  //   （707-759s台）・末尾の多宝仏讃嘆「善哉善哉。宿王華」（800s台）が
+  //   原典と極めて近い精度でWhisper確認できた。詳細: .cache/yakuohon_merged.txt
+  {
+    id: "honkoji-yakuohon",
+    displayTitle: "薬王菩薩本事品",
+    title: "妙法蓮華経 薬王菩薩本事品第二十三（本光寺 Live）",
+    subtitle: "薬王菩薩本事品第二十三 全文読誦（薬王菩薩の前世物語）",
+    kind: "youtube",
+    youtubeId: "_wuTfF5wZKA",
+    sutraIds: ["yakuohon"],
+    timings: [
+      { lineId: "yo01", start:  15.0 },
+      { lineId: "yo02", start:  66.0 },
+      { lineId: "yo03", start: 149.0 },
+      { lineId: "yo04", start: 183.0 },
+      { lineId: "yo05", start: 210.0 },
+      { lineId: "yo06", start: 240.0 },
+      { lineId: "yo07", start: 296.0 },
+      { lineId: "yo08", start: 340.0 },
+      { lineId: "yo09", start: 420.0 },
+      { lineId: "yo10", start: 445.0 },
+      { lineId: "yo11", start: 470.0 },
+      { lineId: "yo12", start: 522.0 },
+      { lineId: "yo13", start: 540.0 },
+      { lineId: "yo14", start: 600.0 },
+      { lineId: "yo15", start: 630.0 },
+      { lineId: "yo16", start: 700.0 },
+      { lineId: "yo17", start: 760.0 },
+      { lineId: "yo18", start: 805.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
