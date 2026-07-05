@@ -2356,6 +2356,46 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 陀羅尼品第二十六（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 陀羅尼品第二十六（法華経の行者を守護する陀羅尼呪）
+  // YouTube ID: jN_Y6HT-sHs  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 367.94s（6分8秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜367.9s
+  //
+  // タイミング: 陀羅尼（音写）部分は逆にWhisperの音写精度が高く、
+  //   薬王菩薩・勇施菩薩・毘沙門天王・持国天王の各陀羅尼呪の実際の音節、
+  //   十羅刹女の名前の列挙が原典と極めて近い精度でWhisper確認できた。
+  //   末尾に「ご視聴ありがとうございました」の実アウトロを確認。
+  //   詳細: .cache/daranihon_merged.txt
+  {
+    id: "honkoji-daranihon",
+    displayTitle: "陀羅尼品",
+    title: "妙法蓮華経 陀羅尼品第二十六（本光寺 Live）",
+    subtitle: "陀羅尼品第二十六 全文読誦（法華経の行者を守護する陀羅尼呪）",
+    kind: "youtube",
+    youtubeId: "jN_Y6HT-sHs",
+    sutraIds: ["daranihon"],
+    timings: [
+      { lineId: "dn01", start:  11.0 },
+      { lineId: "dn02", start:  37.0 },
+      { lineId: "dn03", start:  62.0 },
+      { lineId: "dn04", start:  75.0 },
+      { lineId: "dn05", start: 100.0 },
+      { lineId: "dn06", start: 127.0 },
+      { lineId: "dn07", start: 137.0 },
+      { lineId: "dn08", start: 149.0 },
+      { lineId: "dn09", start: 160.0 },
+      { lineId: "dn10", start: 183.0 },
+      { lineId: "dn11", start: 196.0 },
+      { lineId: "dn12", start: 207.0 },
+      { lineId: "dn13", start: 219.5 },
+      { lineId: "dn14", start: 233.0 },
+      { lineId: "dn15", start: 250.0 },
+      { lineId: "dn16", start: 276.0 },
+      { lineId: "dn17", start: 310.0 },
+      { lineId: "dn18", start: 345.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
