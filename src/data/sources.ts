@@ -2096,6 +2096,43 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 法師功徳品第十九（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 法師功徳品第十九（六根清浄の功徳）
+  // YouTube ID: iQ8aCyCDfRc  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 747.97s（12分28秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜748s
+  //
+  // タイミング: 天龍八部への言及（約147s）・鼻根功徳中の天華の香り
+  //   「摩訶曼陀羅華香」等（約300s）・天龍八部の男女両形への言及
+  //   （約505s）の3箇所がWhisperで語句レベル確認、原典と一字一句近い
+  //   精度で対応が取れた。それ以外は反復ハルシネーションだったが、
+  //   volumedetectで無音でないことを確認し均等補間で扱った。
+  //   詳細: .cache/hosshikudokuhon_merged.txt
+  {
+    id: "honkoji-hosshikudokuhon",
+    displayTitle: "法師功徳品",
+    title: "妙法蓮華経 法師功徳品第十九（本光寺 Live）",
+    subtitle: "法師功徳品第十九 全文読誦（六根清浄の功徳）",
+    kind: "youtube",
+    youtubeId: "iQ8aCyCDfRc",
+    sutraIds: ["hosshikudokuhon"],
+    timings: [
+      { lineId: "hk01", start:   5.0 },
+      { lineId: "hk02", start:  40.5 },
+      { lineId: "hk03", start:  76.0 },
+      { lineId: "hk04", start: 111.5 },
+      { lineId: "hk05", start: 147.0 },
+      { lineId: "hk06", start: 185.3 },
+      { lineId: "hk07", start: 223.5 },
+      { lineId: "hk08", start: 261.8 },
+      { lineId: "hk09", start: 300.0 },
+      { lineId: "hk10", start: 351.3 },
+      { lineId: "hk11", start: 402.5 },
+      { lineId: "hk12", start: 453.8 },
+      { lineId: "hk13", start: 505.0 },
+      { lineId: "hk14", start: 559.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
