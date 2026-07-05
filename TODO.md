@@ -8,17 +8,17 @@
 
 ## 進行中
 
-- [ ] **如来神力品第二十一**（pSWxiFG8xJY, 335s、本光寺Live）← 次のアクション
+- [ ] **嘱累品第二十二**（Vkp9skpgJoI, 151s、本光寺Live）← 次のアクション
   - [ ] 動画取得・16kHz変換
   - [ ] 先にffmpeg silencedetectで無音区間の有無を確認しておく
   - [ ] Whisper large-v3 文字起こし（チャンク分割・フォアグラウンド実行、
-        335sのため2チャンク程度を想定）
+        151sのため1〜2チャンク程度を想定）
   - [ ] マージ済みトランスクリプト作成
   - [ ] 反復定型句が出た場合、動画末尾以外ではffmpeg volumedetectで
         無音か認識失敗かを必ず確認する（信解品以降の標準手順、
         WORKFLOW.md参照）
-  - [ ] `src/data/jinrikihon.ts` 作成（テキスト再構成。既存
-        `jinrikige.ts`〈神力偈〉とは別章。十神力の顕現・付嘱を含む）
+  - [ ] `src/data/zokuruihon.ts` 作成（テキスト再構成。法華経全体の
+        総付嘱・諸仏の本土帰還を含む、法華経二十八品の中では短い章）
   - [ ] `sources.ts` に PlaybackSource追加
   - [ ] `index.ts` 登録
   - [ ] ビルド確認
@@ -29,12 +29,11 @@
 
 ## 次に着手（法華経二十八品 残り・本光寺Liveチャンネル所蔵・字幕なし）
 
-動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。如来神力品完了後、上から順に進める。
+動画IDは確定済み。各品ともWORKFLOW.mdの手順で実装する。嘱累品完了後、上から順に進める。
 12.提婆達多品は既存`daibadatta.ts`（別動画v6tSdCVw354）で完成済みのためスキップ
 （本光寺版CNQvdEEsR0cは別ソース追加候補として保留）。
 
 ```
-22.嘱累品     Vkp9skpgJoI  151s
 23.薬王菩薩本事品 _wuTfF5wZKA 829s
 24.妙音菩薩品  ZGpcDRQOBwk  611s
 25.観世音菩薩普門品 zqGW3sZ25I4 575s
@@ -55,7 +54,8 @@
 16.如来寿量品（✅ commit 3da85fa、`juryohon.ts`） / 17.分別功徳品（✅ commit eec5d42、
 `funbetsukudokuhon.ts`） / 18.随喜功徳品（✅ commit f84e7ca、`zuikikudokuhon.ts`） /
 19.法師功徳品（✅ commit da1af6b、`hosshikudokuhon.ts`） / 20.常不軽菩薩品
-（✅ commit a0a74ec、`jofukyohon.ts`） / 28.普賢菩薩勧発品（✅ commit 538982e）
+（✅ commit a0a74ec、`jofukyohon.ts`） / 21.如来神力品（✅ commit a86847c、
+`jinrikihon.ts`） / 28.普賢菩薩勧発品（✅ commit 538982e）
 
 **規模の注記**: 残る品の中では薬王菩薩本事品(829s)がやや長め。
 1品ずつ完了させて逐次コミットする。
