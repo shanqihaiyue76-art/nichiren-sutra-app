@@ -2396,6 +2396,41 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 妙荘厳王本事品第二十七（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 妙荘厳王本事品第二十七（妙荘厳王の前世物語）
+  // YouTube ID: aRS02OmLaCg  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 461.22s（7分41秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜461s
+  // ※ 法華経二十八品の最終実装章（第二十八品は本セッション以前に完成済み）
+  //
+  // タイミング: 品名・雲雷音宿王華智仏・妙荘厳王一家の登場（0-49s）・
+  //   二子の功徳と三昧（54-84s）・有名な「善知識」の重要性を説く一節
+  //   （約329-373s）・薬王菩薩・薬上菩薩への記別（約427s）・結びの
+  //   「八万四千人遠塵離垢」（約445s）が原典と極めて近い精度で
+  //   Whisper確認できた。詳細: .cache/myoshogonnohon_merged.txt
+  {
+    id: "honkoji-myoshogonnohon",
+    displayTitle: "妙荘厳王本事品",
+    title: "妙法蓮華経 妙荘厳王本事品第二十七（本光寺 Live）",
+    subtitle: "妙荘厳王本事品第二十七 全文読誦（妙荘厳王の前世物語）",
+    kind: "youtube",
+    youtubeId: "aRS02OmLaCg",
+    sutraIds: ["myoshogonnohon"],
+    timings: [
+      { lineId: "mg01", start:  13.0 },
+      { lineId: "mg02", start:  54.0 },
+      { lineId: "mg03", start: 146.0 },
+      { lineId: "mg04", start: 237.0 },
+      { lineId: "mg05", start: 329.0 },
+      { lineId: "mg06", start: 345.0 },
+      { lineId: "mg07", start: 362.0 },
+      { lineId: "mg08", start: 378.0 },
+      { lineId: "mg09", start: 394.0 },
+      { lineId: "mg10", start: 411.0 },
+      { lineId: "mg11", start: 427.0 },
+      { lineId: "mg12", start: 445.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
