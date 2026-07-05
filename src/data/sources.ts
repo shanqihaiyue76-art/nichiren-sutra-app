@@ -2273,6 +2273,47 @@ export const sources: PlaybackSource[] = [
     ],
   },
 
+  // ===== 妙音菩薩品第二十四（YouTube・本光寺 Live） =====
+  // Ground Truth: 妙法蓮華経 妙音菩薩品第二十四（妙音菩薩の来訪）
+  // YouTube ID: ZGpcDRQOBwk  チャンネル: 本光寺 Live (UCiw39reqgNCUzRi-mgrFA6g)
+  // 収録: 610.06s（10分10秒）、字幕なし（読経声のみ）。実質読誦区間: 約5〜610s
+  //
+  // タイミング: 品名（0-14s）・浄華宿王智如来の十号（37-50s）・多くの
+  //   三昧の列挙（90-128s）・八万四千蓮華の化現（約211s）・有名な
+  //   「三十四身」の顕現（約439-469s）・「応以〜形得度者、現〜形」の
+  //   定型句（約499-515s）・「現一切色身三昧」（約539s）・末尾
+  //   「華徳菩薩得法華三昧」（約600s、ファイル末尾）が原典と極めて
+  //   近い精度でWhisper確認できた。詳細: .cache/myoonhon_merged.txt
+  {
+    id: "honkoji-myoonhon",
+    displayTitle: "妙音菩薩品",
+    title: "妙法蓮華経 妙音菩薩品第二十四（本光寺 Live）",
+    subtitle: "妙音菩薩品第二十四 全文読誦（妙音菩薩の来訪）",
+    kind: "youtube",
+    youtubeId: "ZGpcDRQOBwk",
+    sutraIds: ["myoonhon"],
+    timings: [
+      { lineId: "myo01", start:  14.0 },
+      { lineId: "myo02", start:  37.0 },
+      { lineId: "myo03", start:  90.0 },
+      { lineId: "myo04", start: 128.0 },
+      { lineId: "myo05", start: 156.0 },
+      { lineId: "myo06", start: 184.0 },
+      { lineId: "myo07", start: 211.0 },
+      { lineId: "myo08", start: 268.0 },
+      { lineId: "myo09", start: 325.0 },
+      { lineId: "myo10", start: 382.0 },
+      { lineId: "myo11", start: 439.0 },
+      { lineId: "myo12", start: 454.0 },
+      { lineId: "myo13", start: 465.0 },
+      { lineId: "myo14", start: 499.0 },
+      { lineId: "myo15", start: 539.0 },
+      { lineId: "myo16", start: 559.0 },
+      { lineId: "myo17", start: 575.0 },
+      { lineId: "myo18", start: 600.0 },
+    ],
+  },
+
   // ===== 方便品 初級練習動画（YouTube・浦和円蔵寺） =====
   // Ground Truth: 妙法蓮華経方便品第二（フリガナあり）【お経練習・初級編】
   // YouTube ID: BqKMEP3TeBk  チャンネル: 浦和円蔵寺（日蓮宗）  収録: 243s (4:03)
