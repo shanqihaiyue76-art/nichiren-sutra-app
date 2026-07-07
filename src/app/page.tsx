@@ -37,6 +37,9 @@ export default function Home() {
                   <span className="sutra-card-sub">{sutraTitles}</span>
                 </div>
                 <div className="sutra-card-tags">
+                  {s.sutraIds.length > 1 && (
+                    <span className="badge badge-continuous">連続勤行</span>
+                  )}
                   <span className={`badge badge-${s.kind}`}>
                     {s.kind === "youtube" ? "YouTube" : "音声"}
                   </span>

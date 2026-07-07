@@ -447,6 +447,11 @@ a,
   background: rgba(255, 255, 255, 0.08);
   color: var(--text-dim);
 }
+.badge-continuous {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
 
 /* ---------- メディア領域（YouTube埋め込み） ---------- */
 .media-area {
