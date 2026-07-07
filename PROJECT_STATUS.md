@@ -1,7 +1,43 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-07-05（序品第一 jo01を原典照合により1文字修正・デプロイ確認済み。
-法華経二十八品 全品完成後の初の原典照合修正）
+最終更新: 2026-07-07（設計文書一式（v4.0/v5体制）を正式反映・commit 8b74592・
+本番デプロイ確認済み）
+
+## 🗂️ 設計文書一式の正式反映（2026-07-07）
+
+完成フェーズの運用体制（Claude=設計者/Fable・Sonnet=実装者）確立に伴い作成した
+以下10ファイルを最終チェック（誤字1件・Markdown崩れ6件を修正）の上、正式にリポジトリへ
+反映した。
+
+- [MASTER_SKILL.md](./MASTER_SKILL.md) — v4.0役割分担を追記
+- [WORKFLOW.md](./WORKFLOW.md) — v5（完成フェーズ用: W1原典照合/W2タイミング/W3 UI/W4バグ修正/W9共通QA）へ全面再設計
+- [SONNET_TEMPLATES.md](./SONNET_TEMPLATES.md) — 実装依頼テンプレ5種+QAチェックリスト（新規）
+- [QA_GUIDELINES.md](./QA_GUIDELINES.md) — 品質レベルA/B/C定義（新規）
+- [VERIFIED_STATUS.md](./VERIFIED_STATUS.md) — 経文別完成度トラッカー・全37経文分（新規）
+- [UI_DESIGN.md](./UI_DESIGN.md) — UI改善ロードマップ・実装状態訂正済み（新規）
+- [PERFORMANCE_GUIDE.md](./PERFORMANCE_GUIDE.md) — sources.ts分割設計等（新規）
+- [AUTO_PIPELINE.md](./AUTO_PIPELINE.md) — 工程別自動化マップ（新規）
+- [FINAL_REVIEW.md](./FINAL_REVIEW.md) — CTO視点レビュー・改善100項目+ロードマップ（新規）
+- [FINAL_REVIEW_V2.md](./FINAL_REVIEW_V2.md) — 世界品質改善計画・Must/Should/Could分類（新規）
+
+**commit**: `8b74592`（10 files changed, 763 insertions(+), 146 deletions(-)）
+**GitHub反映**: 確認済み（`origin/main` HEAD = `8b74592`、push直後に`git ls-remote`で一致確認）
+**Vercelデプロイ**: 確認済み（本番トップページ200・「音源で同期再生」が先頭表示・
+「経文を覚える」が2番目表示・音源一覧が経文名表示（YouTubeタイトルではない）・
+`/sutra/johon`が200かつ「序品第一」表示を確認。ドキュメントのみの変更のためアプリ
+コード・表示内容に変化なし。Console Error確認は同一コードのローカル開発サーバーで
+実施し0件を確認 — このプレビューツールは本番URLへの直接ナビゲートに対応していない制約のため）
+
+**現在の完成状況**: 法華経二十八品 実装100%（28/28）。原典照合 verified 1/37
+（jinrikige）+ jo01のみ部分照合。品質レベル: Level A 0/37・Level B 28/37・Level C 9/37
+（詳細は[VERIFIED_STATUS.md](./VERIFIED_STATUS.md)）。
+
+**次回Sonnetが開始するタスク**: [FINAL_REVIEW_V2.md](./FINAL_REVIEW_V2.md)の
+Phase 1（Must）優先順に着手。具体的には
+(1) 基本勤行7経文からのW1原典照合（[SONNET_TEMPLATES.md](./SONNET_TEMPLATES.md) T1テンプレ使用）、
+(2) Android実機でのフォント表示確認（M-U2、Hiragino Mincho指定がAndroidで
+無効な疑いあり）、(3) `scripts/qa.sh`の新規作成（[AUTO_PIPELINE.md](./AUTO_PIPELINE.md)
+推奨スクリプト#1）。着手前に必ずFINAL_REVIEW_V2.mdのMust一覧とWORKFLOW.md W1を確認すること。
 
 このファイルは実装済み内容・QA状況・Git履歴の記録。
 運用ルール・STOP条件は [MASTER_SKILL.md](./MASTER_SKILL.md)、
