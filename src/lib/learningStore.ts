@@ -318,6 +318,23 @@ export function useSutraProgress(sutraId: string) {
   return { stats, streak, markLearned, recordResult, reset };
 }
 
+/** 最終学習日時が最も新しい経文IDを返す（学習履歴が無ければnull）。 */
+export function mostRecentSutraId(
+  lastVisited: Record<string, string | undefined>,
+): string | null {
+  let bestId: string | null = null;
+  let bestTime = -Infinity;
+  for (const [id, iso] of Object.entries(lastVisited)) {
+    if (!iso) continue;
+    const t = new Date(iso).getTime();
+    if (t > bestTime) {
+      bestTime = t;
+      bestId = id;
+    }
+  }
+  return bestId;
+}
+
 /**
  * 全経文を横断した学習サマリーを読むフック（ホーム表示用・読み取り専用）。
  * マウント後に localStorage を一度読むだけで、書き込みはしない。
@@ -328,16 +345,28 @@ export function useLearningSummary() {
   const [sutras, setSutras] = useState<
     Record<string, Record<string, LineStat>>
   >({});
+  const [lastVisited, setLastVisited] = useState<Record<string, string>>({});
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const s = read();
     setActivity(s.activity);
     const bySutra: Record<string, Record<string, LineStat>> = {};
-    for (const [id, p] of Object.entries(s.sutras)) bySutra[id] = p.lines;
+    const visited: Record<string, string> = {};
+    for (const [id, p] of Object.entries(s.sutras)) {
+      bySutra[id] = p.lines;
+      if (p.lastVisited) visited[id] = p.lastVisited;
+    }
     setSutras(bySutra);
+    setLastVisited(visited);
     setReady(true);
   }, []);
 
-  return { ready, activity, sutras, streak: computeStreak(activity) };
+  return {
+    ready,
+    activity,
+    sutras,
+    lastVisited,
+    streak: computeStreak(activity),
+  };
 }

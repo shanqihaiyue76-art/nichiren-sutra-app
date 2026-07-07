@@ -105,6 +105,32 @@ a,
   color: var(--accent);
   background: var(--accent-soft);
 }
+.continue-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text);
+}
+.continue-card-label {
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+}
+.continue-card-title {
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+}
+.continue-card-sub {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
 .sutra-list {
   list-style: none;
   padding: 0;

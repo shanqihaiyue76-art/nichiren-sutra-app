@@ -4,6 +4,7 @@ import { hasTimings } from "@/lib/track";
 import { flattenLines, isLearnable } from "@/data/types";
 import HomeSummary from "@/components/HomeSummary";
 import TextSizeControl from "@/components/TextSizeControl";
+import ContinueCard from "@/components/ContinueCard";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
 
       {/* 学習サマリー（連続学習・覚えた行・直近の学習）。端末内データ。 */}
       <HomeSummary />
+
+      {/* 続きから（最後に学習した経文へ1タップ復帰）。履歴が無ければ非表示。 */}
+      <ContinueCard />
 
       {/* 音源で同期再生（機能の一部）。 */}
       <h2 className="home-section-title">音源で同期再生</h2>
