@@ -149,6 +149,53 @@ export function weakLineIds(stats: Record<string, LineStat>): string[] {
     .map(([id]) => id);
 }
 
+// ===== SRS（間隔反復・SM-2簡易版） =====
+//
+// 既存フィールド（seen/correct/incorrect/lastReviewed）のみから間隔を導出する。
+// 新規フィールドは追加しない（データ構造を変更しないための制約）。
+// 学習段階（ステップ）は「苦手」判定と出題実績から推測し、
+// ステップごとの復習間隔は 0日（即時）→1日→3日→7日→21日 とする。
+
+const SRS_INTERVALS_DAYS = [0, 1, 3, 7, 21];
+
+/** 出題実績・正誤から現在の復習ステップ（0〜4）を推定する。 */
+function srsStep(s: LineStat): number {
+  if (s.seen === 0) return 0; // 未出題は常にステップ0（即復習対象）
+  if (isWeak(s)) return 0; // 苦手判定なら振り出しに戻す
+  if (s.seen < 3) return 1;
+  if (s.seen < 5) return 2;
+  if (s.seen < 8) return 3;
+  return 4;
+}
+
+/** 次回復習予定日時（ms epoch）。lastReviewed が無ければ「今すぐ」。 */
+function srsDueAt(s: LineStat): number {
+  if (!s.lastReviewed) return 0;
+  const step = srsStep(s);
+  const intervalDays = SRS_INTERVALS_DAYS[step];
+  return new Date(s.lastReviewed).getTime() + intervalDays * 86_400_000;
+}
+
+/** 今復習すべきか（予定日時を過ぎているか、未出題か）。 */
+export function isDueForReview(s: LineStat, now: number = Date.now()): boolean {
+  return srsDueAt(s) <= now;
+}
+
+/** 復習期日の行IDを、遅延（オーバーデュー）が大きい順に並べて返す。
+ *  未出題行（lastReviewedなし）は「今すぐ」扱いで、オーバーデュー行の後ろに続く。 */
+export function dueLineIds(
+  stats: Record<string, LineStat>,
+  allIds: string[],
+  now: number = Date.now(),
+): string[] {
+  const due = allIds.filter((id) => isDueForReview(stats[id] ?? emptyStat(), now));
+  return due.sort((a, b) => {
+    const da = stats[a]?.lastReviewed ? now - srsDueAt(stats[a]) : -1;
+    const db = stats[b]?.lastReviewed ? now - srsDueAt(stats[b]) : -1;
+    return db - da; // 遅延が大きい（=長く放置された）行を先に
+  });
+}
+
 /** 今日を起点に連続して学習した日数（今日に活動がなければ0）。 */
 export function computeStreak(activity: Record<string, number>): number {
   let streak = 0;

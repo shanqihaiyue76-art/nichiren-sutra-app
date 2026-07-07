@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Sutra, SutraLine } from "@/data/types";
 import { isLearnable } from "@/data/types";
-import { isWeak, useSutraProgress } from "@/lib/learningStore";
+import { dueLineIds, emptyStat, isWeak, useSutraProgress } from "@/lib/learningStore";
 
 /**
  * テストモード（記憶系）。
@@ -49,8 +49,14 @@ export default function TestBody({ sutra }: { sutra: Sutra }) {
     [stats],
   );
 
+  const dueIds = useMemo(
+    () => dueLineIds(stats, allEntries.map((e) => e.line.id)),
+    [stats, allEntries],
+  );
+  const dueCount = dueIds.length;
+
   const [phase, setPhase] = useState<Phase>("config");
-  const [onlyWeak, setOnlyWeak] = useState(false);
+  const [mode, setMode] = useState<"all" | "weak" | "due">("all");
   const [doShuffle, setDoShuffle] = useState(true);
   const [queue, setQueue] = useState<Entry[]>([]);
   const [idx, setIdx] = useState(0);
@@ -59,9 +65,17 @@ export default function TestBody({ sutra }: { sutra: Sutra }) {
 
   const start = () => {
     let pool = allEntries;
-    if (onlyWeak) pool = pool.filter((e) => isWeak(stats[e.line.id] ?? { learned: false, seen: 0, correct: 0, incorrect: 0 }));
-    if (pool.length === 0) pool = allEntries; // 苦手が無ければ全行
-    const q = doShuffle ? shuffle(pool) : pool;
+    if (mode === "weak") {
+      pool = pool.filter((e) => isWeak(stats[e.line.id] ?? emptyStat()));
+    } else if (mode === "due") {
+      // dueIdsは優先順（遅延が大きい順）。この順序を保つためシャッフルしない。
+      const order = new Map(dueIds.map((id, i) => [id, i]));
+      pool = pool
+        .filter((e) => order.has(e.line.id))
+        .sort((a, b) => order.get(a.line.id)! - order.get(b.line.id)!);
+    }
+    if (pool.length === 0) pool = allEntries; // 対象が無ければ全行
+    const q = mode === "due" ? pool : doShuffle ? shuffle(pool) : pool;
     setQueue(q);
     setIdx(0);
     setRevealed(false);
@@ -109,28 +123,43 @@ export default function TestBody({ sutra }: { sutra: Sutra }) {
         <div className="test-config">
           <button
             type="button"
-            className={`test-opt ${!onlyWeak ? "active" : ""}`}
-            onClick={() => setOnlyWeak(false)}
+            className={`test-opt ${mode === "due" ? "active" : ""}`}
+            onClick={() => setMode("due")}
+            disabled={dueCount === 0}
+          >
+            今日の復習（{dueCount}）
+          </button>
+          <button
+            type="button"
+            className={`test-opt ${mode === "all" ? "active" : ""}`}
+            onClick={() => setMode("all")}
           >
             全行（{allEntries.length}）
           </button>
           <button
             type="button"
-            className={`test-opt ${onlyWeak ? "active" : ""}`}
-            onClick={() => setOnlyWeak(true)}
+            className={`test-opt ${mode === "weak" ? "active" : ""}`}
+            onClick={() => setMode("weak")}
             disabled={weakCount === 0}
           >
             苦手のみ（{weakCount}）
           </button>
         </div>
-        <label className="test-check">
-          <input
-            type="checkbox"
-            checked={doShuffle}
-            onChange={(e) => setDoShuffle(e.target.checked)}
-          />
-          順番をシャッフルする
-        </label>
+        {mode === "due" && (
+          <p className="test-lead">
+            間隔反復（SRS）により、忘れかけている行を優先的に出題します。
+          </p>
+        )}
+        {mode !== "due" && (
+          <label className="test-check">
+            <input
+              type="checkbox"
+              checked={doShuffle}
+              onChange={(e) => setDoShuffle(e.target.checked)}
+            />
+            順番をシャッフルする
+          </label>
+        )}
 
         <button type="button" className="test-start" onClick={start}>
           はじめる
