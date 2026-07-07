@@ -8,12 +8,19 @@
   --line-idle: #6b6256;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-top: env(safe-area-inset-top, 0px);
+  /* 文字サイズ設定（src/lib/textSize.ts）。1=中。JSでhtml要素に上書きされる。 */
+  --text-scale: 1;
   color-scheme: dark;
 }
 
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  /* rem基準値を拡縮する。他の全rem指定へ一括反映される。 */
+  font-size: calc(16px * var(--text-scale));
 }
 
 html,
@@ -77,6 +84,26 @@ a,
   letter-spacing: 0.2em;
   margin-top: 0.5rem;
   font-size: 0.9rem;
+}
+.text-size-control {
+  display: inline-flex;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+.text-size-btn {
+  border: 1px solid var(--line-idle);
+  background: transparent;
+  color: var(--text-dim);
+  border-radius: 999px;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+.text-size-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 .sutra-list {
   list-style: none;

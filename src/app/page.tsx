@@ -3,6 +3,7 @@ import { sources, sutras, getSutra } from "@/data";
 import { hasTimings } from "@/lib/track";
 import { flattenLines, isLearnable } from "@/data/types";
 import HomeSummary from "@/components/HomeSummary";
+import TextSizeControl from "@/components/TextSizeControl";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <header className="home-header">
         <h1 className="home-title">読経練習</h1>
         <p className="home-sub">聞きながら、見て、覚える</p>
+        <TextSizeControl />
       </header>
 
       {/* 学習サマリー（連続学習・覚えた行・直近の学習）。端末内データ。 */}
