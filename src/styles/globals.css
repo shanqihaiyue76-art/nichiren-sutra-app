@@ -23,7 +23,11 @@ body {
   height: 100%;
   background: var(--bg);
   color: var(--text);
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  /* Mac/iOS: Hiragino Mincho ProN、Windows: 游明朝を優先。
+     Android等いずれも無い環境ではnext/font/googleで自前ホストした
+     Noto Serif JP（--font-noto-serif-jp）にフォールバックする。 */
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+    var(--font-noto-serif-jp), serif;
   overscroll-behavior: none;
   -webkit-text-size-adjust: 100%;
   -webkit-user-select: none;

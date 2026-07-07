@@ -1,6 +1,24 @@
 # 読経アプリ 開発状況
 
-最終更新: 2026-07-07（Phase1 M-T1: 基本勤行4経文をverifiedへ昇格・本番デプロイ確認済み）
+最終更新: 2026-07-07（Phase1 M-U2: Androidフォントフォールバック追加・本番デプロイ確認済み）
+
+## ✅ M-U2: Android表示確認・フォントスタック修正（2026-07-07）
+
+globals.cssのfont-familyが`"Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif`
+のみで、いずれもMac/iOS・Windows専用フォントのため、Androidでは最終フォールバックの
+汎用`serif`（OS依存で明朝体になるとは限らない）に落ちる問題があった。
+
+**対応**: `next/font/google`でNoto Serif JP（weight 400/600/700）をビルド時に
+自前ホストし、CSS変数`--font-noto-serif-jp`として`layout.tsx`から供給。
+font-familyスタックの末尾（`Hiragino Mincho ProN` → `Yu Mincho` → 自前ホスト
+`Noto Serif JP` → 汎用`serif`）に追加した。Mac/iOS/Windowsは従来どおり
+ネイティブの美しい明朝体を使用し、それらが無い環境（Android等）でのみ
+確実にNoto Serif JPへフォールバックする。
+
+実機Android端末での確認は本環境では実施不可のため、ブラウザでfont-family
+スタックからHiragino/YuMincho相当を除去しNoto Serif JP単体を強制適用した
+状態で、日本語グリフが正しく（tofu化せず）表示されることを確認した。
+Build 0エラー・バンドルサイズ増加なし・本番デプロイ確認済み。
 
 ## ✅ M-T1: 基本勤行7経文の原典照合（2026-07-07）
 

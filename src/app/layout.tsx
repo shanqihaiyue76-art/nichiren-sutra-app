@@ -1,5 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import { Noto_Serif_JP } from "next/font/google";
 import "../styles/globals.css";
+
+// Android等でHiragino Mincho ProN/游明朝が無い環境向けの明朝体フォールバック。
+// next/font/googleでビルド時に自前ホストするため、システムフォント依存を回避する。
+const notoSerifJP = Noto_Serif_JP({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-noto-serif-jp",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   applicationName: "読経練習",
@@ -39,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={notoSerifJP.variable}>
       <body>{children}</body>
     </html>
   );
