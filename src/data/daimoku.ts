@@ -26,9 +26,9 @@ export const daimoku: Sutra = {
   title: "題目",
   subtitle: "南無妙法蓮華経",
   provenance: {
-    status: "provisional",
-    source: "ocr_draft",
-    note: "本文は動画フレームOCR（_oN7QCtk3lk 740s付近）で確認。動画は唱題区間全体で静的テキストを表示し行ごとの字幕切り替えなし。タイミングはWhisper large-v3による音声オンセット（728.3s）。",
+    status: "verified",
+    source: "keihon",
+    note: "本文は動画フレームOCR（_oN7QCtk3lk 740s付近）で確認。動画は唱題区間全体で静的テキストを表示し行ごとの字幕切り替えなし。タイミングはWhisper large-v3による音声オンセット（728.3s）。2026-07-07、大正新脩大蔵経T0262（NTU仏学数位図書館PDF, T09n0262.pdf）の経題「妙法蓮華經」と照合し一致を確認（「南無」は経典本文ではなく帰依を表す唱句部分）。",
   },
   sections: [
     {

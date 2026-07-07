@@ -29,9 +29,9 @@ export const hotoge: Sutra = {
   title: "宝塔偈",
   subtitle: "妙法蓮華経 見宝塔品第十一",
   provenance: {
-    status: "provisional",
-    source: "ocr_draft",
-    note: "全24行を動画フレームOCR（XivPWmWJO2c 12:34-13:32, 1fps, f0016-f0070）で確認。タイミングはOCRフレーム表示時刻（Hybrid [D]）。Whisper不適（高速読誦形式）。",
+    status: "verified",
+    source: "keihon",
+    note: "全24行を動画フレームOCR（XivPWmWJO2c 12:34-13:32, 1fps, f0016-f0070）で確認。タイミングはOCRフレーム表示時刻（Hybrid [D]）。Whisper不適（高速読誦形式）。2026-07-07、大正新脩大蔵経T0262（NTU仏学数位図書館PDF, T09n0262.pdf, p.74）の見宝塔品第十一・宝塔偈全文と一字一句照合。24行中22行完全一致。ht3「我即歓喜」はPDFで「我則歡喜」だが日蓮宗寺院サイトの独立引用で「即」が標準と確認、既存表記を維持。ht11「即為疾得」は元々動画表記として標準「則為疾得」と異なる旨を明記済みで、PDFも「則」を確認（動画側の意図的な相違として既存表記を維持）。",
   },
   sections: [
     {

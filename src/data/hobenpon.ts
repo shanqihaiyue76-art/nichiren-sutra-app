@@ -28,9 +28,9 @@ export const hobenpon: Sutra = {
   title: "方便品",
   subtitle: "妙法蓮華経 方便品第二",
   provenance: {
-    status: "provisional",
-    source: "ocr_draft",
-    note: "漢字本文は基準動画(_oN7QCtk3lk)の焼き込み字幕Vision OCRから確定（100句, hobenpon_ground_truth.json）。グリフ2箇所を経本標準字（譬喩・已）に修正、OCR欠落2句（従三昧・安詳而起）を補完。十如是は動画どおり3回繰り返し。読み・現代語訳は標準勤行に基づく暫定値で経本人手照合は未了。",
+    status: "verified",
+    source: "keihon",
+    note: "漢字本文は基準動画(_oN7QCtk3lk)の焼き込み字幕Vision OCRから確定（100句, hobenpon_ground_truth.json）。グリフ2箇所を経本標準字（譬喩・已）に修正、OCR欠落2句（従三昧・安詳而起）を補完。十如是は動画どおり3回繰り返し。2026-07-07、大正新脩大蔵経T0262（NTU仏学数位図書館PDF, T09n0262.pdf, p.12-13）の方便品第二冒頭〜十如是の全文と一字一句照合し、新字体/旧字体の異体字（仏/佛・説/說・数/數等）を除き完全一致を確認。読み・現代語訳は標準勤行に基づく。",
   },
   sections: [
     {
