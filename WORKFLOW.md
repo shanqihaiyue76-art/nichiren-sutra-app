@@ -1,142 +1,87 @@
-# WORKFLOW.md — 品（章）実装の技術手順
+# WORKFLOW.md v5 — 完成フェーズ ワークフロー
 
-法華経二十八品を1品実装するたびに、この手順を繰り返す。
-運用ルール・STOP条件は [MASTER_SKILL.md](./MASTER_SKILL.md) を参照。
+対象読者: 実装担当（Sonnet）。この手順にそのまま従うこと。
+運用ルールは [MASTER_SKILL.md](./MASTER_SKILL.md)、品質基準は [QA_GUIDELINES.md](./QA_GUIDELINES.md)、
+進捗管理は [VERIFIED_STATUS.md](./VERIFIED_STATUS.md)、依頼テンプレは [SONNET_TEMPLATES.md](./SONNET_TEMPLATES.md)。
 
-## 1. 動画取得
+フェーズ: **完成・品質向上**（新規読経追加は原則終了。追加時のみ付録A参照）
 
-```bash
-# 動画IDは TODO.md の確定済みリストを使用
-yt-dlp -f bestaudio -o ".cache/<id>.%(ext)s" "https://www.youtube.com/watch?v=<videoId>"
-ffmpeg -i ".cache/<id>.<ext>" -ar 16000 -ac 1 ".cache/<id>.16k.wav"
-```
+---
 
-## 2. Whisper文字起こし（チャンク分割・フォアグラウンド必須）
+## W1: 原典照合ワークフロー（provisional → verified）
 
-長時間バックグラウンド実行は信頼できない（MASTER_SKILL.md参照）ため、
-必ずチャンク分割 → フォアグラウンド実行の手順を踏む。
+1品ごとに以下を実施。1コミット=1品。
 
-```bash
-# 音声長を確認
-ffprobe -v error -show_entries format=duration -of csv=p=0 ".cache/<id>.16k.wav"
+- [ ] 1. NTU全文PDF（T09n0262.pdf）が `.cache/` になければダウンロード
+      https://buddhism.lib.ntu.edu.tw/FULLTEXT/sutra/chi_pdf/sutra4/T09n0262.pdf
+- [ ] 2. 対象品の該当ページを特定し、テキスト抽出（pdftotext等。文字化け時はOCR）
+- [ ] 3. `src/data/<id>.ts` の全行 `text` を原典と一字一句照合
+      - 相違は原典に合わせて修正。`reading` も対応修正
+      - 異体字（説/說・虚/虛 等）は**既存ファイルの表記慣例を優先**し、
+        新規の判断が必要な場合のみ差分リストを報告して指示を待つ
+      - 抄録ファイル（kannonhon=長行のみ 等）は収録範囲内のみ照合し、
+        範囲をファイル冒頭コメントで再確認
+- [ ] 4. 照合完了後 `provenance` を更新:
+      `{ status: "verified", source: "taisho_t0262", note: "T0262原典照合済み（YYYY-MM-DD、NTU PDF）" }`
+      ※ `source` の値は types.ts の型定義を確認し、なければ型拡張を先に1コミットで行う
+- [ ] 5. 共通QA（下記W9）を全て実施
+- [ ] 6. VERIFIED_STATUS.md の該当行を更新（同一コミットに含める）
+- [ ] 7. commit: `fix(<id>): T0262原典照合・verified昇格`
 
-# 約200秒ごとにチャンク分割
-mkdir -p ".cache/<id>_chunks"
-ffmpeg -i ".cache/<id>.16k.wav" -ss 0   -t 200 ".cache/<id>_chunks/chunk0.wav"
-ffmpeg -i ".cache/<id>.16k.wav" -ss 200 -t 200 ".cache/<id>_chunks/chunk1.wav"
-# ...以降200秒刻みで最後のチャンクまで（端数は残り秒数でOK）
+## W2: タイミング精密化ワークフロー
 
-# 各チャンクを「フォアグラウンドで1つずつ」実行（Bashツール1コール=1チャンク）
-whisper-cli -m models/ggml-large-v3.bin -l ja -oj \
-  -of ".cache/<id>_chunks/chunk0" ".cache/<id>_chunks/chunk0.wav"
-# chunk1, chunk2, ... も同様に順番に実行する
-# 並列化・バックグラウンド化は禁止。各コールは8〜10分以内に完了する想定。
-```
+- [ ] 1. 対象品の音声（`.cache/<id>.16k.wav`）の存在確認。なければ再取得（付録A-1）
+- [ ] 2. 現行 timings と Whisper確認済みアンカーの乖離を確認
+- [ ] 3. 手法の選択（優先順）:
+      a. Whisperセグメント境界の目視再割当（低コスト・±2秒精度）
+      b. DTW/Forced Alignment（aeneas等。`.venv-aeneas/` が存在する）
+- [ ] 4. `/play/honkoji-<id>` で実再生し、行ハイライトと読誦のズレを確認
+- [ ] 5. QA_GUIDELINES.md のタイミング基準（Level別）を満たすことを確認
+- [ ] 6. 共通QA（W9）→ VERIFIED_STATUS.md 更新 → commit
 
-マージ（オフセットを加算して1本のタイムラインに統合、Pythonワンライナー例）:
+## W3: UI改善ワークフロー
 
-```python
-import json
+- [ ] 1. UI_DESIGN.md の該当項目の仕様を確認（なければ設計を先に依頼）
+- [ ] 2. データ層（Sutra/PlaybackSource/buildTrack）は変更しない。
+      必要なら理由を報告して指示を待つ
+- [ ] 3. SSG前提を崩さない（`next build` で静的生成できること）
+- [ ] 4. 実装 → preview検証: PC幅 + スマホ幅（375px）+ ダークモード（実装後）
+- [ ] 5. 既存ページ全種（/, /sutra/, /memorize/, /test/, /play/）の回帰確認
+      （1ページずつでよい。console errorゼロ）
+- [ ] 6. 共通QA（W9）→ commit
 
-offsets = [0, 200, 400, 600, 800, 1000]  # チャンク数に合わせて調整
-lines = []
-for i, off in enumerate(offsets):
-    data = json.load(open(f".cache/<id>_chunks/chunk{i}.json"))
-    for seg in data["transcription"]:
-        s = seg["offsets"]["from"] / 1000 + off
-        e = seg["offsets"]["to"] / 1000 + off
-        lines.append(f"[{s:8.1f} - {e:8.1f}] {seg['text'].strip()}")
-open(".cache/<id>_merged.txt", "w").write("\n".join(lines))
-```
+## W4: バグ修正ワークフロー
 
-マージ後、末尾に「ご視聴ありがとうございました」等のアウトロ／無音区間の
-誤認識が含まれることが多い。実際の読誦終了時刻を見極め、それ以降は
-データ化しない（例: 序品は動画1114sだが実質読誦は約0〜1023.5sで終了、
-残りはアウトロの繰り返し誤認識）。
+- [ ] 1. 再現 → 原因特定（1行で報告）→ 最小差分で修正
+- [ ] 2. 再現手順で解消確認 → 共通QA（W9）→ commit
 
-**重要**: 「ご視聴ありがとうございました」等の定型句反復＝無音、と
-即断しないこと。信解品（1YlVyFbN8mA）では動画中間の200-400s・末尾の
-800-881.8sがこの定型句として誤認識されたが、`ffmpeg -af volumedetect`
-（3秒サンプル）で確認したところ mean_volume約-22dB・max_volume約-2.9dB
-と全編ほぼ一定で、`silencedetect=noise=-35dB:d=5` でも無音区間は
-検出されなかった。つまり実際には無音ではなく、旋律的・不明瞭な発声を
-Whisperが認識できず定型句へフォールバックしたものだった。
-→ 動画末尾以外の区間でこのパターンが出た場合は、必ず
-`ffmpeg -i <file> -ss <t> -t 3 -af volumedetect -f null -` で
-該当区間の音量を確認してから「無音（アウトロ）」か「認識失敗（実は
-読誦中）」かを判断すること。動画末尾のみで出現する場合は、通常どおり
-アウトロとして扱ってよい。
+## W9: 共通QAチェックリスト（全ワークフロー共通・完了の定義）
 
-## 3. OCR（字幕がある動画の場合のみ・任意）
+- [ ] `npx tsc --noEmit` エラー0
+- [ ] `npm run build` 成功
+- [ ] preview で該当ページ確認（console error 0 / failed request 0）
+- [ ] `git add <変更ファイル明示>`（`-A` 禁止）→ commit → push
+- [ ] GitHub HEAD 一致確認
+- [ ] 本番URL反映確認（変更後の文字列をcurlで確認できるまで完了と言わない）
+- [ ] VERIFIED_STATUS.md / PROJECT_STATUS.md / TODO.md の該当箇所更新
+- [ ] 既知の落とし穴（SONNET_TEMPLATES.md末尾）を再確認
 
-字幕焼き込み動画であれば1fpsフレーム抽出 + Vision OCRでアンカーを取り、
-Whisperタイミングと突き合わせて精度を上げる。本光寺Liveチャンネルは
-字幕なしのため、残りの品は基本Whisperのみで進める。
+---
 
-## 4. テキスト再構成
+## 付録A: 新規経文追加（凍結中・参考）
 
-大正新脩大蔵経 T0262（鳩摩羅什訳、public domain）の内容を、Whisper
-transcriptを構造的な手がかり（章立て・繰り返し箇所・固有名詞の当たり）
-としながら、AIの学習知識で再構成する。逐語コピーではなく章の内容・
-構成に忠実な再構成であること。
+新規追加はユーザー指示があった場合のみ。手順の要点:
 
-- 各行: `id`（品略号+連番）/ `text`（漢文）/ `reading`（ひらがな）/
-  `translation`（現代語訳）
-- 陀羅尼など音写のみで直訳不能な行は、無理に訳さず
-  「（陀羅尼第◯部：〜の呪文）」等と説明的に記す（`fugenkanpatsuge.ts`参照）
-- ファイル冒頭コメントにGround Truth動画情報・収録範囲・タイミング手法を明記
-- `provenance: { status: "provisional", source: "ai_sample", note: "...要・原典照合" }`
-  を必ず付与
-
-`src/data/<id>.ts` として保存する。参考実装: `fugenkanpatsuge.ts`, `johon.ts`。
-
-## 5. PlaybackSource登録
-
-`src/data/sources.ts` の `sources` 配列に追加:
-
-```ts
-{
-  id: "honkoji-<id>",
-  displayTitle: "<品名>",
-  title: "<動画タイトル>",
-  subtitle: "本光寺 Live",
-  kind: "youtube",
-  youtubeId: "<videoId>",
-  sutraIds: ["<id>"],
-  timings: [
-    { lineId: "<id>01", start: 0.0 },
-    // ...Whisperセグメント開始時刻を各行に割り当てる
-  ],
-}
-```
-
-## 6. index.ts登録
-
-```ts
-import { <id> } from "./<id>";
-// sutras配列に <id> を追加
-```
-
-## 7. ビルド・QA
-
-```bash
-npm run build   # TypeScriptエラー0・静的生成成功を確認
-```
-
-可能であればプレビューで `/sutra/<id>` と `/play/honkoji-<id>` を目視確認する。
-
-## 8. Git / デプロイ
-
-```bash
-git add src/data/<id>.ts src/data/sources.ts src/data/index.ts
-git commit -m "feat: <品名>を追加（<id>.ts + sources.ts + index.ts）"
-git push origin main
-```
-
-push後、GitHubに反映されたこと・Vercelが自動デプロイしたこと・
-本番URLで実際にページが表示されることを確認する。
-
-## 9. ドキュメント更新
-
-`PROJECT_STATUS.md` の該当テーブル・完成率・Git状態を更新し、
-`TODO.md` から完了した品を除去（または✅に変更）して、次の品に着手する。
+1. **動画取得**: `yt-dlp -f bestaudio` → `ffmpeg -ar 16000 -ac 1` で16kHz wav化。
+   ダウンロード直後に必ず `ffmpeg -af "silencedetect=noise=-35dB:d=5" -f null -`
+   で全編の無音事前チェック
+2. **Whisper**: 約200秒チャンクに分割し `whisper-cli -m models/ggml-large-v3.bin
+   -l ja -oj` を**1チャンク=1Bashコールのフォアグラウンド実行**
+   （長時間バックグラウンドはスリープで死ぬ・複数回確認済み）。
+   マージはPythonでオフセット加算（`errors='replace'` 必須）
+3. **定型句反復≠無音**: 動画中間で「ご視聴ありがとうございました」等が出たら
+   volumedetect で音量確認。実は読誦中のことがある（信解品で確認済み）
+4. **テキスト**: T0262知識ベース再構成 + `provenance: provisional/ai_sample`
+5. **登録**: `src/data/<id>.ts` → sources.ts（「===== 方便品 初級練習動画」
+   コメント直前に挿入）→ index.ts。行IDプレフィックスは全ファイルと衝突禁止
+6. W9共通QAで完了

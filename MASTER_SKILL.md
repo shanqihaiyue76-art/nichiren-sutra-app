@@ -1,10 +1,24 @@
-# MASTER_SKILL.md — 読経アプリ 自律開発マスタースキル
+# MASTER_SKILL.md — 読経アプリ マスタースキル v4.0
 
 セッション開始時・再開時は必ずこのファイルを読み込むこと。
-目的: 毎回の指示にMaster Skill全文を貼らずに済ませる（プロンプト肥大化・エラー回避）。
 
 今後の再開プロンプトは以下で十分:
 > PROJECT_STATUS.md / TODO.md / WORKFLOW.md / MASTER_SKILL.md を読んで続けて
+
+## v4.0 役割分担（2026-07-06〜）
+
+- **Claude（Sonnet等）= 設計者**: 設計改善・ワークフロー改善・スキル改善・
+  TODO/PROJECT_STATUS整理・品質ゲート・命名・保守性のみ。出力は短く。
+  改善案には必ず「優先度・効果・実装難易度」を付す。コードは擬似コードまで。
+- **Fable = 実装者**: Whisper・OCR・動画DL・YouTube調査・Git操作・ビルド・
+  コード生成・長時間処理・自動ループはすべてFableが実行する。
+- Claudeは上記のFable作業を**実行禁止**。設計だけ提示する。
+- 判断基準: 常に「この処理はFableへ回した方が効率的か」を先に考える。
+- **設計文書は必ず該当コードを読んでから書く**（UI_DESIGN.md初版が実装未確認で
+  誤りを含んだ教訓。2026-07-07 FINAL_REVIEW.mdで訂正済み）。
+
+以下の「自律実行モード」「完了フロー」等は**Fableが実装時に従う規約**。
+Claudeはこれらを改善する立場であり、自ら実行しない。
 
 ## ミッション
 
@@ -50,9 +64,14 @@ DTW/Forced Alignment → 人工補正
 `index.ts` に登録 → QA → ビルド → Git commit → push → デプロイ確認 →
 PROJECT_STATUS.md / TODO.md 更新 → 次のお経へ自動移行。
 
-詳細な技術手順は [WORKFLOW.md](./WORKFLOW.md)。
+詳細な技術手順は [WORKFLOW.md](./WORKFLOW.md)（v5・完成フェーズ用）。
 残タスク・優先順位は [TODO.md](./TODO.md)。
 実装済み内容・QA状況・Git履歴は [PROJECT_STATUS.md](./PROJECT_STATUS.md)。
+実装依頼テンプレート・QAチェックリストは [SONNET_TEMPLATES.md](./SONNET_TEMPLATES.md)。
+品質レベル定義は [QA_GUIDELINES.md](./QA_GUIDELINES.md)、
+経文別完成度は [VERIFIED_STATUS.md](./VERIFIED_STATUS.md)、
+UI改善は [UI_DESIGN.md](./UI_DESIGN.md)、性能・保守は [PERFORMANCE_GUIDE.md](./PERFORMANCE_GUIDE.md)、
+自動化は [AUTO_PIPELINE.md](./AUTO_PIPELINE.md)。
 
 ## Git / Vercel デプロイ規則
 
@@ -108,4 +127,5 @@ Pythonスクリプトで時間オフセットを付けてJSON出力をマージ�
 
 ## モデルについて
 
-このプロジェクトは Claude Sonnet 5 での実行を想定。
+- 設計・改善: Claude（本ファイル冒頭のv4.0役割分担を参照）
+- 実装・実行: Fable
