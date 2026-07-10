@@ -76,18 +76,38 @@ UI改善は [UI_DESIGN.md](./UI_DESIGN.md)、性能・保守は [PERFORMANCE_GUI
 
 ## Git / Vercel デプロイ規則
 
+**「ローカル検証済み」は「作業完了」ではない。** ローカルのbuild/tsc/動作確認は
+1サイクルの前半でしかなく、GitHub反映・Vercel Deployment成功・
+Production URLでの実反映確認まで到達して初めて「完了」と宣言できる。
+途中で報告を止める場合は「ローカル検証完了、GitHub/Vercel未確認」と
+明示し、完了とは書かない。
+
 「作業完了」を宣言できるのは、以下が全て完了した場合のみ:
 
 1. TypeScriptエラー 0件
 2. `npm run build` 成功
 3. ローカルで動作確認
-4. `git commit`
-5. `git push`（許可されていれば自動実行。セキュリティ制限でブロックされた
-   場合のみ、案内して一度だけ止まる）
-6. GitHubへの反映確認
-7. Vercel自動デプロイの確認
-8. 本番URL（https://nichiren-sutra-app.vercel.app）での動作確認
-9. PROJECT_STATUS.md 更新
+4. `git status` で差分を確認 → `git add`（対象ファイルを明示指定）
+5. `git commit`
+6. `git push origin main`（許可されていれば自動実行。セキュリティ制限で
+   ブロックされた場合のみ、案内して一度だけ止まる）
+7. GitHub最新コミットSHA確認（`git fetch` 後、`git rev-parse origin/main`
+   がローカルHEADと一致することを確認。可能であれば `gh api` や
+   Vercel APIのdeployment一覧でコミットSHAとの対応も確認）
+8. Vercel Deployment成功・Production READY・Production PROMOTEDの確認
+   （Vercel APIが使える場合はエンドポイントで確認。使えない場合は
+   本番URLの実HTMLで代替確認する）
+9. **本番URL（https://nichiren-sutra-app.vercel.app）で今回の変更が
+   実際に反映されていることを確認。** 判定方法は必ず実際のページHTML
+   （`curl`等で取得した本番出力）を対象に、変更後のみ存在するはずの
+   具体的な文字列・要素を直接grepする。特定の`_next/static/chunks/`
+   JSファイルのハッシュや内容だけでの判定は禁止
+   （Next.js SSGはサーバー生成マークアップを静的HTMLに直接焼き込むため、
+   JSチャンクの内容確認だけでは「反映されていない」と誤判定しうる。
+   2026-07時点で実際にこの誤判定が発生し訂正した教訓）
+10. Commit SHA・変更ファイル・Build/TypeCheck結果・GitHub反映確認・
+    Vercel反映確認・Production確認・Console Errorをまとめて報告
+11. PROJECT_STATUS.md 更新
 
 ## 既知の環境制約と回避策
 
