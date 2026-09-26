@@ -8,6 +8,102 @@ import type { PlaybackSource } from "./types";
  * 出力された JSON をその音源の timings に貼り付ける。
  */
 export const sources: PlaybackSource[] = [
+  // ===== 稽古録音（2026-09-23 本堂での稽古・先生の読経） =====
+  // 度牒交付式に向けた練習用。稽古の録画（IMG_6471.MOV）から読経している
+  // 部分だけを切り出した（前後の説明・雑談は含めない）。稽古の心得は keiko.ts。
+  //   方便品: 録画 8:15.0〜11:33.2 → public/audio/keiko/hobenpon.m4a（198.2s）
+  //           経題「妙法蓮華経方便品第二」0.4s〜、h1 6.0s〜
+  //   自我偈: 録画 12:12.8〜16:53.6 → public/audio/keiko/jigage.m4a（280.8s）
+  //           経題「妙法蓮華経如来寿量品第十六」0.5s〜、j1 7.6s〜
+  // 音声: モノラル・loudnorm(-18 LUFS)・AAC 96kbps。
+  //
+  // タイミング（木鉦の打点 ＋ Whisperアンカー）:
+  //   木鉦は約0.52秒間隔（約115打/分）で途切れずに打たれている。打点を
+  //   オンセット検出で全数抽出し（方便品350打・自我偈485打）、Whisper large-v3
+  //   （短区間・-mc 0）で聞き取れた句の位置をアンカーにして、アンカー間を
+  //   文字数で按分し、最寄りの打点へ吸着させた。「舎利弗」「知見波羅蜜」は
+  //   2字で1打（先生の説明）として数えている。十如是は1回＝38打が3回で、
+  //   音の自己相似から位置を特定。木鉦は経題の間は鳴っておらず、本文の
+  //   数文字目から入るため、冒頭の行は Whisper アンカーを直接使った。
+  //   精度の目安は ±0.5〜1秒。
+  // 各行末: A = アンカー / I = アンカー間の按分 / R = 十如是の反復構造 /
+  //         E = 経題直後の推定
+  {
+    id: "keiko-hobenpon",
+    displayTitle: "方便品（先生の読経）",
+    title: "稽古録音 2026-09-23 方便品第二",
+    subtitle: "冒頭〜十如是（三返）・本堂での稽古（2026-09-23）",
+    kind: "audio",
+    audioUrl: "/audio/keiko/hobenpon.m4a",
+    sutraIds: ["hobenpon"],
+    timings: [
+      // ---- 長行 ----
+      { lineId: "h1",  start:   6.0 }, // A 爾時世尊（経題の後の息継ぎ）
+      { lineId: "h2",  start:  13.1 }, // I 諸仏智慧
+      { lineId: "h3",  start:  22.2 }, // I 一切声聞
+      { lineId: "h4",  start:  28.1 }, // I 所以者何
+      { lineId: "h5",  start:  36.4 }, // I 尽行諸仏
+      { lineId: "h6",  start:  44.7 }, // I 成就甚深
+      { lineId: "h10", start:  53.4 }, // A 舎利弗 吾従成仏已来
+      { lineId: "h11", start:  61.3 }, // I 広演言教
+      { lineId: "h12", start:  69.6 }, // I 所以者何 如来方便
+      { lineId: "h13", start:  78.1 }, // A 舎利弗 如来知見
+      { lineId: "h14", start:  85.0 }, // A 力 無所畏
+      { lineId: "h15", start:  91.3 }, // A 深入無際
+      { lineId: "h16", start:  97.0 }, // I 舎利弗 如来能種種分別
+      { lineId: "h17", start: 108.1 }, // A 舎利弗 取要言之
+      { lineId: "h18", start: 116.5 }, // I 止 舎利弗
+      { lineId: "h19", start: 129.1 }, // A 唯仏与仏
+      // ---- 十如是 三返（1回＝38打） ----
+      { lineId: "h7",  start: 135.4 }, // R 所謂諸法 1回目
+      { lineId: "h8",  start: 142.2 }, // R 如是力
+      { lineId: "h9",  start: 148.4 }, // R 如是果
+      { lineId: "h20", start: 155.0 }, // R 所謂諸法 2回目
+      { lineId: "h21", start: 161.6 }, // R 如是力
+      { lineId: "h22", start: 167.8 }, // R 如是果
+      { lineId: "h23", start: 174.4 }, // R 所謂諸法 3回目
+      { lineId: "h24", start: 181.0 }, // R 如是力
+      { lineId: "h25", start: 187.1 }, // R 如是果（本末究竟等で減速して終わる）
+    ],
+  },
+  {
+    id: "keiko-jigage",
+    displayTitle: "寿量品（先生の読経）",
+    title: "稽古録音 2026-09-23 如来寿量品第十六 自我偈",
+    subtitle: "自我偈・本堂での稽古（2026-09-23）",
+    kind: "audio",
+    audioUrl: "/audio/keiko/jigage.m4a",
+    sutraIds: ["jigage"],
+    timings: [
+      { lineId: "j1",  start:   7.6 }, // E 自我得仏来（経題の後の息継ぎ）
+      { lineId: "j2",  start:  17.9 }, // I 常説法教化
+      { lineId: "j3",  start:  28.8 }, // I 為度衆生故
+      { lineId: "j4",  start:  39.1 }, // A 我常住於此
+      { lineId: "j5",  start:  48.3 }, // I 衆見我滅度
+      { lineId: "j6",  start:  59.2 }, // I 衆生既信伏
+      { lineId: "j7",  start:  69.6 }, // I 時我及衆僧
+      { lineId: "j8",  start:  80.7 }, // I 以方便力故
+      { lineId: "j9",  start:  91.2 }, // A 我復於彼中
+      { lineId: "j10", start: 101.7 }, // I 我見諸衆生
+      { lineId: "j11", start: 111.7 }, // I 因其心恋慕
+      { lineId: "j12", start: 121.5 }, // I 常在霊鷲山
+      { lineId: "j13", start: 131.8 }, // I 我此土安穏
+      { lineId: "j14", start: 142.6 }, // I 宝樹多花果
+      { lineId: "j15", start: 152.9 }, // I 雨曼陀羅華
+      { lineId: "j16", start: 163.7 }, // A 憂怖諸苦悩
+      { lineId: "j17", start: 173.6 }, // I 過阿僧祇劫
+      { lineId: "j18", start: 183.9 }, // I 則皆見我身
+      { lineId: "j19", start: 194.4 }, // I 久乃見仏者
+      { lineId: "j20", start: 204.8 }, // I 寿命無数劫
+      { lineId: "j21", start: 215.7 }, // I 当断令永尽
+      { lineId: "j22", start: 225.6 }, // I 実在而言死
+      { lineId: "j23", start: 236.2 }, // I 為凡夫顛倒
+      { lineId: "j24", start: 247.2 }, // I 放逸著五欲
+      { lineId: "j25", start: 257.0 }, // A 随応所可度（毎自作是念から木鉦が減速）
+      { lineId: "j26", start: 268.3 }, // A 得入無上道（ゆっくり）
+    ],
+  },
+
   // ===== 基準動画（YouTube） =====
   // 第3次同期（DTW + Whisper ハイブリッド）:
   //   旧版はOCR first_t（画面初出時刻）を採用していたが、これは実際の読誦オンセット

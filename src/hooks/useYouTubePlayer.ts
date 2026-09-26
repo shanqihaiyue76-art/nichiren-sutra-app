@@ -34,6 +34,7 @@ export function useYouTubePlayer(
   const playerRef = useRef<YT.Player | null>(null);
   const [ready, setReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [ended, setEnded] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
@@ -53,6 +54,8 @@ export function useYouTubePlayer(
           onStateChange: (e) => {
             if (disposed || !window.YT) return;
             setIsPlaying(e.data === window.YT.PlayerState.PLAYING);
+            if (e.data === window.YT.PlayerState.ENDED) setEnded(true);
+            else if (e.data === window.YT.PlayerState.PLAYING) setEnded(false);
             const d = e.target.getDuration() || 0;
             if (d) setDuration(d);
           },
@@ -95,7 +98,8 @@ export function useYouTubePlayer(
     if (!p) return;
     p.seekTo(time, true);
     setCurrentTime(time);
+    setEnded(false);
   }, []);
 
-  return { ready, isPlaying, currentTime, duration, togglePlay, seek };
+  return { ready, isPlaying, ended, currentTime, duration, togglePlay, seek };
 }

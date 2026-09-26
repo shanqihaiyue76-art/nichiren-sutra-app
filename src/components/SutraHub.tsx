@@ -10,15 +10,19 @@ import {
   useSutraProgress,
   weakLineIds,
 } from "@/lib/learningStore";
+import { getKeikoGuideBySutra, keikoMeta } from "@/data/keiko";
+import KeikoPoints from "./KeikoPoints";
 
 /**
  * 経文ハブ。学習の入口（経文＝学習の主単位）。
  * 進捗サマリ（覚えた/正解率/苦手/連続日数）と各学習モードへの導線。
+ * 稽古で練習する経文なら、先生の読経への導線と稽古の要点も出す。
  */
 export default function SutraHub({ sutra }: { sutra: Sutra }) {
   const { stats, streak } = useSutraProgress(sutra.id);
   const total = useMemo(() => flattenLines(sutra).length, [sutra]);
   const verified = isLearnable(sutra.provenance);
+  const guide = getKeikoGuideBySutra(sutra.id);
 
   const learned = learnedCount(stats);
   const pct = total ? Math.round((learned / total) * 100) : 0;
@@ -70,6 +74,12 @@ export default function SutraHub({ sutra }: { sutra: Sutra }) {
       </div>
 
       <nav className="hub-modes">
+        {guide && (
+          <Link href={`/play/${guide.sourceId}`} className="hub-mode">
+            <span className="hub-mode-title">先生の読経で練習</span>
+            <span className="hub-mode-sub">稽古の録音に合わせて読む・くり返す</span>
+          </Link>
+        )}
         <Link href={`/memorize/${sutra.id}`} className="hub-mode">
           <span className="hub-mode-title">暗記モード</span>
           <span className="hub-mode-sub">見て覚える・段階的に隠す</span>
@@ -79,6 +89,17 @@ export default function SutraHub({ sutra }: { sutra: Sutra }) {
           <span className="hub-mode-sub">訳から本文を想起・自己採点</span>
         </Link>
       </nav>
+
+      {guide && (
+        <section className="keiko-hub" aria-label="稽古で教わったこと">
+          <h2 className="keiko-h">稽古で教わったこと（{keikoMeta.purpose}に向けて）</h2>
+          <p className="keiko-scope">稽古で読んだ範囲：{guide.scope}</p>
+          <KeikoPoints points={guide.points} />
+          <Link href="/keiko" className="keiko-sheet-link">
+            読経の前の準備・覚え方も見る →
+          </Link>
+        </section>
+      )}
     </main>
   );
 }

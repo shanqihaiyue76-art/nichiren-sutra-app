@@ -12,6 +12,7 @@ export function useAudioPlayer(): Transport & {
 } {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [ended, setEnded] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
@@ -21,9 +22,15 @@ export function useAudioPlayer(): Transport & {
 
     const onTime = () => setCurrentTime(el.currentTime);
     const onLoaded = () => setDuration(el.duration || 0);
-    const onPlay = () => setIsPlaying(true);
+    const onPlay = () => {
+      setIsPlaying(true);
+      setEnded(false);
+    };
     const onPause = () => setIsPlaying(false);
-    const onEnded = () => setIsPlaying(false);
+    const onEnded = () => {
+      setIsPlaying(false);
+      setEnded(true);
+    };
 
     el.addEventListener("timeupdate", onTime);
     el.addEventListener("loadedmetadata", onLoaded);
@@ -48,6 +55,17 @@ export function useAudioPlayer(): Transport & {
     };
   }, []);
 
+  // 再生中は100msごとに位置を読む。timeupdate（約250ms間隔）だけだと、
+  // 行ハイライトの切替や1行くり返しの折り返しが遅れるため。
+  useEffect(() => {
+    if (!isPlaying) return;
+    const id = window.setInterval(() => {
+      const el = audioRef.current;
+      if (el) setCurrentTime(el.currentTime);
+    }, 100);
+    return () => window.clearInterval(id);
+  }, [isPlaying]);
+
   const togglePlay = useCallback(() => {
     const el = audioRef.current;
     if (!el) return;
@@ -60,7 +78,8 @@ export function useAudioPlayer(): Transport & {
     if (!el) return;
     el.currentTime = time;
     setCurrentTime(time);
+    setEnded(false);
   }, []);
 
-  return { audioRef, ready: true, isPlaying, currentTime, duration, togglePlay, seek };
+  return { audioRef, ready: true, isPlaying, ended, currentTime, duration, togglePlay, seek };
 }

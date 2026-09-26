@@ -7,15 +7,35 @@ interface Props {
   track: Track;
   /** フラット配列での現在行インデックス */
   activeIndex: number;
+  /** 1行くり返し中の行（フラットインデックス）。くり返していなければ null */
+  loopIndex?: number | null;
+  /** 行ID → その行に添える注意書き（稽古の要点） */
+  cues?: Record<string, string>;
   /** 行タップ：翻訳表示 */
   onSelectLine: (line: TimedLine) => void;
   /** 行ダブルタップ：その行から再生（start未計測なら無視） */
   onSeekLine?: (flatIndex: number) => void;
 }
 
+/**
+ * 句（全角スペース区切り）ごとに span で包む。句の途中で改行されないようにし、
+ * 折り返しは句の切れ目で起きるようにする（例:「無／量百千万」を防ぐ）。
+ */
+function phrases(s: string): React.ReactNode {
+  const parts = s.split(/[　 ]+/).filter(Boolean);
+  if (parts.length <= 1) return s;
+  return parts.map((p, i) => (
+    <span key={i} className="phrase">
+      {p}
+    </span>
+  ));
+}
+
 export default function LyricsView({
   track,
   activeIndex,
+  loopIndex = null,
+  cues,
   onSelectLine,
   onSeekLine,
 }: Props) {
@@ -54,18 +74,22 @@ export default function LyricsView({
             <h3 className="section-title">{section.sectionTitle}</h3>
             {section.lines.map((line) => {
               const isActive = line.flatIndex === activeIndex;
+              const isLoop = line.flatIndex === loopIndex;
+              const cue = cues?.[line.id];
               return (
                 <button
                   key={line.id}
                   ref={isActive ? activeRef : null}
-                  className={`line ${isActive ? "line-active" : ""}`}
+                  className={`line ${isActive ? "line-active" : ""} ${isLoop ? "line-loop" : ""}`}
                   onClick={() => onSelectLine(line)}
                   onDoubleClick={() => onSeekLine?.(line.flatIndex)}
                 >
-                  <span className="line-text">{line.text}</span>
+                  <span className="line-text">{phrases(line.text)}</span>
                   {line.reading && (
-                    <span className="line-reading">{line.reading}</span>
+                    <span className="line-reading">{phrases(line.reading)}</span>
                   )}
+                  {cue && <span className="line-cue">{cue}</span>}
+                  {isLoop && <span className="line-loop-mark">この行をくり返し中</span>}
                 </button>
               );
             })}

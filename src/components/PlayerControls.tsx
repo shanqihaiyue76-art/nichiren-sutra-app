@@ -1,11 +1,24 @@
 "use client";
 
+/** くり返し再生のモード。off=なし / all=全体 / line=いまの1行 */
+export type RepeatMode = "off" | "all" | "line";
+
+const REPEAT_OPTIONS: { key: RepeatMode; label: string }[] = [
+  { key: "off", label: "なし" },
+  { key: "all", label: "全体" },
+  { key: "line", label: "この行" },
+];
+
 interface Props {
   isPlaying: boolean;
   currentTime: number;
   duration: number;
   onTogglePlay: () => void;
   onSeek: (time: number) => void;
+  repeat: RepeatMode;
+  onChangeRepeat: (mode: RepeatMode) => void;
+  /** くり返した回数（くり返しオンのときだけ表示） */
+  repeatCount: number;
 }
 
 function fmt(sec: number): string {
@@ -21,9 +34,32 @@ export default function PlayerControls({
   duration,
   onTogglePlay,
   onSeek,
+  repeat,
+  onChangeRepeat,
+  repeatCount,
 }: Props) {
   return (
     <div className="player">
+      <div className="repeat-row">
+        <span className="repeat-label">くり返し</span>
+        <div className="repeat-options" role="radiogroup" aria-label="くり返し再生">
+          {REPEAT_OPTIONS.map((o) => (
+            <button
+              key={o.key}
+              type="button"
+              role="radio"
+              aria-checked={repeat === o.key}
+              className={`repeat-option ${repeat === o.key ? "active" : ""}`}
+              onClick={() => onChangeRepeat(o.key)}
+            >
+              {o.label}
+            </button>
+          ))}
+        </div>
+        <span className="repeat-count" aria-live="polite">
+          {repeat !== "off" && repeatCount > 0 ? `${repeatCount}回` : ""}
+        </span>
+      </div>
       <input
         className="seek"
         type="range"

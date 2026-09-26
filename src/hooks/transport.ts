@@ -6,6 +6,8 @@ export interface Transport {
   /** プレイヤー操作可能になったか */
   ready: boolean;
   isPlaying: boolean;
+  /** 最後まで再生して止まった状態か（再生・シークで false に戻る） */
+  ended: boolean;
   currentTime: number;
   duration: number;
   togglePlay: () => void;

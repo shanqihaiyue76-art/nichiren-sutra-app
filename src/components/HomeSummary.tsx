@@ -21,13 +21,17 @@ function level(count: number, max: number): number {
   return 4;
 }
 
-export default function HomeSummary() {
+export default function HomeSummary({ sutraIds }: { sutraIds?: string[] } = {}) {
   const { ready, activity, sutras, streak } = useLearningSummary();
 
-  // 全経文の「覚えた」合計 / 総行数（総行数は経文データ由来）
+  // 「覚えた」合計 / 総行数（総行数は経文データ由来）。
+  // sutraIds を渡すとその経文だけを数える（稽古で練習する経文に絞る用途）。
+  const counted = sutraIds
+    ? allSutras.filter((s) => sutraIds.includes(s.id))
+    : allSutras;
   let learned = 0;
   let total = 0;
-  for (const s of allSutras) {
+  for (const s of counted) {
     total += flattenLines(s).length;
     learned += learnedCount(sutras[s.id] ?? {});
   }

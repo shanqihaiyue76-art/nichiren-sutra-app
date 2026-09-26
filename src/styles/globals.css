@@ -1169,3 +1169,267 @@ a,
   margin: 0.9rem 0 0;
   line-height: 1.5;
 }
+
+/* ---------- 稽古（度牒交付式に向けた練習）: ホーム ---------- */
+.keiko-home-lead {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin: -0.4rem 0 0.9rem;
+  padding-left: 0.25rem;
+}
+.keiko-card {
+  background: var(--bg-elev);
+  border-radius: 14px;
+  border: 1px solid rgba(232, 176, 75, 0.35);
+  overflow: hidden;
+}
+.keiko-card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.1rem 1.25rem 0.85rem;
+  text-decoration: none;
+  color: var(--text);
+}
+.keiko-card-head:active {
+  background: #2d231b;
+}
+.keiko-card-actions {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0 1rem 1rem;
+}
+.keiko-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--line-idle);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+.keiko-action.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1a1410;
+  font-weight: 600;
+}
+.keiko-action:active {
+  transform: scale(0.97);
+}
+.keiko-guide-card {
+  border-color: rgba(232, 176, 75, 0.2);
+}
+.keiko-guide-arrow {
+  font-size: 1.6rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.home-more {
+  margin-top: 2.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1rem;
+}
+.home-more-summary {
+  cursor: pointer;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 0.25rem;
+  min-height: 2.75rem;
+  list-style: none;
+}
+.home-more-summary::-webkit-details-marker {
+  display: none;
+}
+.home-more-summary::before {
+  content: "＋ ";
+  color: var(--accent);
+}
+.home-more[open] .home-more-summary::before {
+  content: "－ ";
+}
+
+/* ---------- 稽古: 心得ページ・経文ハブ・シート ---------- */
+.keiko-intro {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin: 0.25rem 0 1.25rem;
+}
+.keiko-section {
+  margin-bottom: 2rem;
+  scroll-margin-top: 5rem;
+}
+.keiko-h {
+  font-size: 1rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  margin: 0 0 0.6rem;
+}
+.keiko-scope {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+.keiko-points {
+  margin: 0 0 1rem;
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.keiko-point {
+  line-height: 1.75;
+  padding-left: 0.2rem;
+}
+.keiko-point::marker {
+  color: var(--accent);
+}
+.keiko-point-text {
+  display: block;
+  font-size: 0.98rem;
+  color: var(--text);
+}
+.keiko-point-note {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-top: 0.15rem;
+}
+.keiko-point-src {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 0.05rem 0.55rem;
+  letter-spacing: 0.04em;
+}
+.keiko-play {
+  margin-top: 0.25rem;
+}
+.keiko-sheet-link {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 0.5rem 0;
+}
+.keiko-hub {
+  margin-top: 1.75rem;
+  padding: 1.1rem 1.1rem 0.5rem;
+  background: var(--bg-elev);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ---------- 稽古: 再生画面（要点ボタン・行の注意書き） ---------- */
+.player-header-title {
+  flex: 1;
+  min-width: 0;
+}
+.header-pill {
+  flex-shrink: 0;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+.header-pill:active {
+  transform: scale(0.96);
+}
+.line-cue {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  color: var(--accent);
+  border: 1px solid rgba(232, 176, 75, 0.45);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+.line-active .line-cue {
+  opacity: 1;
+  background: var(--accent-soft);
+}
+.line-loop {
+  background: rgba(232, 176, 75, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(232, 176, 75, 0.35);
+}
+.line-loop-mark {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.66rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+/* ---------- くり返し再生 ---------- */
+.repeat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+.repeat-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.repeat-options {
+  display: flex;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 3px;
+}
+.repeat-option {
+  flex: 1;
+  min-height: 2.25rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+.repeat-option.active {
+  background: var(--accent);
+  color: #1a1410;
+  font-weight: 600;
+}
+.repeat-count {
+  min-width: 2.5rem;
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 句（全角スペース区切り）単位で折り返す。句の間隔は元の全角スペース相当 */
+.line .phrase {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+.line-reading .phrase {
+  margin: 0 0.35em;
+}
