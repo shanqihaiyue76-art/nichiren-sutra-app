@@ -1433,3 +1433,32 @@ a,
 .line-reading .phrase {
   margin: 0 0.35em;
 }
+
+/* 度牒交付式の枠（ホームの一番上） */
+.keiko-frame {
+  border: 1px solid var(--accent);
+  border-radius: 18px;
+  padding: 1.1rem 0.9rem 1rem;
+  margin: 0 0 1.5rem;
+  background: rgba(232, 176, 75, 0.05);
+}
+.keiko-frame-title {
+  font-size: 1.15rem;
+  color: var(--accent);
+  letter-spacing: 0.3em;
+  text-align: center;
+  margin: 0 0 0.6rem;
+  font-weight: 600;
+}
+.keiko-frame .keiko-home-lead {
+  text-align: center;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+/* 練習ボタンは1段目の全幅、暗記・テストは2段目に並べる（狭い画面で折り返さない） */
+.keiko-card-actions {
+  grid-template-columns: 1fr 1fr;
+}
+.keiko-action.primary {
+  grid-column: 1 / -1;
+}

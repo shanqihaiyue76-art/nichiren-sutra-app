@@ -19,50 +19,54 @@ export default function Home() {
         <TextSizeControl />
       </header>
 
+      {/* 度牒交付式に向けた稽古（先生の読経で練習する経文だけ）。ホームの一番上に枠で置く。 */}
+      <section className="keiko-frame" aria-labelledby="keiko-frame-title">
+        <h2 id="keiko-frame-title" className="keiko-frame-title">
+          {keikoMeta.purpose}
+        </h2>
+        <p className="keiko-home-lead">
+          稽古（{keikoMeta.date}）で習ったことを、先生の読経に合わせてくり返し練習する
+        </p>
+        <ul className="sutra-list">
+          {keikoGuides.map((g) => (
+            <li key={g.sourceId} className="keiko-card">
+              <Link href={`/sutra/${g.sutraId}`} className="keiko-card-head">
+                <span className="sutra-card-title">{g.name}</span>
+                <span className="sutra-card-sub">{g.scope}</span>
+              </Link>
+              <div className="keiko-card-actions">
+                <Link href={`/play/${g.sourceId}`} className="keiko-action primary">
+                  先生の読経で練習
+                </Link>
+                <Link href={`/memorize/${g.sutraId}`} className="keiko-action">
+                  暗記
+                </Link>
+                <Link href={`/test/${g.sutraId}`} className="keiko-action">
+                  テスト
+                </Link>
+              </div>
+            </li>
+          ))}
+          <li>
+            <Link href="/keiko" className="sutra-card keiko-guide-card">
+              <div className="sutra-card-main">
+                <span className="sutra-card-title">稽古の心得</span>
+                <span className="sutra-card-sub">読経の前の準備・大切なこと・覚え方</span>
+              </div>
+              <span className="keiko-guide-arrow" aria-hidden>
+                ›
+              </span>
+            </Link>
+          </li>
+        </ul>
+      </section>
+
       {/* 学習サマリー（連続学習・覚えた行・直近の学習）。端末内データ。
           「覚えた行」は稽古で練習する経文だけを数える。 */}
       <HomeSummary sutraIds={focusSutraIds} />
 
       {/* 続きから（最後に学習した経文へ1タップ復帰）。履歴が無ければ非表示。 */}
       <ContinueCard />
-
-      {/* 度牒交付式に向けた稽古（先生の読経で練習する経文だけ）。 */}
-      <h2 className="home-section-title">{keikoMeta.purpose}の稽古</h2>
-      <p className="keiko-home-lead">
-        先生の読経（{keikoMeta.date}の稽古の録音）に合わせて、くり返し練習する
-      </p>
-      <ul className="sutra-list">
-        {keikoGuides.map((g) => (
-          <li key={g.sourceId} className="keiko-card">
-            <Link href={`/sutra/${g.sutraId}`} className="keiko-card-head">
-              <span className="sutra-card-title">{g.name}</span>
-              <span className="sutra-card-sub">{g.scope}</span>
-            </Link>
-            <div className="keiko-card-actions">
-              <Link href={`/play/${g.sourceId}`} className="keiko-action primary">
-                先生の読経で練習
-              </Link>
-              <Link href={`/memorize/${g.sutraId}`} className="keiko-action">
-                暗記
-              </Link>
-              <Link href={`/test/${g.sutraId}`} className="keiko-action">
-                テスト
-              </Link>
-            </div>
-          </li>
-        ))}
-        <li>
-          <Link href="/keiko" className="sutra-card keiko-guide-card">
-            <div className="sutra-card-main">
-              <span className="sutra-card-title">稽古の心得</span>
-              <span className="sutra-card-sub">読経の前の準備・大切なこと・覚え方</span>
-            </div>
-            <span className="keiko-guide-arrow" aria-hidden>
-              ›
-            </span>
-          </Link>
-        </li>
-      </ul>
 
       {/* 稽古以外の経文・音源。ふだんは畳んでおく。 */}
       <details className="home-more">
